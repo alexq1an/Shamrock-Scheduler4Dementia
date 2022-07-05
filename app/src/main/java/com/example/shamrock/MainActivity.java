@@ -2,58 +2,68 @@ package com.example.shamrock;
 
 //import static android.content.ContentValues.TAG;
 
-import android.os.Bundle;
-//import android.util.Log;
 
-//import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-//import com.google.firebase.firestore.QueryDocumentSnapshot;
-//import com.google.firebase.firestore.QuerySnapshot;
 
-//import java.util.HashMap;
-//import java.util.Map;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    public static void main(String[] Args) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        // Create a new user with a first and last name
-//        Map<String, Object> user = new HashMap<>();
-//        user.put("Name", "Carol");
-//
-//        //creating a new collection
-//        db.collection("TempCollection")
-//                .add(user)
-//                .addOnSuccessListener(documentReference -> Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId()))
-//                .addOnFailureListener(e -> Log.w(TAG, "Error adding document", e));
-//
-//        db.collection("users")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//
-//                    }
-//
-//
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                Log.d(TAG, document.getId() + " => " + document.getData());
-//                            }
-//                        } else {
-//                            Log.w(TAG, "Error getting documents.", task.getException());
-//                        }
-//                    }
-//                });
-    }
+    private static final String TAG = "MainActivity";
+
+    private static final String KEY_TITLE = "title";
+    private static final String KEY_DESCRIPTION = "description";
+
+    private EditText editTextTitle;
+    private EditText editTextDescription;
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        editTextTitle = findViewById(R.id.edit_text_title);
+        editTextDescription = findViewById(R.id.edit_text_description);
     }
+
+    public void saveNote(View v){
+        String title = editTextTitle.getText().toString();
+        String description = editTextDescription.getText().toString();
+
+        Map<String, Object> note = new HashMap<>();
+        note.put(KEY_TITLE, title);
+        note.put(KEY_DESCRIPTION, description);
+
+//        db.document("Notebook/My First Note");
+        db.collection("Notebook").document("My First Note").set(note)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(MainActivity.this, "Note Saved", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, e.toString());
+                    }
+                });
+    }
+
+
 }
