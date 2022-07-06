@@ -47,6 +47,12 @@
         android:text="update Password"
         android:onClick="updatePassword"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:onClick="login"/>
+
     <TextView
         android:id="@+id/text_view_data"
         android:layout_width="wrap_content"
