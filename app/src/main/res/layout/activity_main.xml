@@ -9,24 +9,50 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/edit_text_title"
+        android:id="@+id/edit_text_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title"
+        android:hint="Username"
         android:inputType="text"/>
 
     <EditText
-        android:id="@+id/edit_text_description"
+        android:id="@+id/edit_text_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Description"
+        android:hint="Password"
         android:inputType="text"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:onClick="saveNote"/>
+        android:text="Create Account"
+        android:onClick="createAccount"/> //function name
+<!--use load for schedule later on -->
+<!--    -->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="load"
+        android:onClick="loadNote"/>
+
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Log In"-->
+<!--        android:onClick="logIn"/>-->
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="update Password"
+        android:onClick="updatePassword"/>
+
+    <TextView
+        android:id="@+id/text_view_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp" />
+
 
 
 </LinearLayout>
