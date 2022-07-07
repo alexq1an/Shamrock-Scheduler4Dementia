@@ -75,6 +75,13 @@
 
 
     <EditText
+        android:id="@+id/edit_text_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:inputType="text"/>
+
+    <EditText
         android:id="@+id/edit_text_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,19 +94,13 @@
         android:layout_height="wrap_content"
         android:text="Create Account"
         android:onClick="createAccount"/> //function name
-<!--use load for schedule later on -->
-<!--    -->
+    <!--use load for schedule later on -->
+    <!--    -->
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="load"
         android:onClick="loadNote"/>
-
-<!--    <Button-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Log In"-->
-<!--        android:onClick="logIn"/>-->
 
     <Button
         android:layout_width="match_parent"
@@ -108,17 +109,16 @@
         android:onClick="updatePassword"/>
 
     <Button
+        android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:onClick="login"/>
+        android:onClick="logIn"/>
 
     <TextView
         android:id="@+id/text_view_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp" />
-
-
 
 </LinearLayout>
