@@ -1,4 +1,4 @@
-****## Shamrock 
+## Shamrock 
 
 **Steps to Run our application**
 
@@ -30,7 +30,7 @@ Then you should see this screen<br>
 <img src= "login.png">
 
 <br>
-The **create account** button should store the username and password in the database<br>
+The **Create Account** button should store the username and password in the database<br>
 The **Load** button will print the values we have stored in our database <br>
 The **Update Password** button should update the password of the given user in the database, if the user does not exist then it will create the user <br>
 The **Log In** button will lead the user to the home page
