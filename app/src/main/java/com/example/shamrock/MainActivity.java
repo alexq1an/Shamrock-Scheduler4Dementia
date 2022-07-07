@@ -13,8 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,7 +33,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.widget.Button;
+import android.content.Intent;
+ import android.view.View;
+
 public class MainActivity extends AppCompatActivity {
+    public Button button;
     private static final String TAG = "MainActivity";
 
     private static final String KEY_NAME = "Name";
@@ -55,10 +62,11 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-//        editTextName = findViewById(R.id.edit_text_name);
+        editTextName = findViewById(R.id.edit_text_name);
         editTextUsername = findViewById(R.id.edit_text_username);
         editTextPassword = findViewById(R.id.edit_text_password);
         textViewData = findViewById(R.id.text_view_data);
+
     }
 
 //    @Override
@@ -90,36 +98,29 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     public void createAccount(View v){
-//        String name = editTextName.getText().toString();
+        //gets user input
+        String name = editTextName.getText().toString();
         String user = editTextUsername.getText().toString();
         String password = editTextPassword.getText().toString();
 
-//        Caregiver caregiver = new Caregiver(name, user, password);
-        Caregiver caregiver = new Caregiver(user, password);
+        //checks if user exists already
+        for(int i = 0; i < caregiverList.size(); i++){
+            if(caregiverList.get(i).getUsername().equals(user)){
+                //user already exists
+                String data = "Account Already Exists";
+                textViewData.setText(data);
+                return;
+            }
+        }
+
+        Caregiver caregiver = new Caregiver(name, user, password);
+        //new create account
+//        Caregiver caregiver = new Caregiver(user, password);
 
         DocumentReference addedDocRef = cRef.document();
         addedDocRef.set(caregiver);
         caregiver.setDocumentId(addedDocRef.getId());
         caregiverList.add(caregiver);
-
-                //not sure if these works
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        Toast.makeText(MainActivity.this, "Account created", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-//                        Log.d(TAG, e.toString());
-//                    }
-//                });
-
-
-
     }
 
     public void updatePassword(View v){
@@ -132,9 +133,28 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if(i < caregiverList.size()){
-            cRef.document(caregiverList.get(i).getDocumentId()).update(KEY_DESCRIPTION, password);
+        if(i > caregiverList.size()){
+            //case where the user doesn't exist
+            return;
         }
+        cRef.document(caregiverList.get(i).getDocumentId()).update(KEY_DESCRIPTION, password);
+
+    }
+
+    public void logIn(View v){
+        String user = editTextUsername.getText().toString();
+        String password = editTextPassword.getText().toString();
+
+        //checks if user exists already
+
+
+        button = (Button) findViewById(R.id.login_button);
+         button.setOnClickListener(new View.OnClickListener() { @Override
+        public void onClick(View v) {
+            Intent intent= new Intent(MainActivity.this,MainActivity2.class);
+            startActivity(intent);
+        }
+        });
 
     }
 
@@ -150,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                             caregiver.setDocumentId(documentSnapshot.getId());
 
                             String documentId = caregiver.getDocumentId();
-//                            String name = caregiver.getName();
+                            String name = caregiver.getName();
                             String username = caregiver.getUsername();;
                             String password = caregiver.getPassword();
                             //add name
