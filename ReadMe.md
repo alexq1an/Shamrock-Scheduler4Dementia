@@ -1,9 +1,9 @@
-##Shamrock 
+## Shamrock 
 
 **Steps to Run our application**
 
 **Step 1:** Clone Repo<br> 
-**Step 2:** Open folder, build and view in emulator<br>Ensure that your emulator has at least<br>
+**Step 2:** Open in Android Studio, build and view in emulator<br>Ensure that your emulator has at least<br>
 <ul>
     <li>Target API level 19 (KitKat) or higher </li>
     <li>Uses Android 4.4 or higher</li>
