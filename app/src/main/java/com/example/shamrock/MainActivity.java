@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        editTextName = findViewById(R.id.edit_text_name);
+//        editTextName = findViewById(R.id.edit_text_name);
         editTextUsername = findViewById(R.id.edit_text_username);
         editTextPassword = findViewById(R.id.edit_text_password);
         textViewData = findViewById(R.id.text_view_data);
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void createAccount(View v){
         //gets user input
-        String name = editTextName.getText().toString();
+//        String name = editTextName.getText().toString();
         String user = editTextUsername.getText().toString();
         String password = editTextPassword.getText().toString();
 
@@ -113,9 +113,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        Caregiver caregiver = new Caregiver(name, user, password);
+//        Caregiver caregiver = new Caregiver(name, user, password);
         //new create account
-//        Caregiver caregiver = new Caregiver(user, password);
+        Caregiver caregiver = new Caregiver(user, password);
 
         DocumentReference addedDocRef = cRef.document();
         addedDocRef.set(caregiver);
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                             caregiver.setDocumentId(documentSnapshot.getId());
 
                             String documentId = caregiver.getDocumentId();
-                            String name = caregiver.getName();
+//                            String name = caregiver.getName();
                             String username = caregiver.getUsername();;
                             String password = caregiver.getPassword();
                             //add name
