@@ -28,3 +28,9 @@ However, default emulator works fine as well
 If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
 Then you should see this screen<br>
 <img src= "login.png">
+
+<br>
+The **create account** button should store the username and password in the database<br>
+The **Load** button will print the values we have stored in our database <br>
+The **Update Password** button should update the password of the given user in the database, if the user does not exist then it will create the user <br>
+The **Log In** button will lead the user to the home page
