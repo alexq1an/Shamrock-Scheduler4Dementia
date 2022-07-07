@@ -2,7 +2,7 @@
 
 **Steps to Run our application**
 
-**Step 1:** Clone Repo 
+**Step 1:** Clone Repo<br> 
 **Step 2:** Open folder, build and view in emulator<br>Ensure that your emulator has at least<br>
 <ul>
     <li>Target API level 19 (KitKat) or higher </li>
