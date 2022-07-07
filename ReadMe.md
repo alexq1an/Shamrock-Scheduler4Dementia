@@ -24,3 +24,7 @@ However, default emulator works fine as well
     <li>Can Switch pages upon 'Log in'</li>
     <li>Basic methods of Caregiver class needed for database have been implemented </li>
 </ul>
+
+If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
+Then you should see this screen<br>
+<img src= "login.png">
