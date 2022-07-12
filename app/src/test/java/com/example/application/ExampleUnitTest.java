@@ -1,4 +1,4 @@
-package com.example.shamrock;
+package com.example.application;
 
 import org.junit.Test;
 

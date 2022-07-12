@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Shamrock</string>
+    <string name="app_name">Application</string>
+    <string name="shamrock">Shamrock</string>
+    <string name="account">Account:</string>
+    <string name="password">Password：</string>
+    <string name="enter_your_account_number">Enter your account</string>
+    <string name="enter_your_password">Enter your password</string>
 </resources>
