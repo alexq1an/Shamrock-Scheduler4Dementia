@@ -8,6 +8,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity4">
 
+    <TextView
+        android:id="@+id/patient_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Patient_name"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/gray"
+        android:textAlignment="center"
+        android:textSize="35dp"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,6 +68,17 @@
         android:textSize="18sp"/>
 
     <Button
+        android:id="@+id/changePatientInfo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Patient"
+        android:textColor="@color/white"
+        android:background="@null"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="20sp"/>
+    <Button
+        android:id="@+id/newevent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Event"
@@ -70,6 +92,7 @@
         android:id="@+id/hourListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"/>
+        android:layout_weight="5"
+        />
 
 </LinearLayout>

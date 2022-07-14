@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/background">
 
     <Button
         android:id="@+id/patient"
@@ -14,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="41dp"
-        android:layout_marginTop="166dp"
+        android:layout_marginTop="149dp"
         android:text="patient"
         android:textSize="40dp" />
 
@@ -25,8 +26,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="462dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="422dp"
         android:text="caregiver"
         android:textSize="40dp" />
+
 </RelativeLayout>
