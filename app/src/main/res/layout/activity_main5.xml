@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity5">
+    tools:context=".MainActivity5"
+    android:background="@drawable/background_edge">
 
 
     <TextView

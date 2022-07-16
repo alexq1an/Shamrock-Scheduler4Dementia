@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_edge"
     tools:context=".MainActivity4">
 
     <TextView
@@ -30,8 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/back"
-            android:textColor="@color/white"
-            android:background="@null"
+            android:textColor="@color/black"
+            android:background="@drawable/button_colour_2"
             android:textStyle="bold"
             android:textSize="20sp"/>
 
@@ -50,8 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/forward"
-            android:textColor="@color/white"
-            android:background="@null"
+            android:textColor="@color/black"
+            android:background="@drawable/button_colour_2"
             android:textStyle="bold"
             android:textSize="20sp"/>
 
@@ -69,24 +70,27 @@
 
     <Button
         android:id="@+id/changePatientInfo_button"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:text="Edit Patient"
-        android:textColor="@color/white"
-        android:background="@null"
-        android:textStyle="bold"
         android:layout_gravity="center"
-        android:textSize="20sp"/>
+        android:background="@drawable/button_colour_2"
+        android:text="Edit Patient"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/newevent"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:text="New Event"
-        android:textColor="@color/white"
-        android:background="@null"
-        android:textStyle="bold"
         android:layout_gravity="center"
-        android:textSize="20sp"/>
+        android:background="@drawable/button_colour_2"
+        android:layout_marginTop="20dp"
+
+        android:text="New Event"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/hourListView"
