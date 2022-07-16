@@ -16,7 +16,6 @@
         android:layout_marginLeft="85dp"
         android:layout_marginTop="0dp"
         android:text="Caregiver Home"
-        android:textColor="@color/black"
         android:textSize="35sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -29,25 +28,39 @@
 
         <Button
             android:id="@+id/patientTask"
-            android:layout_width="110dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="0dp"
-            android:background="@drawable/button_colour_2"
             android:text="patient-Task"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:background="@drawable/button_colour_2"
+            />
 
         <Button
             android:id="@+id/settingbt"
-            android:layout_width="102dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
             android:layout_marginTop="0dp"
             android:text="setting"
             android:textSize="15dp"
-            android:background="@drawable/button_colour_2"
-            />
+            android:background="@drawable/button_colour_2"/>
+
+
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/testingbt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="0dp"
+        android:text="testing"
+        android:textSize="15dp"
+        android:background="@drawable/button_colour_2"/>
+<!--        android:onClick="testing"-->
 
 
     <ListView

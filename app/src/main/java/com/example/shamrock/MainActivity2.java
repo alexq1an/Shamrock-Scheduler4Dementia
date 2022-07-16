@@ -3,6 +3,7 @@ package com.example.shamrock;
 //import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -42,24 +45,27 @@ public class MainActivity2 extends AppCompatActivity {
     public Button button;
     private static final String TAG = "MainActivity";
 
+    FirebaseAuth mAuth;
+
     //fields
     private static final String KEY_NAME = "Name";
     private static final String KEY_TITLE = "Username";
+    private static final String KEY_EMAIL = "Email";
     private static final String KEY_DESCRIPTION = "password";
 
     //from xml from user
-    private EditText editTextName;
     private EditText editTextUsername;
+    private EditText editTextEmail;
     private EditText editTextPassword;
     private TextView textViewData;
+
+    private Button register_button;
+    private Button login_button;
 
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference dRef = db.collection("Caregiver").document("My First Note");
     private CollectionReference cRef = db.collection("Caregiver");
-
-    //using arrayList for storing caregivers --> do get document ID
-    private ArrayList<Caregiver> caregiverList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,127 +73,103 @@ public class MainActivity2 extends AppCompatActivity {
 
         setContentView(R.layout.activity_main2);
 
-//        editTextName = findViewById(R.id.edit_text_name);
         editTextUsername = findViewById(R.id.edit_text_username);
+        editTextEmail = findViewById(R.id.edit_text_email);
         editTextPassword = findViewById(R.id.edit_text_password);
         textViewData = findViewById(R.id.text_view_data);
 
-    }
+        register_button = findViewById(R.id.register_button);
+        login_button = findViewById(R.id.login_button);
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        cRef.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
-//            @Override
-//            public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
-//                if (e != null){
-//                    return;
-//                }
-//
-//                String data = "";
-//                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                    Caregiver caregiver = documentSnapshot.toObject(Caregiver.class);
-//                    caregiver.setDocumentId(documentSnapshot.getId());
-//
-//                    String documentId = caregiver.getDocumentId();
-//                    String name = caregiver.getName();
-//                    String username = caregiver.getUsername();;
-//                    String password = caregiver.getPassword();
-//
-//                    data += "ID: " + documentId + "\nName: " + name +
-//                            "\nUsername: " + username + "\nPassword: " + password + "\n\n";
-//                }
-//                textViewData.setText(data);
-//            }
-//        });
-//    }
+        mAuth = FirebaseAuth.getInstance();
 
-    public void createAccount(View v){
-        //gets user input
-//        String name = editTextName.getText().toString();
-        String user = editTextUsername.getText().toString();
-        String password = editTextPassword.getText().toString();
-
-        //checks if user exists already
-        for(int i = 0; i < caregiverList.size(); i++){
-            if(caregiverList.get(i).getUsername().equals(user)){
-                //user already exists
-                String data = "Account Already Exists";
-                textViewData.setText(data);
-                return;
+        //when login button clicked, call this method
+        login_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logIn(view);
             }
-        }
+        });
 
-//        Caregiver caregiver = new Caregiver(name, user, password);
-        //new create account
-        Caregiver caregiver = new Caregiver(user, password);
-
-        //adding to document and arraylist
-        DocumentReference addedDocRef = cRef.document();
-        addedDocRef.set(caregiver);
-        caregiver.setDocumentId(addedDocRef.getId());
-        caregiverList.add(caregiver);
-    }
-
-    public void updatePassword(View v){
-        String password = editTextPassword.getText().toString();
-        String user = editTextUsername.getText().toString();
-        int i = 0;
-        for( i = 0; i < caregiverList.size(); i++){
-            if(caregiverList.get(i).getUsername().equals(user)){
-                break;
-            }
-        }
-
-        if(i > caregiverList.size()){
-            //case where the user doesn't exist
-            return;
-        }
-
-        //update statement
-        cRef.document(caregiverList.get(i).getDocumentId()).update(KEY_DESCRIPTION, password);
-
+        //lead to registration page
+        register_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createAccount(view);            }
+        });
     }
 
     public void logIn(View v){
         String user = editTextUsername.getText().toString();
+        String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
 
-        //checks if user exists already
-
-        button = (Button) findViewById(R.id.login_button);
-        button.setOnClickListener(new View.OnClickListener() { @Override
-        public void onClick(View v) {
-            Intent intent= new Intent(MainActivity2.this, MainActivity3.class);
-            startActivity(intent);
+        if (TextUtils.isEmpty(user)){
+            editTextUsername.setError("Username cannot be empty");
+            editTextUsername.requestFocus();
         }
-        });
-
-    }
-
-    public void loadNote(View v){
-        cRef.get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        String data = "";
-
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                            Caregiver caregiver = documentSnapshot.toObject(Caregiver.class);
-                            caregiver.setDocumentId(documentSnapshot.getId());
-
-                            String documentId = caregiver.getDocumentId();
-//                            String name = caregiver.getName();
-                            String username = caregiver.getUsername();;
-                            String password = caregiver.getPassword();
-                            //add name
-                            data += "ID: " + documentId + "\nName: " +
-                                    "\nUsername: " + username + "\nPassword: " + password + "\n\n";
-
-//
-                        }
-                        textViewData.setText(data);
+        else if (TextUtils.isEmpty(email)){
+            editTextEmail.setError("Email cannot be empty");
+            editTextEmail.requestFocus();
+        }
+        else if (TextUtils.isEmpty(password)){
+            editTextPassword.setError("Password cannot be empty");
+            editTextPassword.requestFocus();
+        }
+        else{
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(MainActivity2.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(MainActivity2.this, MainActivity3.class);
+                        i.putExtra("documentId",mAuth.getCurrentUser().getUid());
+                        startActivity(i);
                     }
-                });
+                    else{
+                        Toast.makeText(MainActivity2.this, "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
     }
+
+    public void createAccount(View v) {
+        //gets user input
+        String user = editTextUsername.getText().toString();
+        String email = editTextEmail.getText().toString();
+        String password = editTextPassword.getText().toString();
+
+        if (TextUtils.isEmpty(user)) {
+            editTextUsername.setError("Username cannot be empty");
+            editTextUsername.requestFocus();
+        } else if (TextUtils.isEmpty(email)) {
+            editTextEmail.setError("Email cannot be empty");
+            editTextEmail.requestFocus();
+        } else if (TextUtils.isEmpty(password)) {
+            editTextPassword.setError("Password cannot be empty");
+            editTextPassword.requestFocus();
+        } else {
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(MainActivity2.this, "Account created", Toast.LENGTH_SHORT).show();
+
+                        //new create account
+                        Caregiver caregiver = new Caregiver(user, email, password);
+
+                        //add document to firebase
+                        cRef.document(mAuth.getCurrentUser().getUid()).set(caregiver);
+
+                    } else {
+                        Toast.makeText(MainActivity2.this, "Registration Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }
+    }
+
 }

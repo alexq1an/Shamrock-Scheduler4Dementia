@@ -8,6 +8,7 @@ public class Caregiver {
     private String documentId;
     private String name;
     private String username;
+    private String email;
     private String password;
 //    private String pList;
 
@@ -24,14 +25,16 @@ public class Caregiver {
         this.documentId = documentId;
     }
 
-    public Caregiver(String name, String username, String password) {
+    public Caregiver(String name, String username, String email, String password) {
         this.name = name;
         this.username = username;
+        this.email = email;
         this.password = password;
     }
 
-    public Caregiver(String username, String password){
+    public Caregiver(String username, String email, String password){
         this.username = username;
+        this.email = email;
         this.password = password;
     }
 
@@ -41,6 +44,10 @@ public class Caregiver {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {

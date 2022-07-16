@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:514635985466:android:d392608c357c1499c3bb03",
+        "android_client_info": {
+          "package_name": "codewithcal.au.calendarappexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514635985466-u3sjisdbeig1kpaml20r5ungk09hmjqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW63CfsYbAQOzFAJ4Sm6wFjeLmH6n9mPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514635985466-u3sjisdbeig1kpaml20r5ungk09hmjqi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:514635985466:android:a48bc66b61257cefc3bb03",
         "android_client_info": {
           "package_name": "com.example.shamrock"

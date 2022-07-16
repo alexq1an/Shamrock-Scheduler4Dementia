@@ -6,8 +6,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_edge"
-    tools:context=".MainActivity4">
+    tools:context=".MainActivity4"
+    android:background="@drawable/background_edge">
+
 
     <TextView
         android:id="@+id/patient_name"
@@ -70,27 +71,26 @@
 
     <Button
         android:id="@+id/changePatientInfo_button"
-        android:layout_width="140dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/button_colour_2"
         android:text="Edit Patient"
         android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_gravity="center"
         android:textSize="20sp"
-        android:textStyle="bold" />
-
+        android:background="@drawable/button_colour_2"/>
     <Button
         android:id="@+id/newevent"
-        android:layout_width="140dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/button_colour_2"
-        android:layout_marginTop="20dp"
-
         android:text="New Event"
         android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:background="@drawable/button_colour_2"
+        />
 
     <ListView
         android:id="@+id/hourListView"
