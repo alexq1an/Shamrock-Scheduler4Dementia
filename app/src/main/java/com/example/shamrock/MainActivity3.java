@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.shamrock.databinding.ActivityMain3Binding;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -16,22 +18,22 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-import android.widget.AdapterView;
-import com.example.shamrock.databinding.ActivityMain3Binding;
 import java.util.ArrayList;
+
+
 
 public class MainActivity3 extends AppCompatActivity {
     private Button setting;
     private Button patientTask;
     private Button testing_button;
     private CollectionReference cRef = FirebaseFirestore.getInstance().collection("Caregiver");
+
     public ActivityMain3Binding binding;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-
         setting = (Button) findViewById(R.id.settingbt);
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,16 +45,16 @@ public class MainActivity3 extends AppCompatActivity {
         patientTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity5();
+                openActivity4();
             }
         });
-        testing_button = (Button) findViewById(R.id.testingbt);
-        testing_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                    testing();
-            }
-        });
+//        testing_button = (Button) findViewById(R.id.testingbt);
+//        testing_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                    testing();
+//            }
+//        });
 
         //below are patient info List on caregiver's side.
         binding = ActivityMain3Binding.inflate(getLayoutInflater());
@@ -86,7 +88,7 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent i = new Intent(MainActivity3.this,MainActivity6.class);
+                Intent i = new Intent(MainActivity3.this,MainActivity4.class);
                 i.putExtra("name",name[position]);
                 i.putExtra("phone",phoneNo[position]);
                 i.putExtra("country",country[position]);

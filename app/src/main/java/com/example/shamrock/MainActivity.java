@@ -8,47 +8,36 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    private Button button_caregiver;
-
-    private Button button_patient;
-
-
-
+    private Button button;
+    private Button pButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        button = (Button) findViewById(R.id.caregiver);
+        pButton = (Button) findViewById(R.id.patient);
 
-        button_caregiver = (Button) findViewById(R.id.caregiver);
-        button_caregiver.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,MainActivity2.class);
-                startActivity(intent);
+                openActivity2();
             }
         });
-
-        button_patient = (Button) findViewById(R.id.patient);
-        button_patient.setOnClickListener(new View.OnClickListener() {
+        pButton.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-
-                Intent intent=new Intent(MainActivity.this, Patient_login.class);
-                startActivity(intent);
+            public void onClick(View view){
+                openPActivity2();
             }
         });
-
     }
-
-
+    //lead to Caregiver page
     public void openActivity2(){
         Intent intent = new Intent(this,MainActivity2.class);
         startActivity(intent);
     }
-
-    public void openPatient_login(){
-        Intent intent = new Intent(this, Patient_login.class);
+    //lead to Patient page
+    public void openPActivity2(){
+        Intent intent = new Intent(this,PActivity2.class);
         startActivity(intent);
     }
-
 }

@@ -11,8 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class ListAdapter extends ArrayAdapter<User> {
@@ -20,7 +18,7 @@ public class ListAdapter extends ArrayAdapter<User> {
 
     public ListAdapter(Context context, ArrayList<User> userArrayList){
 
-        super(context,R.layout.patients_list_item,userArrayList);
+        super(context, R.layout.patients_list_item,userArrayList);
 
     }
 

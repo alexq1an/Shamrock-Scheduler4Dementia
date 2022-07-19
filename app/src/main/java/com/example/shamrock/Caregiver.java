@@ -10,7 +10,7 @@ public class Caregiver {
     private String username;
     private String email;
     private String password;
-//    private String pList;
+//    private ArrayList<String> pList;
 
     public Caregiver() {
         //public no-arg constructor needed
@@ -53,4 +53,9 @@ public class Caregiver {
     public String getPassword() {
         return password;
     }
+
+    //create a patient account
+//    public void createPatient(){
+//        
+//    }
 }

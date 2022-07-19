@@ -38,11 +38,11 @@
             android:textSize="20sp"/>
 
         <TextView
-            android:id="@+id/monthDayText"
+            android:id="@+id/et_date"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:text="Feb 2021"
+            android:hint="Select Date"
             android:textSize="20sp"
             android:textAlignment="center"
             android:textColor="@color/black"/>
@@ -60,14 +60,14 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/dayOfWeekTV"
+        android:id="@+id/tv_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Monday"
+        android:text="Date"
         android:layout_marginBottom="20dp"
         android:textColor="@color/gray"
         android:textAlignment="center"
-        android:textSize="18sp"/>
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/changePatientInfo_button"
@@ -83,7 +83,7 @@
         android:id="@+id/newevent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Event"
+        android:text="New Task"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"
         android:textStyle="bold"
@@ -91,6 +91,7 @@
         android:textSize="20sp"
         android:background="@drawable/button_colour_2"
         />
+
 
     <ListView
         android:id="@+id/hourListView"

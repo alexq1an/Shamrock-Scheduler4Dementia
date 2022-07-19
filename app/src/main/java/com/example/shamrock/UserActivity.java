@@ -1,10 +1,9 @@
 package com.example.shamrock;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.shamrock.databinding.ActivityUserBinding;
 
@@ -25,7 +24,7 @@ public class UserActivity extends AppCompatActivity {
             String name = intent.getStringExtra("name");
             String phone = intent.getStringExtra("phone");
             String country = intent.getStringExtra("country");
-            int imageid = intent.getIntExtra("imageid",R.drawable.a);
+            int imageid = intent.getIntExtra("imageid", R.drawable.a);
 
             binding.nameProfile.setText(name);
             binding.phoneProfile.setText(phone);

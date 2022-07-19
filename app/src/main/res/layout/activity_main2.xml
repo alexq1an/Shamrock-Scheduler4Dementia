@@ -33,8 +33,6 @@
         app:layout_constraintTop_toBottomOf="@id/title"
         app:srcCompat="@drawable/sham" />
 
-
-
     <TextView
         android:id="@+id/user_id"
         android:layout_width="wrap_content"
@@ -53,7 +51,7 @@
         android:layout_marginLeft="20dp"
         android:hint="Username"
         android:inputType="text" />
-/*Change start*/
+    /*Change start*/
     <TextView
         android:id="@+id/user_email"
         android:text="Email:"
@@ -72,7 +70,7 @@
         android:layout_marginLeft="20dp"
         android:hint="Email"
         android:inputType="text"/>
-/*End*/
+    /*End*/
 
     <TextView
         android:id="@+id/user_pwd"
@@ -94,67 +92,13 @@
         android:inputType="text"/>
 
 
-
-<!--    <Button-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Create Account"-->
-<!--        android:onClick="createAccount"/> //function name-->
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="15dp"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="horizontal">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Not registered yet"-->
-<!--            android:textSize="16sp"/>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvRegisterHere"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="8dp"-->
-<!--            android:text="Register here"-->
-<!--            android:textColor="@color/teal_700"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textSize="20sp"/>-->
-
-<!--    </LinearLayout>-->
-
-
-    <!--use load for schedule later on -->
-    <!--    -->
-
-
     <Button
         android:id="@+id/register_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Account"
-        android:background="@drawable/button_colour_2"/>
+        android:background="#8FBC8F"/>
 
-<!--    <Button-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Register"-->
-<!--        android:onClick="tvRegisterHere"/>-->
-
-<!--    <Button-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="load"-->
-<!--        android:onClick="loadNote"/>-->
-
-<!--    <Button-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="update Password"-->
-<!--        android:onClick="updatePassword"/>-->
 
     <Button
         android:id="@+id/login_button"
