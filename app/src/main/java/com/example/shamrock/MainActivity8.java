@@ -15,9 +15,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,8 +38,8 @@ public class MainActivity8 extends AppCompatActivity {
     private static final String TAG = "MainActivity8";
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-//    private CollectionReference cRef = db.collection("Caregiver");
-//    private CollectionReference pRef = db.collection("Patient");
+    //    private CollectionReference cRef = db.collection("Caregiver");
+    private CollectionReference pRef = db.collection("Patient");
 
     private EditText editTextUsername;
     private EditText editTextAge;
@@ -42,23 +47,43 @@ public class MainActivity8 extends AppCompatActivity {
 
     private Button add_button;
 
-    @SuppressLint("WrongViewCast")
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main6);
+//
+//        editTextUsername = findViewById(R.id.edit_text_username);
+//        editTextAge = findViewById(R.id.edit_text_userage);
+//        editTextGender = findViewById(R.id.edit_text_usergender);
+////        Spinner spinner = (Spinner) findViewById(R.id.user_sex_spin);
+////        spinner.setOnItemSelectedListener(this);
+//
+//        add_button = findViewById(R.id.patientInfo_set_confirm_button);
+//
+//        add_button.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                addPatient(view);
+//            }
+//        });
+//    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main6);
 
-        editTextUsername = findViewById(R.id.user_id_text);
-        editTextAge = findViewById(R.id.user_age_text);
-        editTextGender = findViewById(R.id.user_gender);
-//        Spinner spinner = (Spinner) findViewById(R.id.user_sex_spin);
-//        spinner.setOnItemSelectedListener(this);
+        editTextUsername = findViewById(R.id.edit_text_username);
+        editTextAge = findViewById(R.id.edit_text_userage);
+        editTextGender = findViewById(R.id.edit_text_usergender);
 
         add_button = findViewById(R.id.patientInfo_set_confirm_button);
 
-        add_button.setOnClickListener(new View.OnClickListener(){
+        //when add button clicked, call this method
+        add_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 addPatient(view);
             }
         });
@@ -78,18 +103,23 @@ public class MainActivity8 extends AppCompatActivity {
 //    }
 
     //adds a new patient with generated id
-    public void addPatient(View v){
+    public void addPatient(View v) {
         //gets user inputs
         String username = editTextUsername.getText().toString();
-        int age = Integer.parseInt(editTextAge.getText().toString());
-        char sex = editTextGender.getText().charAt(0);
+        String age = editTextAge.getText().toString();
+        String sex = editTextGender.getText().toString();
+
+//        Patient patient = new Patient(username, age, sex);
 
         //error check
         if (TextUtils.isEmpty(username)) {
             editTextUsername.setError("Username cannot be empty");
             editTextUsername.requestFocus();
-        }
-        else {
+        } else {
+//            DocumentReference addedDocRef = pRef.document();
+//            patient.setDocumentId(addedDocRef.getId());
+//            addedDocRef.set(patient);
+
             //adding info into a document
             Map<String, Object> patient = new HashMap<>();
             patient.put("username", username);
@@ -104,6 +134,7 @@ public class MainActivity8 extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             Log.d(TAG, "Patient added!\nPatient ID: " + documentReference.getId());
+                            //lead to Home page
                             Intent intent = new Intent(MainActivity8.this, MainActivity3.class);
                             startActivity(intent);
                         }
@@ -114,7 +145,6 @@ public class MainActivity8 extends AppCompatActivity {
                             Log.w(TAG, "Error adding patient", e);
                         }
                     });
-            //make connection between a caregiver and a patient
         }
     }
 }

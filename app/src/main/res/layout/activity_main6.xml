@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/background_edge"
-    tools:context=".MainActivity5">
+    tools:context=".MainActivity8">
 
     <TextView
         android:id="@+id/title"
@@ -33,7 +33,7 @@
         app:srcCompat="@drawable/patient" />
 
     <TextView
-        android:id="@+id/user_id"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -44,31 +44,31 @@
         app:layout_constraintTop_toBottomOf="@id/icon" />
 
     <EditText
-        android:id="@+id/user_id_text"
+        android:id="@+id/edit_text_username"
         android:layout_width="354dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:hint="Username"
         android:inputType="text" />
 
-    <TextView
-        android:id="@+id/user_number"
-        android:text="User Id:"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintTop_toBottomOf="@id/icon" />
+<!--    <TextView-->
+<!--        android:id="@+id/user_id"-->
+<!--        android:text="User Id:"-->
+<!--        android:textSize="18sp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/icon" />-->
 
 
-    <EditText
-        android:id="@+id/user_number_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:hint="User Id"
-        android:inputType="text"/>
+<!--    <EditText-->
+<!--        android:id="@+id/edit_text_userid"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:hint="User Id"-->
+<!--        android:inputType="text"/>-->
 
 
 
@@ -84,7 +84,7 @@
 
 
     <EditText
-        android:id="@+id/user_age_text"
+        android:id="@+id/edit_text_userage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -101,14 +101,21 @@
         android:layout_marginLeft="20dp"
         app:layout_constraintTop_toBottomOf="@id/icon" />
 
-
-    <Spinner
-        android:id="@+id/user_sex_spin"
+    <EditText
+        android:id="@+id/edit_text_usergender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:entries="@array/sex"
-        android:spinnerMode="dialog"/>
+        android:hint="User Gender"
+        android:inputType="text"/>
+
+<!--    <Spinner-->
+<!--        android:id="@+id/user_sex_spin"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:entries="@array/sex"-->
+<!--        android:spinnerMode="dialog"/>-->
 
     <TextView
         android:id="@+id/user_description"
