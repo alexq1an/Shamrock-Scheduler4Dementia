@@ -48,13 +48,7 @@ public class MainActivity3 extends AppCompatActivity {
                 openActivity4();
             }
         });
-//        testing_button = (Button) findViewById(R.id.testingbt);
-//        testing_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                    testing();
-//            }
-//        });
+
 
         //below are patient info List on caregiver's side.
         binding = ActivityMain3Binding.inflate(getLayoutInflater());

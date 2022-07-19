@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         pButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                openPActivity2();
+                openPatientLogin();
             }
         });
     }
@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     //lead to Patient page
-    public void openPActivity2(){
-        Intent intent = new Intent(this,PActivity2.class);
+    public void openPatientLogin(){
+        Intent intent = new Intent(this,MainActivity7.class);
         startActivity(intent);
     }
 }
