@@ -97,7 +97,7 @@ public class MainActivity4 extends AppCompatActivity {
     }
 
     public void selectDate(){
-        count++;
+
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
@@ -127,6 +127,7 @@ public class MainActivity4 extends AppCompatActivity {
                 month = month +1;
                 String date = day + "/" + month + "/" + year;
                 etDate.setText(date);
+                count++;
             }
         },year,month,day);
         datePickerDialog.show();

@@ -17,7 +17,7 @@ public class MainActivity7 extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //do nothing 
+                //do nothing
             }
         });
 
