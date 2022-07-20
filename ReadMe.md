@@ -128,6 +128,13 @@ Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 Then you can add information about the patient<br>
 that needs to be added in the database<br>
 The **CONFIRM** button add the patient information in the database<br>
@@ -160,6 +167,14 @@ Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 Caregiver can choose patients from this list<br>
 <br>
 <br>
@@ -188,6 +203,14 @@ After clicking on a particular patient<br>
 Then you should see this screen<br>
 <img align="left" src="login.png">
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 The **Date** button allows to select date<br>
 The **Edit Patient** button allows to edit patient information<br>
@@ -278,6 +301,14 @@ Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 The **Select Time** allows to select time for the alarm to ring and it also sets the alarm<br>
 The **Cancel Alarm** allows to cancel the already set alarm<br>
 <br>
@@ -306,5 +337,12 @@ The **Cancel Alarm** allows to cancel the already set alarm<br>
 After clicking on Select time <br>
 Then you should see this screen<br>
 <img align="left" src="login.png">
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br> The user can set time using the dial or manually adding the time<br>
