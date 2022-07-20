@@ -1,10 +1,10 @@
  <h1>Shamrock </h1>
-## Description
+<h1>Description</h1>
 The name of the application is “Shamrock” which describes the collaboration of three leaves, these three leaves represent people with dementia (PWD), caregivers, and software developers. This application will have two target users, mainly the patients suffering from dementia and their caregivers. 
-Shamrock enables the caregivers to set specific schedules and tasks for their patients. It will allow caregivers to set schedules for more than one patient. Shamrock allows caregivers to manage more than one dementia patient in an effective and efficient manner. Shamrock has an amazing feature of GPS tracking which allows the caregivers to keep track of the live location of their patients. Another unique feature of this application is it gives caregivers the ability to verify if a certain task has been done by the patient or not.
+Shamrock enables the caregivers to set specific schedules and tasks for their patients. It will allow caregivers to set schedules for more than one patient. Shamrock allows caregivers to manage more than one dementia patient in an effective and efficient      manner. Shamrock has an amazing feature of GPS tracking which allows the caregivers to keep track of the live location of their patients. Another unique feature of this application is it gives caregivers the ability to verify if a certain task has been done by the patient or not.
 Shamrock reminds patients of tasks, which help them keep up with their daily schedule. This application is easy to use and interactive which grabs the interest of the user and helps them perform their day-to-day task with ease. As Shamrock keeps the dementia patients busy and involved in different interactive tasks it may help them prevent hallucinations by keeping them occupied. This application is very beneficial for dementia patients as it encourages them to partake in various mental exercises by making them perform tasks in a timely manner. Keeping a regular routine can alleviate the stress of dementia as the disease progresses. Shamrock instills independence which encourages the PWD to feel good and productive about themselves.
 
-## Steps to Run our application
+<h1>Steps to Run our application</h1>
 
 **Step 1:** Clone Repo<br> 
 **Step 2:** Open in Android Studio, build and view in emulator<br>Ensure that your emulator has at least<br>
@@ -47,8 +47,8 @@ However, default emulator works fine as well
     <li>Allows the user to stop the alarm and takes it to the notification activity page </li>
 </ul>
 
-##If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
-##Then you should see this screen<br>
+If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
+Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
@@ -84,8 +84,8 @@ The **Caregiver** button will take the user to caregiver interface of the applic
 <br>
 </ul>
 <br>
-##After selecting one out of two options (Patient/Caregiver)<br>
-##Then you should see this screen<br>
+After selecting one out of two options (Patient/Caregiver)<br>
+Then you should see this screen<br>
 <img align="left" src="login.png">
 <br>
 <br>
@@ -122,8 +122,8 @@ The **Log In** button will lead the user to the Caregiver home page<br>
 </ul>
 
 <br>
-##After clicking on create account<br>
-##Then you should see this screen<br>
+After clicking on create account<br>
+Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
@@ -161,8 +161,8 @@ The **CONFIRM** button add the patient information in the database<br>
 </ul>
 
 <br>
-##After clicking on login<br>
-##Then you should see this screen<br>
+After clicking on login<br>
+Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
@@ -198,8 +198,8 @@ Caregiver can choose patients from this list<br>
 <br>
 </ul>
 <br>
-##After clicking on a particular patient<br>
-##Then you should see this screen<br>
+After clicking on a particular patient<br>
+Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
@@ -237,8 +237,8 @@ The **New Task** button allows to create new task for patient like alarm<br>
 <br>
 </ul>
 <br>
-##After clicking on Date<br>
-##Then you should see this screen<br>
+After clicking on Date<br>
+Then you should see this screen<br>
 <img align="left" src="login.png">
 <br>
 <br>
@@ -275,8 +275,8 @@ The **New Task** button allows to create new task for patient like alarm<br>
 <br>
 <br>
 <br>
-##After clicking on Edit Patient<br>
-##Then you should see this screen<br>
+After clicking on Edit Patient<br>
+Then you should see this screen<br>
 <img align="left" src="login.png">
 <br>
 <br>
@@ -314,8 +314,8 @@ The **New Task** button allows to create new task for patient like alarm<br>
 <br>
 <br>
 <br>
-##After clicking on New task<br>
-##Then you should see this screen<br>
+After clicking on New task<br>
+Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
@@ -352,8 +352,8 @@ The **Cancel Alarm** allows to cancel the already set alarm<br>
 <br>
 </ul>
 <br>
-##After clicking on Select time <br>
-##Then you should see this screen<br>
+After clicking on Select time <br>
+Then you should see this screen<br>
 <img align="left" src="login.png">
 <br>
 <br>
