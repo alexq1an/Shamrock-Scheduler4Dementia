@@ -1,10 +1,10 @@
  <h1>Shamrock </h1>
-<h1>Description</h1
+## Description
 The name of the application is “Shamrock” which describes the collaboration of three leaves, these three leaves represent people with dementia (PWD), caregivers, and software developers. This application will have two target users, mainly the patients suffering from dementia and their caregivers. 
 Shamrock enables the caregivers to set specific schedules and tasks for their patients. It will allow caregivers to set schedules for more than one patient. Shamrock allows caregivers to manage more than one dementia patient in an effective and efficient manner. Shamrock has an amazing feature of GPS tracking which allows the caregivers to keep track of the live location of their patients. Another unique feature of this application is it gives caregivers the ability to verify if a certain task has been done by the patient or not.
 Shamrock reminds patients of tasks, which help them keep up with their daily schedule. This application is easy to use and interactive which grabs the interest of the user and helps them perform their day-to-day task with ease. As Shamrock keeps the dementia patients busy and involved in different interactive tasks it may help them prevent hallucinations by keeping them occupied. This application is very beneficial for dementia patients as it encourages them to partake in various mental exercises by making them perform tasks in a timely manner. Keeping a regular routine can alleviate the stress of dementia as the disease progresses. Shamrock instills independence which encourages the PWD to feel good and productive about themselves.
 
-##Steps to Run our application
+## Steps to Run our application
 
 **Step 1:** Clone Repo<br> 
 **Step 2:** Open in Android Studio, build and view in emulator<br>Ensure that your emulator has at least<br>
