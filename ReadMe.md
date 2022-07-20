@@ -85,8 +85,28 @@ Then you should see this screen<br>
 
 <br>
 The **Create Account** button should store the username and password in the database<br>
-The **Log In** button will lead the user to the Caregiver home page
-
+The **Log In** button will lead the user to the Caregiver home page<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </ul>
 
 <br>
@@ -98,7 +118,27 @@ Then you should see this screen<br>
 Then you can add information about the patient<br>
 that needs to be added in the database<br>
 The **CONFIRM** button add the patient information in the database<br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </ul>
 
 <br>
@@ -108,7 +148,27 @@ Then you should see this screen<br>
 
 <br>
 Caregiver can choose patients from this list<br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </ul>
 <br>
 After clicking on a particular patient<br>
@@ -119,19 +179,79 @@ Then you should see this screen<br>
 The **Date** button allows to select date<br>
 The **Edit Patient** button allows to edit patient information<br>
 The **New Task** button allows to create new task for patient like alarm<br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </ul>
 <br>
 After clicking on Date<br>
 Then you should see this screen<br>
 <img align="left" src="login.png">
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </ul>
 <br>
 After clicking on Edit Patient<br>
 Then you should see this screen<br>
 <img align="left" src="login.png">
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </ul>
 <br>
 After clicking on New task<br>
@@ -141,7 +261,27 @@ Then you should see this screen<br>
 <br>
 The **Select Time** allows to select time for the alarm to ring and it also sets the alarm<br>
 The **Cancel Alarm** allows to cancel the already set alarm<br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </ul>
 <br>
 After clicking on Select time <br>
