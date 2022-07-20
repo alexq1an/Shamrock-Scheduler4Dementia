@@ -226,6 +226,9 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
 </ul>
 <br>
 After clicking on Edit Patient<br>
