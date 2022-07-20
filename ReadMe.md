@@ -60,7 +60,23 @@ The **Caregiver** button will take the user to caregiver interface of the applic
 <br>
 <br>
 <br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </ul>
 <br>
 After selectiong one out of two options (Patient/Caregiver)<br>
