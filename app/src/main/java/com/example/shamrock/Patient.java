@@ -14,6 +14,7 @@ public class Patient {
 
     public Patient(){
         //no-arg constructor
+
     }
 
     public Patient(String username, String age, String sex){

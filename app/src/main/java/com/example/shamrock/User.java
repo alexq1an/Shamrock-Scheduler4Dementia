@@ -2,13 +2,12 @@ package com.example.shamrock;
 
 public class User {
 
-    String name, lastMessage, lastMsgTime, phoneNo, country;
+    String name, list_patient_id, phoneNo, country;
     int imageId;
 
-    public User(String name, String lastMessage, String lastMsgTime, String phoneNo, String country, int imageId) {
+    public User(String name, String list_patient_id, String phoneNo, String country, int imageId) {
         this.name = name;
-        this.lastMessage = lastMessage;
-        this.lastMsgTime = lastMsgTime;
+        this.list_patient_id = list_patient_id;
         this.phoneNo = phoneNo;
         this.country = country;
         this.imageId = imageId;

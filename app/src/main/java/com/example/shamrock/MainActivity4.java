@@ -28,13 +28,27 @@ public class MainActivity4 extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener setListener;
     TextView tvDate;
     TextView etDate;
+    TextView patientName;
     private Integer count = 0;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference sRef = db.collection("Schedule");
+
+    public Patient temp_patient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
+
+        //for set the patient name in patient's task page(Activity4)
+
+//        patientName = (TextView) findViewById(R.id.patient_name);
+//        if (temp_patient.getUsername() == null){
+//            patientName.setText("Defalut Patient");
+//        }
+//        else {
+//            patientName.setText(temp_patient.getUsername());
+//        }
+
 
         tvDate = findViewById(R.id.tv_date);
         etDate = findViewById(R.id.et_date);
@@ -58,6 +72,7 @@ public class MainActivity4 extends AppCompatActivity {
                 openActivity5();
             }
         });
+
         changePatientInfo_button = (Button) findViewById(R.id.changePatientInfo_button);
         changePatientInfo_button.setOnClickListener(new View.OnClickListener() {
             @Override

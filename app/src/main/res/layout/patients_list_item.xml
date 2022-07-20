@@ -38,7 +38,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/lastMessage"
+                    android:id="@+id/list_patient_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -49,13 +49,7 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/msgtime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="15dp"
-            android:layout_alignParentRight="true"
-            android:text="8:35 pm"/>
+
 
 
 

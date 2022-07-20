@@ -23,8 +23,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity3 extends AppCompatActivity {
-    private Button setting;
-    private Button patientTask;
+
     private Button testing_button;
     private CollectionReference cRef = FirebaseFirestore.getInstance().collection("Caregiver");
 
@@ -49,7 +48,6 @@ public class MainActivity3 extends AppCompatActivity {
             }
         });
 
-
         //below are patient info List on caregiver's side.
         binding = ActivityMain3Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -57,10 +55,8 @@ public class MainActivity3 extends AppCompatActivity {
         int[] imageId = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e,
                 R.drawable.f,R.drawable.g,R.drawable.h,R.drawable.i};
         String[] name = {"Christopher","Craig","Sergio","Mubariz","Mike","Michael","Toa","Ivana","Alex"};
-        String[] lastMessage = {"Heye","Supp","Let's Catchup","Dinner tonight?","Gotta go",
-                "i'm in meeting","Gotcha","Let's Go","any Weekend Plans?"};
-        String[] lastmsgTime = {"8:45 pm","9:00 am","7:34 pm","6:32 am","5:76 am",
-                "5:00 am","7:34 pm","2:32 am","7:76 am"};
+        String[] list_patient_id = {"01","02","03","04","05",
+                "06","07","08","09"};
         String[] phoneNo = {"7656610000","9999043232","7834354323","9876543211","5434432343",
                 "9439043232","7534354323","6545543211","7654432343"};
         String[] country = {"United States","Russia","India","Israel","Germany","Thailand","Canada","France","Switzerland"};
@@ -69,7 +65,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         for(int i = 0;i< imageId.length;i++){
 
-            User user = new User(name[i],lastMessage[i],lastmsgTime[i],phoneNo[i],country[i],imageId[i]);
+            User user = new User(name[i],list_patient_id[i],phoneNo[i],country[i],imageId[i]);
             userArrayList.add(user);
 
         }
@@ -94,15 +90,7 @@ public class MainActivity3 extends AppCompatActivity {
 
     }
 
-    public void openActivity4(){
-        Intent intent = new Intent(this,MainActivity4.class);
-        startActivity(intent);
-    }
 
-    public void openSetting(){
-//        Intent intent = new Intent(this,caregiverSettingsActivity.class);
-//        startActivity(intent);
-    }
     public void openActivity5(){
         Intent intent = new Intent(this,MainActivity5.class);
         startActivity(intent);
