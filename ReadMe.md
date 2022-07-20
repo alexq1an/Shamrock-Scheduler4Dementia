@@ -51,7 +51,79 @@ Then you should see this screen<br>
 <img src= "login.png">
 
 <br>
+The **Patient** button will take the user to patient interface of the application<br>
+The **Caregiver** button will take the user to caregiver interface of the application <br>
+
+</ul>
+
+<br>
+After selectiong one out of two options (Patient/Caregiver)<br>
+Then you should see this screen<br>
+<img src= "login.png">
+
+<br>
 The **Create Account** button should store the username and password in the database<br>
-The **Load** button will print the values we have stored in our database <br>
-The **Update Password** button should update the password of the given user in the database, if the user does not exist then it will create the user <br>
-The **Log In** button will lead the user to the home page
+The **Log In** button will lead the user to the Caregiver home page
+
+</ul>
+
+<br>
+After clicking on create account<br>
+Then you should see this screen<br>
+<img src= "login.png">
+
+<br>
+Then you can add information about the patient<br>
+that needs to be added in the database<br>
+The **CONFIRM** button add the patient information in the database<br>
+
+</ul>
+
+<br>
+After clicking on login<br>
+Then you should see this screen<br>
+<img src= "login.png">
+
+<br>
+Caregiver can choose patients from this list<br>
+
+</ul>
+<br>
+After clicking on a particular patient<br>
+Then you should see this screen<br>
+<img src= "login.png">
+
+<br>
+The **Date** button allows to select date<br>
+The **Edit Patient** button allows to edit patient information<br>
+The **New Task** button allows to create new task for patient like alarm<br>
+
+</ul>
+<br>
+After clicking on Date<br>
+Then you should see this screen<br>
+<img src= "login.png">
+
+</ul>
+<br>
+After clicking on Edit Patient<br>
+Then you should see this screen<br>
+<img src= "login.png">
+
+</ul>
+<br>
+After clicking on New task<br>
+Then you should see this screen<br>
+<img src= "login.png">
+
+<br>
+The **Select Time** allows to select time for the alarm to ring and it also sets the alarm<br>
+The **Cancel Alarm** allows to cancel the already set alarm<br>
+
+</ul>
+<br>
+After clicking on Select time <br>
+Then you should see this screen<br>
+<img src= "login.png">
+
+<br> The user can set time using the dial or manually adding the time<br>
