@@ -345,8 +345,6 @@ The **Cancel Alarm** allows to cancel the already set alarm<br>
 <br>
 <br>
 <br>
-<br>
-<br>
 </ul>
 <br>
 After clicking on Select time <br>
