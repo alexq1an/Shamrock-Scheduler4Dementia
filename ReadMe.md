@@ -62,7 +62,7 @@ The **Caregiver** button will take the user to caregiver interface of the applic
 <br>
 After selectiong one out of two options (Patient/Caregiver)<br>
 Then you should see this screen<br>
-<img src= "login.png">
+<img align="left" src="login.png">
 
 <br>
 The **Create Account** button should store the username and password in the database<br>
@@ -73,7 +73,7 @@ The **Log In** button will lead the user to the Caregiver home page
 <br>
 After clicking on create account<br>
 Then you should see this screen<br>
-<img src= "login.png">
+<img align="left" src="login.png">
 
 <br>
 Then you can add information about the patient<br>
@@ -85,7 +85,7 @@ The **CONFIRM** button add the patient information in the database<br>
 <br>
 After clicking on login<br>
 Then you should see this screen<br>
-<img src= "login.png">
+<img align="left" src="login.png">
 
 <br>
 Caregiver can choose patients from this list<br>
@@ -94,7 +94,7 @@ Caregiver can choose patients from this list<br>
 <br>
 After clicking on a particular patient<br>
 Then you should see this screen<br>
-<img src= "login.png">
+<img align="left" src="login.png">
 
 <br>
 The **Date** button allows to select date<br>
@@ -105,19 +105,19 @@ The **New Task** button allows to create new task for patient like alarm<br>
 <br>
 After clicking on Date<br>
 Then you should see this screen<br>
-<img src= "login.png">
+<img align="left" src="login.png">
 
 </ul>
 <br>
 After clicking on Edit Patient<br>
 Then you should see this screen<br>
-<img src= "login.png">
+<img align="left" src="login.png">
 
 </ul>
 <br>
 After clicking on New task<br>
 Then you should see this screen<br>
-<img src= "login.png">
+<img align="left" src="login.png">
 
 <br>
 The **Select Time** allows to select time for the alarm to ring and it also sets the alarm<br>
@@ -127,6 +127,6 @@ The **Cancel Alarm** allows to cancel the already set alarm<br>
 <br>
 After clicking on Select time <br>
 Then you should see this screen<br>
-<img src= "login.png">
+<img align="left" src="login.png">
 
 <br> The user can set time using the dial or manually adding the time<br>
