@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 public class MainActivity3 extends AppCompatActivity {
 
-    private Button testing_button;
     private CollectionReference cRef = FirebaseFirestore.getInstance().collection("Caregiver");
 
     public ActivityMain3Binding binding;
@@ -33,20 +32,6 @@ public class MainActivity3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        setting = (Button) findViewById(R.id.settingbt);
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openSetting();
-            }
-        });
-        patientTask = (Button) findViewById(R.id.patientTask);
-        patientTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openActivity4();
-            }
-        });
 
         //below are patient info List on caregiver's side.
         binding = ActivityMain3Binding.inflate(getLayoutInflater());
