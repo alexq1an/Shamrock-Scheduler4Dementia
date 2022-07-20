@@ -162,7 +162,7 @@ public class MainActivity2 extends AppCompatActivity {
 
                         //add document to firebase
                         cRef.document(mAuth.getCurrentUser().getUid()).set(caregiver);
-                        Intent i = new Intent(MainActivity2.this, MainActivity8.class);
+                        Intent i = new Intent(MainActivity2.this, MainActivity6.class);
                         i.putExtra("documentId",mAuth.getCurrentUser().getUid());
                         startActivity(i);
                     } else {

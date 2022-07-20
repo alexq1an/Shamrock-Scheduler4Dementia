@@ -11,10 +11,15 @@ public class Patient {
     private String documentId;
 //    private String location; //not sure what type
     private ArrayList<Schedule> sList;
-//    private ArrayList<String> scheduleList; //not sure what type -> reference
 
     public Patient(){
         //no-arg constructor
+    }
+
+    public Patient(String username, String age, String sex){
+        this.username = username;
+        this.age = age;
+        this.sex = sex;
     }
 
     @Exclude
@@ -25,16 +30,6 @@ public class Patient {
     public void setDocumentId(String documentId) {
         this.documentId = documentId;
     }
-
-    public Patient(String username, String age, String sex){
-        this.username = username;
-        this.age = age;
-        this.sex = sex;
-    }
-
-//    public Patient(String username){
-//        this.username = username;
-//    }
 
     public String getUsername(){
         return username;
