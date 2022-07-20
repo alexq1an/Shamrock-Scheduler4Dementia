@@ -22,7 +22,4 @@
         android:text="No task"
         android:textSize="25dp"/>
 
-
-
-
 </LinearLayout>
