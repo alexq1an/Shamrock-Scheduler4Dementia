@@ -267,6 +267,9 @@ Then you should see this screen<br>
 <br>
 </ul>
 <br>
+<br>
+<br>
+<br>
 After clicking on Edit Patient<br>
 Then you should see this screen<br>
 <img align="left" src="login.png">
@@ -295,6 +298,9 @@ Then you should see this screen<br>
 <br>
 <br>
 </ul>
+<br>
+<br>
+<br>
 <br>
 After clicking on New task<br>
 Then you should see this screen<br>
