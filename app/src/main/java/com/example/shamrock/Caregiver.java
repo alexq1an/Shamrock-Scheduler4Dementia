@@ -1,5 +1,7 @@
 package com.example.shamrock;
 
+import android.widget.Toast;
+
 import com.google.firebase.firestore.Exclude;
 
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ public class Caregiver {
     private String username;
     private String email;
     private String password;
-//    private ArrayList<String> pList;
+    private ArrayList<String> pList;
 
     public Caregiver() {
         //public no-arg constructor needed
@@ -25,21 +27,18 @@ public class Caregiver {
         this.documentId = documentId;
     }
 
-    public Caregiver(String name, String username, String email, String password) {
-        this.name = name;
+    public Caregiver(ArrayList<String> list, String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.pList = list;
     }
 
     public Caregiver(String username, String email, String password){
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-
-    public String getName(){
-        return name;
+        this.pList = null;
     }
 
     public String getUsername() {
@@ -54,8 +53,13 @@ public class Caregiver {
         return password;
     }
 
-    //create a patient account
-//    public void createPatient(){
-//        
-//    }
+    public ArrayList<String> getpList() {
+        return pList;
+    }
+
+    public void setpList(ArrayList<String> pList) {
+        this.pList = pList;
+    }
+
+
 }

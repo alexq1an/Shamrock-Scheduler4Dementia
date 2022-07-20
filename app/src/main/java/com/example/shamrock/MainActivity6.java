@@ -1,6 +1,7 @@
 package com.example.shamrock;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -25,8 +26,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
+
+import com.google.firebase.firestore.EventListener;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,6 +46,7 @@ public class MainActivity6 extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference pRef = db.collection("Patient");
+    private CollectionReference cRef = db.collection("Caregiver");
 
     private EditText editTextUsername;
     private EditText editTextAge;
@@ -85,23 +93,38 @@ public class MainActivity6 extends AppCompatActivity {
             patient.put("age", age);
             patient.put("sex", sex);
 
-            db.collection("Patient")
-                    .add(patient)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Log.d(TAG, "Patient added!\nPatient ID: " + documentReference.getId());
-                            //lead to Home page
-                            Intent intent = new Intent(MainActivity6.this, MainActivity3.class);
-                            startActivity(intent);
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error adding patient", e);
-                        }
-                    });
+            //adding patient
+            DocumentReference addedDocRef = db.collection("Patient").document();
+            addedDocRef.set(patient);
+            String patientDocId = addedDocRef.getId();
+
+            //adding first patient to Caregiver
+            Bundle extras = getIntent().getExtras();
+                if(extras != null){
+                    String docId = extras.get("documentId").toString();
+                    cRef.document(docId)
+                            .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                                @Override
+                                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                                    if(error != null){
+                                        Toast.makeText(MainActivity6.this, error.toString(), Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }else{
+                                        Caregiver caregiver = value.toObject(Caregiver.class);
+                                        ArrayList<String> newList = new ArrayList<>();
+                                        newList.add(patientDocId);
+                                        caregiver.setpList(newList);
+                                        cRef.document(docId).set(caregiver);
+                                    }
+                                }
+                            });
+                    //lead to Home page
+                    Intent intent = new Intent(MainActivity6.this, MainActivity3.class);
+                    startActivity(intent);
+        }
+
+
+
         }
     }
 }

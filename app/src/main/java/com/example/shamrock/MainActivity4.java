@@ -139,19 +139,10 @@ public class MainActivity4 extends AppCompatActivity {
         //if doesn't exist create new schedule
         //add calendar to intent
 
-
-//        sRef.whereEqualTo()
-//        sRef.document();
-//        //adding task to firebase
-//        if(task.getDocumentId() != null ){
-////                    cancelAlarm();
-//            taskRef.document(task.getDocumentId()).set(calendar);
-//        }else{
-            DocumentReference addedDocRef = sRef.document();
-            Schedule schedule = new Schedule(addedDocRef.getId());
-            schedule.setCalendar(calendar);
-            addedDocRef.set(schedule);
-//        }
+        DocumentReference addedDocRef = sRef.document();
+        Schedule schedule = new Schedule(addedDocRef.getId());
+        schedule.setCalendar(calendar);
+        addedDocRef.set(schedule);
 
     }
 
