@@ -50,7 +50,7 @@ However, default emulator works fine as well
 
 If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
 Then you should see this screen<br>
-<img align="right" src="login.png">
+<img align="left" src="login.png">
 
 
 <br>
