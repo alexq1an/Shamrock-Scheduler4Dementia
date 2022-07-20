@@ -1,18 +1,10 @@
-## Shamrock 
-<h1> Description</h1>
-This application will have two target users, mainly the patients suffering from dementia and their caregivers. 
+ <h1>Shamrock </h1>
+## Description
+The name of the application is “Shamrock” which describes the collaboration of three leaves, these three leaves represent people with dementia (PWD), caregivers, and software developers. This application will have two target users, mainly the patients suffering from dementia and their caregivers. 
 Shamrock enables the caregivers to set specific schedules and tasks for their patients. It will allow caregivers to set schedules for more than one patient. Shamrock allows caregivers to manage more than one dementia patient in an effective and efficient manner. Shamrock has an amazing feature of GPS tracking which allows the caregivers to keep track of the live location of their patients. Another unique feature of this application is it gives caregivers the ability to verify if a certain task has been done by the patient or not.
 Shamrock reminds patients of tasks, which help them keep up with their daily schedule. This application is easy to use and interactive which grabs the interest of the user and helps them perform their day-to-day task with ease. As Shamrock keeps the dementia patients busy and involved in different interactive tasks it may help them prevent hallucinations by keeping them occupied. This application is very beneficial for dementia patients as it encourages them to partake in various mental exercises by making them perform tasks in a timely manner. Keeping a regular routine can alleviate the stress of dementia as the disease progresses. Shamrock instills independence which encourages the PWD to feel good and productive about themselves.
-<br>
-<br>
-| header 1 | header 2 | header 3 |
-| ---      | ---      | ---      |
-| cell 1   | cell 2   | cell 3   |
-| cell 4 | cell 5 is longer | cell 6 is much longer than the others, but that's ok. It eventually wraps the text when the cell is too large for the display size. |
-| cell 7   |          | cell 9   |
-<br>
-<br>
-**Steps to Run our application**
+
+##Steps to Run our application
 
 **Step 1:** Clone Repo<br> 
 **Step 2:** Open in Android Studio, build and view in emulator<br>Ensure that your emulator has at least<br>
@@ -27,21 +19,17 @@ Personally our emulator is
     <li>API Level 22 Lollipop</li>
     <li>Android 5.1</li>
 </ul>
-
 However, default emulator works fine as well 
 
-** Different files in our code and what is their significance...**
+## Different files in our code and what is their significance...
 
-**What our application does so far...**
+##Application Features 
 <ul>
     <li>Can read and write to firestore Cloud</li>
     <li>Can Switch pages</li>
-    <li>Basic methods of Caregiver class needed for database have been implemented </li>
-    <li>Basic methods of Parent class needed for database have been implemented </li>
-    <li>Basic methods of Task class needed for database have been implemented </li>
-    <li>Basic methods of Scehdule class needed for database have been implemented </li>
-    <li>Allows the user to choose their role between caregiver and patient </li>
-    <li>Allows the caregiver to create a new account </li>
+    <li>Basic methods of Caregiver, Patient, Task, and Schedule class needed for database have been implemented </li>
+    <li>Allows the user to choose their role either caregiver and patient </li>
+    <li>Allows the caregiver to create an account and login </li>
     <li>Checks if the user enters a well formatted email address </li>
     <li>Checks that the user enters a 6 digit/symbol/alphabet/character password </li>
     <li>Checks if that particular account already exist or not </li>
@@ -56,12 +44,11 @@ However, default emulator works fine as well
     <li>Can Set Alarm </li>
     <li>Notifies the user when the alarm rings </li>
     <li>Allows the user to cancel the set alarm </li>
-    <li>Allows the user to stop the alarm and takes it to the notification activiy page </li>
-    
+    <li>Allows the user to stop the alarm and takes it to the notification activity page </li>
 </ul>
 
-If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
-Then you should see this screen<br>
+##If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
+##Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
@@ -97,8 +84,8 @@ The **Caregiver** button will take the user to caregiver interface of the applic
 <br>
 </ul>
 <br>
-After selectiong one out of two options (Patient/Caregiver)<br>
-Then you should see this screen<br>
+##After selecting one out of two options (Patient/Caregiver)<br>
+##Then you should see this screen<br>
 <img align="left" src="login.png">
 <br>
 <br>
@@ -135,8 +122,8 @@ The **Log In** button will lead the user to the Caregiver home page<br>
 </ul>
 
 <br>
-After clicking on create account<br>
-Then you should see this screen<br>
+##After clicking on create account<br>
+##Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
@@ -174,8 +161,8 @@ The **CONFIRM** button add the patient information in the database<br>
 </ul>
 
 <br>
-After clicking on login<br>
-Then you should see this screen<br>
+##After clicking on login<br>
+##Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
@@ -211,8 +198,8 @@ Caregiver can choose patients from this list<br>
 <br>
 </ul>
 <br>
-After clicking on a particular patient<br>
-Then you should see this screen<br>
+##After clicking on a particular patient<br>
+##Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
@@ -250,8 +237,8 @@ The **New Task** button allows to create new task for patient like alarm<br>
 <br>
 </ul>
 <br>
-After clicking on Date<br>
-Then you should see this screen<br>
+##After clicking on Date<br>
+##Then you should see this screen<br>
 <img align="left" src="login.png">
 <br>
 <br>
@@ -284,8 +271,12 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-After clicking on Edit Patient<br>
-Then you should see this screen<br>
+<br>
+<br>
+<br>
+<br>
+##After clicking on Edit Patient<br>
+##Then you should see this screen<br>
 <img align="left" src="login.png">
 <br>
 <br>
@@ -318,8 +309,13 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-After clicking on New task<br>
-Then you should see this screen<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+##After clicking on New task<br>
+##Then you should see this screen<br>
 <img align="left" src="login.png">
 
 <br>
@@ -352,10 +348,12 @@ The **Cancel Alarm** allows to cancel the already set alarm<br>
 <br>
 <br>
 <br>
+<br>
+<br>
 </ul>
 <br>
-After clicking on Select time <br>
-Then you should see this screen<br>
+##After clicking on Select time <br>
+##Then you should see this screen<br>
 <img align="left" src="login.png">
 <br>
 <br>
@@ -366,3 +364,5 @@ Then you should see this screen<br>
 <br>
 <br>
 <br> The user can set time using the dial or manually adding the time<br>
+
+
