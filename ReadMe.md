@@ -52,7 +52,7 @@ If emulator has been setup correctly then it should take a couple moments for th
 Then you should see this screen<br>
 <img align="left" src="login.png">
 
-
+<br>
 <br>
 <br>
 <br>
@@ -88,7 +88,14 @@ The **Caregiver** button will take the user to caregiver interface of the applic
 After selectiong one out of two options (Patient/Caregiver)<br>
 Then you should see this screen<br>
 <img align="left" src="login.png">
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 The **Create Account** button should store the username and password in the database<br>
 The **Log In** button will lead the user to the Caregiver home page<br>
