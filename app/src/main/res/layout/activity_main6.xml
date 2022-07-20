@@ -11,13 +11,13 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="202dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="20dp"
 
 
-        android:text="Personal Information"
+        android:text="Patient Information"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -140,11 +140,11 @@
 
     <Button
         android:id="@+id/patientInfo_set_confirm_button"
-        android:layout_width="168dp"
+        android:layout_width="wrap_content"
         android:layout_height="54dp"
         android:layout_gravity="center"
-        android:background="@drawable/button_colour_2"
         android:layout_marginTop="20dp"
+        android:background="@drawable/button_colour_2"
 
         android:text="Confirm"
         android:textSize="30dp" />
