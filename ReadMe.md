@@ -53,25 +53,13 @@ Then you should see this screen<br>
 <img align="left" src="login.png">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br>
 The **Patient** button will take the user to patient interface of the application<br>
 The **Caregiver** button will take the user to caregiver interface of the application <br>
 
 </ul>
-
+</ul>
+</ul>
 <br>
 After selectiong one out of two options (Patient/Caregiver)<br>
 Then you should see this screen<br>
