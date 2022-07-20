@@ -54,6 +54,12 @@ Then you should see this screen<br>
 
 
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 The **Patient** button will take the user to patient interface of the application<br>
 The **Caregiver** button will take the user to caregiver interface of the application <br>
 <br>
