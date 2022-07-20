@@ -1,7 +1,5 @@
 package com.example.shamrock;
 
-import java.util.ArrayList;
-
 public class Patient {
     private String username;
     private int age;
@@ -15,6 +13,7 @@ public class Patient {
 
     public Patient(){
         //no-arg constructor
+
     }
 
     public Patient(String username, int age, char sex){

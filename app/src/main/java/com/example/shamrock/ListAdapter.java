@@ -22,6 +22,11 @@ public class ListAdapter extends ArrayAdapter<User> {
 
     }
 
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -36,13 +41,11 @@ public class ListAdapter extends ArrayAdapter<User> {
 
         ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView userName = convertView.findViewById(R.id.personName);
-        TextView lastMsg = convertView.findViewById(R.id.lastMessage);
-        TextView time = convertView.findViewById(R.id.msgtime);
+        TextView id = convertView.findViewById(R.id.list_patient_id);
 
         imageView.setImageResource(user.imageId);
         userName.setText(user.name);
-        lastMsg.setText(user.lastMessage);
-        time.setText(user.lastMsgTime);
+        id.setText(user.list_patient_id);
 
 
         return convertView;
