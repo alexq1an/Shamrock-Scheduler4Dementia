@@ -18,6 +18,8 @@ Personally our emulator is
 
 However, default emulator works fine as well 
 
+** Different files in our code and what is their significance...**
+
 **What our application does so far...**
 <ul>
     <li>Can read and write to firestore Cloud</li>
@@ -48,7 +50,8 @@ However, default emulator works fine as well
 
 If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
 Then you should see this screen<br>
-<img src= "login.png">
+<img align="right" src="login.png">
+
 
 <br>
 The **Patient** button will take the user to patient interface of the application<br>
