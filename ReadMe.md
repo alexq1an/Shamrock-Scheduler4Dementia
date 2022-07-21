@@ -22,6 +22,11 @@ Personally our emulator is
 However, default emulator works fine as well 
 
 <h1>Different files in our code and what is their significance…</h1>
+<br>
+| header | header |
+| ------ | ------ |
+| cell | cell |
+| cell | cell |
 
 <h1>Application Features </h1>
 <ul>
