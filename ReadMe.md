@@ -18,10 +18,9 @@ Shamrock reminds patients of tasks, which help them keep up with their daily sch
 | Patient | This class provides methods for storing information regarding the patient in the database |
 | Caregiver | This class provide methods for storing information regarding the caregiver |
 | Task | This is a class which helps to store alarm in database |
-| Schedule | cell |
+| Schedule | This is class for storing the date of the schedule |
 | AlarmReceiver| This file is used to show the pop-up notification to the user |
 | DestinationActivity | This basically an separate page which open after the alarm is stopped |
- 
  
  
 ## Steps to Run our application
