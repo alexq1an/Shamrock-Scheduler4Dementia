@@ -81,9 +81,9 @@ Then you should see this screen<br>
 <br>
 <ul>
 <li>     The [Patient] button will take the user to patient interface of the application</li>
+<li></li>
 <li>	The [Caregiver] button will take the user to caregiver interface of the application </li>
 </ul>
-<br>
 <br>
 <br>
 <br>
@@ -115,7 +115,9 @@ Then you should see this screen<br>
 <ul>
 <li>	To create an account email must be unique, username does not have to match</li>
 <li>	When logging in the Caregiver email and password must be correct</li>
+<li></li>
 <li>	The [Create Account] will lead the caregiver user to create a patient</li>
+<li></li>
 <li>	The [Log In] button will lead the user to the Caregiver home page </li>
 </ul>
 <br>
@@ -124,7 +126,7 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-<br>
+ 
 <h4>Creating Patient</h4>
 <img src="createPatient.jpg" width="275" height="500" align = "left">
 <br>
@@ -137,7 +139,9 @@ Then you should see this screen<br>
 <br>
 Add information about the patient<br>
 Adding User Description is optional<br>
+<br>
 The [CONFIRM] button add the patient information in the database and lead caregiver to the Caregiver Homepage<br>
+<br>
 <br>
 <br>
 <br>
@@ -162,8 +166,8 @@ The [CONFIRM] button add the patient information in the database and lead caregi
 <br>
 <br>
 Click and Drag to scroll list of patients<br>
-Click on any patient to be lead to edit the Schedule of that particular patient<br>
 <br>
+Click on any patient to be lead to edit the Schedule of that particular patient<br>
 <br>
 <br>
 <br>
@@ -190,10 +194,10 @@ Click on any patient to be lead to edit the Schedule of that particular patient<
 <br>
 Must select Date before entering a New Task, otherwise system will prompt you to select a date<br>
 The [Select Date] field allows to select date<br>
+<br>
 The [Edit Patient] button allows to edit patient information, it will lead to the same page as ‘Creating Patient’<br>
+<br>
 The [New Task] button allows to create new task for patient like alarm<br>
-<br>
-<br>
 <br>
 <br>
 <br>
@@ -242,12 +246,12 @@ Should be able to choose any date and exit without setting a date as well<br>
 <br>
 <br>
 The [Select Time] will prompt you to enter a time and will automatically add it to the database and set it to ring at the selected time<br>
+<br>
 The [Cancel Alarm] allows to cancel the already set alarm, must select a time to cancel otherwise it will prompt you to select a time<br>
+<br>
 The alarm has a delay which we plan to fix, it may not ring exactly on the minute, sometimes it is even one minute behind, but when the notification pops up it will appear as it does in the photo<br>
+<br>
 You can click on the notification and it will automatically open another page, we hope to use this page to display the task in the coming sprint<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
@@ -267,6 +271,14 @@ You can click on the notification and it will automatically open another page, w
 <br>
 <br>
 <br> The user can set time using the dial<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
