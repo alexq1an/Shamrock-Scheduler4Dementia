@@ -103,6 +103,7 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
+<br>
 <h4>Caregiver Login Page</h4>
 <img src="login.jpg" width="275" height="500" align = "left">
 <br>
