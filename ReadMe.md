@@ -62,9 +62,7 @@ However, default emulator works fine as well
    <li>Allows the user to set and cancel the alarm </li>
 </ul>
 <br>
-<br>
-<br>
-<br>
+
 <h1> Procedure</h1>
 <br>Below are screenshots of each page and what their features are
 <br>Some of the Pages may be slow when loading
@@ -105,10 +103,7 @@ However, default emulator works fine as well
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
+
 <ul>
 <li>	To create an account email must be unique, username does not have to match</li>
 <li>	When logging in the Caregiver email and password must be correct</li>
@@ -119,6 +114,10 @@ However, default emulator works fine as well
 <li></li>
 <li>	The [Log In] button will lead the user to the Caregiver home page </li>
 </ul>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
