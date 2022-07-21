@@ -2,7 +2,7 @@
  
 ## Description
 This application will have two target users, mainly the patients suffering from dementia and their caregivers.
-Shamrock enables the caregivers to set specific schedules and tasks for their patients. It will allow caregivers to set schedules for more than one patient. Shamrock allows caregivers to manage more than one dementia patient in an effective and efficient      manner. Shamrock has an amazing feature of GPS tracking which allows the caregivers to keep track of the live location of their patients. Another unique feature of this application is it gives caregivers the ability to verify if a certain task has been done by the patient or not.
+Shamrock enables the caregivers to set specific schedules and tasks for their patients. It will allow caregivers to set schedules for more than one patient. Shamrock allows caregivers to manage more than one dementia patient in an effective and efficient manner. Another unique feature of this application is it gives caregivers the ability to verify if a certain task has been done by the patient or not.
 Shamrock reminds patients of tasks, which help them keep up with their daily schedule. This application is easy to use and interactive which grabs the interest of the user and helps them perform their day-to-day task with ease. As Shamrock keeps the dementia patients busy and involved in different interactive tasks it may help them prevent hallucinations by keeping them occupied. This application is very beneficial for dementia patients as it encourages them to partake in various mental exercises by making them perform tasks in a timely manner. Keeping a regular routine can alleviate the stress of dementia as the disease progresses. Shamrock instills independence which encourages the PWD to feel good and productive about themselves.
  
 # Different files in our code and what is their significance…
@@ -76,6 +76,7 @@ However, default emulator works fine as well
 <h1> Procedure</h1>
 If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
 Then you should see this screen<br>
+<h4> Choosing User Type Page</h4> 
 <img src="chooseUserType.jpg" width="275" height="500" align = "left">
 <br>
 <br>
@@ -84,8 +85,8 @@ Then you should see this screen<br>
 <br>
 <br>
 <ul>
-<li>The [Patient] button will take the user to patient interface of the application</li>
-<li>The [Caregiver] button will take the user to caregiver interface of the application </li>
+<li>     The [Patient] button will take the user to patient interface of the application</li>
+<li>	The [Caregiver] button will take the user to caregiver interface of the application </li>
 </ul>
 <br>
 <br>
@@ -101,9 +102,8 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
- 
-After selecting one out of two options (Patient/Caregiver)<br>
-Then you should see this screen<br>
+<br>
+<h4>Caregiver Login Page</h4>
 <img src="login.jpg" width="275" height="500" align = "left">
 <br>
 <br>
@@ -114,9 +114,13 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
+<br>
+<br>
 <ul>
-<li>The [Create Account] button should store the username and password in the database</li>
-<li>The [Log In] button will lead the user to the Caregiver home page </li>
+<li>	To create an account email must be unique, username does not have to match</li>
+<li>	When logging in the Caregiver email and password must be correct</li>
+<li>	The [Create Account] will lead the caregiver user to create a patient</li>
+<li>	The [Log In] button will lead the user to the Caregiver home page </li>
 </ul>
 <br>
 <br>
@@ -125,18 +129,7 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</ul>
- 
-<br>
-After clicking on create account<br>
-Then you should see this screen<br>
+<h4>Creating Patient</h4>
 <img src="createPatient.jpg" width="275" height="500" align = "left">
 <br>
 <br>
@@ -146,9 +139,9 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-Then you can add information about the patient<br>
-that needs to be added in the database<br>
-The **CONFIRM** button add the patient information in the database<br>
+Add information about the patient<br>
+Adding User Description is optional<br>
+The [CONFIRM] button add the patient information in the database and lead caregiver to the Caregiver Homepage<br>
 <br>
 <br>
 <br>
@@ -161,16 +154,8 @@ The **CONFIRM** button add the patient information in the database<br>
 <br>
 <br>
 <br>
-<br>
-<br>
- 
-</ul>
- 
-<br>
-After clicking on login<br>
-Then you should see this screen<br>
+<h4>Caregiver Homepage</h4>
 <img src="caregiverHome.jpg" width="275" height="500" align = "left">
- 
 <br>
 <br>
 <br>
@@ -180,7 +165,8 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-Caregiver can choose patients from this list<br>
+Click and Drag to scroll list of patients<br>
+Click on any patient to be lead to edit the Schedule of that particular patient<br>
 <br>
 <br>
 <br>
@@ -195,11 +181,8 @@ Caregiver can choose patients from this list<br>
 <br>
 <br>
 <br>
-<br>
-After clicking on a particular patient<br>
-Then you should see this screen<br>
+<h4>Edit Patient’s Schedule Page</h4>
 <img src="patientEditing.jpg" width="275" height="500" align = "left">
- 
 <br>
 <br>
 <br>
@@ -209,12 +192,10 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-The **Date** button allows to select date<br>
-The **Edit Patient** button allows to edit patient information<br>
-The **New Task** button allows to create new task for patient like alarm<br>
-<br>
-<br>
-<br>
+Must select Date before entering a New Task, otherwise system will prompt you to select a date<br>
+The [Select Date] field allows to select date<br>
+The [Edit Patient] button allows to edit patient information, it will lead to the same page as ‘Creating Patient’<br>
+The [New Task] button allows to create new task for patient like alarm<br>
 <br>
 <br>
 <br>
@@ -226,10 +207,7 @@ The **New Task** button allows to create new task for patient like alarm<br>
 <br>
 <br>
 <br>
-<br>
-After clicking on Date<br>
-Then you should see this screen<br>
- 
+<h4>Calendar</h4>
 <img src="calendar.png" width="275" height="500" align = "left">
 <br>
 <br>
@@ -238,32 +216,7 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</ul>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-After clicking on Edit Patient<br>
-Then you should see this screen<br>
-<img align="left" src="login.png">
+Should be able to choose any date and exit without setting a date as well<br>
 <br>
 <br>
 <br>
@@ -278,8 +231,10 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-After clicking on New task<br>
-Then you should see this screen<br>
+<br>
+<br>
+ 
+<h4>Notification</h4>
 <img src="notification.jpg" width="275" height="500" align = "left">
 <br>
 <br>
@@ -290,8 +245,10 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-The **Select Time** allows to select time for the alarm to ring and it also sets the alarm<br>
-The **Cancel Alarm** allows to cancel the already set alarm<br>
+The [Select Time] will prompt you to enter a time and will automatically add it to the database and set it to ring at the selected time<br>
+The [Cancel Alarm] allows to cancel the already set alarm, must select a time to cancel otherwise it will prompt you to select a time<br>
+The alarm has a delay which we plan to fix, it may not ring exactly on the minute, sometimes it is even one minute behind, but when the notification pops up it will appear as it does in the photo<br>
+You can click on the notification and it will automatically open another page, we hope to use this page to display the task in the coming sprint<br>
 <br>
 <br>
 <br>
@@ -302,12 +259,8 @@ The **Cancel Alarm** allows to cancel the already set alarm<br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-After clicking on Select time <br>
-Then you should see this screen<br>
+ 
+<h4>Selecting Time</h4>
 <img src="alarm.png" width="275" height="500" align = "left">
 <br>
 <br>
@@ -317,7 +270,15 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-<br> The user can set time using the dial or manually adding the time<br>
+<br> The user can set time using the dial<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
  
  
  
