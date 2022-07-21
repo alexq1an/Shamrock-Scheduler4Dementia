@@ -22,7 +22,7 @@ Shamrock reminds patients of tasks, which help them keep up with their daily sch
 | AlarmReceiver| This file is used to show the pop-up notification to the user |
 | DestinationActivity | This basically an separate page which open after the alarm is stopped |
  
- 
+<br>**Rest of the java files which are not mentioned in the above table are for future use.<br>
 ## Steps to Run our application
  
 **Step 1:** Clone Repo<br>
