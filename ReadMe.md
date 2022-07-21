@@ -101,15 +101,6 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</ul>
-<br>
  
 After selecting one out of two options (Patient/Caregiver)<br>
 Then you should see this screen<br>
@@ -127,15 +118,6 @@ Then you should see this screen<br>
 <li>The [Create Account] button should store the username and password in the database</li>
 <li>The [Log In] button will lead the user to the Caregiver home page </li>
 </ul>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
@@ -181,13 +163,7 @@ The **CONFIRM** button add the patient information in the database<br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+ 
 </ul>
  
 <br>
@@ -220,14 +196,6 @@ Caregiver can choose patients from this list<br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</ul>
-<br>
 After clicking on a particular patient<br>
 Then you should see this screen<br>
 <img src="patientEditing.jpg" width="275" height="500" align = "left">
@@ -259,23 +227,10 @@ The **New Task** button allows to create new task for patient like alarm<br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</ul>
-<br>
 After clicking on Date<br>
 Then you should see this screen<br>
  
 <img src="calendar.png" width="275" height="500" align = "left">
-<br>
-<br>
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
@@ -323,32 +278,9 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</ul>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 After clicking on New task<br>
 Then you should see this screen<br>
 <img src="notification.jpg" width="275" height="500" align = "left">
- 
 <br>
 <br>
 <br>
@@ -373,15 +305,6 @@ The **Cancel Alarm** allows to cancel the already set alarm<br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</ul>
 <br>
 After clicking on Select time <br>
 Then you should see this screen<br>
