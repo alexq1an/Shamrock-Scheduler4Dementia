@@ -21,8 +21,10 @@ Shamrock reminds patients of tasks, which help them keep up with their daily sch
 | Schedule | This is class for storing the date of the schedule |
 | AlarmReceiver| This file is used to show the pop-up notification to the user |
 | DestinationActivity | This basically an separate page which open after the alarm is stopped |
- 
 <br>**Rest of the java files which are not mentioned in the above table are for future use.<br>
+ 
+ 
+ 
 ## Steps to Run our application
  
 **Step 1:** Clone Repo<br>
@@ -72,16 +74,9 @@ However, default emulator works fine as well
 <br>
 <br>
 <h1> Procedure</h1>
-<br>
-<br>
 If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
 Then you should see this screen<br>
- 
-![Semantic description of image](chooseUserType.png "Image Title")
- 
- 
-<br>
-<br>
+<img src="chooseUserType.jpg" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -118,7 +113,7 @@ Then you should see this screen<br>
  
 After selecting one out of two options (Patient/Caregiver)<br>
 Then you should see this screen<br>
-<img align="left" src="login.jpg">
+<img src="login.jpg" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -160,8 +155,7 @@ Then you should see this screen<br>
 <br>
 After clicking on create account<br>
 Then you should see this screen<br>
-<img align="left" src="createPatient.jpg">
- 
+<img src="createPatient.jpg" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -199,7 +193,7 @@ The **CONFIRM** button add the patient information in the database<br>
 <br>
 After clicking on login<br>
 Then you should see this screen<br>
-<img align="left" src="caregiverHome.jpg">
+<img src="caregiverHome.jpg" width="275" height="500" align = "left">
  
 <br>
 <br>
@@ -236,7 +230,7 @@ Caregiver can choose patients from this list<br>
 <br>
 After clicking on a particular patient<br>
 Then you should see this screen<br>
-<img align="left" src="patientEditing.jpg">
+<img src="patientEditing.jpg" width="275" height="500" align = "left">
  
 <br>
 <br>
@@ -275,7 +269,8 @@ The **New Task** button allows to create new task for patient like alarm<br>
 <br>
 After clicking on Date<br>
 Then you should see this screen<br>
-<img align="left" src="login.png">
+ 
+<img src="calendar.png" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -352,7 +347,7 @@ Then you should see this screen<br>
 <br>
 After clicking on New task<br>
 Then you should see this screen<br>
-<img align="left" src="notification.jpg">
+<img src="notification.jpg" width="275" height="500" align = "left">
  
 <br>
 <br>
@@ -390,7 +385,7 @@ The **Cancel Alarm** allows to cancel the already set alarm<br>
 <br>
 After clicking on Select time <br>
 Then you should see this screen<br>
-<img align="left" src="login.png">
+<img src="alarm.png" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
