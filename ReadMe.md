@@ -56,21 +56,18 @@ However, default emulator works fine as well
    <li>If the caregiver account is new then the app allows to add new patient information </li>
    <li>For patient information it takes in Name, Age, Unique Id, Sex, Description </li>
    <li>Allows the caregiver to scroll through the patient list </li>
-   <li>Allows the caregiver to choose a particular patient </li>
    <li>Allows the caregiver to edit patient information </li>
    <li>Allows to select the date for the schedule </li>
-   <li>Can Set Alarm </li>
    <li>Notifies the user when the alarm rings </li>
-   <li>Allows the user to cancel the set alarm </li>
-   <li>Allows the user to stop the alarm and takes it to the notification activity page </li>
+   <li>Allows the user to set and cancel the alarm </li>
 </ul>
 <br>
 <br>
 <br>
 <br>
 <h1> Procedure</h1>
-If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
-Then you should see this screen<br>
+<br>Below are screenshots of each page and what their features are
+<br>Some of the Pages may be slow when loading
 <h4> Choosing User Type Page</h4> 
 <img src="chooseUserType.jpg" width="275" height="500" align = "left">
 <br>
@@ -116,11 +113,12 @@ Then you should see this screen<br>
 <li>	To create an account email must be unique, username does not have to match</li>
 <li>	When logging in the Caregiver email and password must be correct</li>
 <li></li>
+<li>The account displayed is fake, you must create your own account to test the application</li>
+<li></li>
 <li>	The [Create Account] will lead the caregiver user to create a patient</li>
 <li></li>
 <li>	The [Log In] button will lead the user to the Caregiver home page </li>
 </ul>
-<br>
 <br>
 <br>
 <br>
