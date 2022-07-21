@@ -10,6 +10,7 @@ public class Patient {
     private String age;
     private String sex;
     private String documentId;
+    private String loginId;
     //array list for storing patients
     private ArrayList<Schedule> sList;
 
@@ -18,10 +19,11 @@ public class Patient {
 
     }
     //constructor
-    public Patient(String username, String age, String sex){
+    public Patient(String username, String age, String sex, String loginId){
         this.username = username;
         this.age = age;
         this.sex = sex;
+        this.loginId = loginId;
     }
 
     @Exclude
@@ -44,5 +46,9 @@ public class Patient {
 
     public String getSex(){
         return sex;
+    }
+
+    public String getLoginId(){
+        return loginId;
     }
 }
