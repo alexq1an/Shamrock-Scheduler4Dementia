@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity2"
-    android:background="@drawable/background_edge"
-    >
+    tools:context=".MainActivity8">
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -53,8 +51,8 @@
         android:inputType="text" />
     /*Change start*/
     <TextView
-        android:id="@+id/user_email"
-        android:text="Email:"
+        android:id="@+id/user_age"
+        android:text="Age:"
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,17 +62,17 @@
 
 
     <EditText
-        android:id="@+id/edit_text_email"
+        android:id="@+id/edit_text_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:hint="Email"
+        android:hint="Age"
         android:inputType="text"/>
     /*End*/
 
     <TextView
-        android:id="@+id/user_pwd"
-        android:text="Password:"
+        android:id="@+id/user_gender"
+        android:text="Gender:"
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,31 +82,18 @@
 
 
     <EditText
-        android:id="@+id/edit_text_password"
+        android:id="@+id/edit_text_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:hint="Password"
+        android:hint="Gender"
         android:inputType="text"/>
 
-
     <Button
-        android:id="@+id/register_button"
+        android:id="@+id/add_patient_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Account"
-        android:background="@drawable/button_colour_2"/>
-
-
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:onClick="logIn"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/button_colour_2"
-        />
+        android:text="Add patient"/>
 
     <TextView
         android:id="@+id/text_view_data"
