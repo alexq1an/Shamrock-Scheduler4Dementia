@@ -12,14 +12,15 @@ Shamrock reminds patients of tasks, which help them keep up with their daily sch
 | MainActivity | Let the user choose Patient or Caregiver |
 | MainActivity2 | The caregiver can create an account or login with their existing account |
 | MainActivity3 | The homepage for the caregiver |
-| MainActivity4 | cell |
+| MainActivity4 | The page for editing patient tasks |
 | MainActivity5 | This file has all the features for a working alarm for the application |
 | MainActivity6 | Let the caregiver to add their patient |
 | Patient | This class provides methods for storing information regarding the patient in the database |
 | Caregiver | This class provide methods for storing information regarding the caregiver |
 | Task | This is a class which helps to store alarm in database |
 | Schedule | cell |
- 
+| AlarmReceiver| This file is used to show the pop-up notification to the user |
+| DestinationActivity | This basically an separate page which open after the alarm is stopped |
  
  
  
@@ -76,7 +77,9 @@ However, default emulator works fine as well
 <br>
 If emulator has been setup correctly then it should take a couple moments for the app to startup<br>
 Then you should see this screen<br>
-<img align="left" src="chooseUserType.png">
+ 
+![Semantic description of image](chooseUserType.png "Image Title")
+ 
  
 <br>
 <br>
