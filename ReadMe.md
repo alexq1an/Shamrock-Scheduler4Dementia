@@ -21,7 +21,7 @@ Personally our emulator is
 </ul>
 However, default emulator works fine as well 
 
-## Different files in our code and what is their significance...
+<h1>Different files in our code and what is their significance…</h1>
 
 <h1>Application Features </h1>
 <ul>
@@ -49,7 +49,6 @@ However, default emulator works fine as well
 <br>
 <br>
 <br>
-<br>
 <h1> Procedure</h1>
 <br>
 <br>
@@ -65,8 +64,10 @@ Then you should see this screen<br>
 <br>
 <br>
 <br>
-The **Patient** button will take the user to patient interface of the application<br>
-The **Caregiver** button will take the user to caregiver interface of the application <br>
+<ul>
+<li>The ** Patient ** button will take the user to patient interface of the application<br>
+<li>The **Caregiver** button will take the user to caregiver interface of the application <br>
+</ul>
 <br>
 <br>
 <br>
