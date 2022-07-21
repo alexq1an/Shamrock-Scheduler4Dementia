@@ -3,7 +3,7 @@ package com.example.shamrock;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
+import java.util.Random;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -74,6 +74,20 @@ public class MainActivity6 extends AppCompatActivity {
             }
         });
     }
+
+
+
+        public static void random_6_digit(String[] args){
+            int minimum = 0;
+            int maximum = 9999;
+            Random rand = new Random();
+            int randomNum = minimum + rand.nextInt((maximum-minimum)+1);
+            //System.out.println(randomNum);
+
+            int digit6 = rand.nextInt(9999999);
+            System.out.println(String.format("%06d",digit6));
+        }
+
 
     //adds a new patient with generated id
     public void addPatient(View v) {
