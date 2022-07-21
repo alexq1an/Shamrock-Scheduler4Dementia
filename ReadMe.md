@@ -42,11 +42,6 @@ Personally our emulator is
 </ul>
 However, default emulator works fine as well
  
- 
-**MainActivity** ->
-<br>
-**MainActivity**
- 
 <h1>Application Features </h1>
 <ul>
    <li>Can read and write to firestore Cloud</li>
