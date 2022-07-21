@@ -37,6 +37,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.util.Random;
+
 /**
  * This page allows a caregiver to create a patient's account.
  */
@@ -106,6 +108,7 @@ public class MainActivity6 extends AppCompatActivity {
             patient.put("username", username);
             patient.put("age", age);
             patient.put("sex", sex);
+            patient.put("loginId", shortId());
 
             //adding patient
             DocumentReference addedDocRef = db.collection("Patient").document();
@@ -115,18 +118,18 @@ public class MainActivity6 extends AppCompatActivity {
             //adding first patient to Caregiver
             Bundle extras = getIntent().getExtras();
                 if(extras != null){
-                    String docId = extras.get("documentId").toString();
+                    String docId = extras.get("documentId").toString();//retrieves documentId
                     cRef.document(docId)
                             .addSnapshotListener(new EventListener<DocumentSnapshot>() {
                                 @Override
                                 public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                                    if(error != null){
+                                    if(error != null){//fail to create patient
                                         Toast.makeText(MainActivity6.this, error.toString(), Toast.LENGTH_SHORT).show();
                                         return;
                                     }else{
                                         Caregiver caregiver = value.toObject(Caregiver.class);
                                         ArrayList<String> newList = new ArrayList<>();
-                                        newList.add(patientDocId);
+                                        newList.add(patientDocId);//add patient to the arraylist
                                         caregiver.setpList(newList);
                                         cRef.document(docId).set(caregiver);
                                     }
@@ -140,5 +143,16 @@ public class MainActivity6 extends AppCompatActivity {
 
 
         }
+    }
+
+    //generates a 6 digit number id for patient
+    public String shortId(){
+        int min = 0;
+        int max = 9999;
+        Random rand = new Random();
+        int randomNum = min + rand.nextInt((max - min) + 1);
+
+        int digit6 = rand.nextInt(9999999);
+        return Integer.toString(digit6);
     }
 }
