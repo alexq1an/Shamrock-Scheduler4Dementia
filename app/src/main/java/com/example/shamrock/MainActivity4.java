@@ -21,6 +21,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 
+/*
+   *Page is still in progress
+ */
 public class MainActivity4 extends AppCompatActivity {
     private Button newevent;
     private Button changePatientInfo_button;

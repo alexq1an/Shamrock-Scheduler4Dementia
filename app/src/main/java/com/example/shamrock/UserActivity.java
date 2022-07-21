@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.shamrock.databinding.ActivityUserBinding;
-
+// It is also a helper class to build our list and connects to our xml layout
 public class UserActivity extends AppCompatActivity {
 
     ActivityUserBinding binding;
@@ -20,12 +20,12 @@ public class UserActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
 
         if (intent != null){
-
+            //match each items in the xml file
             String name = intent.getStringExtra("name");
             String phone = intent.getStringExtra("phone");
             String country = intent.getStringExtra("country");
             int imageid = intent.getIntExtra("imageid", R.drawable.a);
-
+            //set the attributes
             binding.nameProfile.setText(name);
             binding.phoneProfile.setText(phone);
             binding.countryProfile.setText(country);

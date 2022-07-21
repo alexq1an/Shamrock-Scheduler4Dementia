@@ -1,6 +1,6 @@
 package com.example.shamrock;
 
-
+//importing all the required libraries
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
@@ -23,9 +23,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 
-
+//making a public class
 public class MainActivity5 extends AppCompatActivity {
-
+    //initializing
     private ActivityMain5Binding binding;
     private MaterialTimePicker picker;
     private Calendar calendar;
@@ -42,7 +42,7 @@ public class MainActivity5 extends AppCompatActivity {
         binding = ActivityMain5Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         createNotificationChannel();
-
+        //using setOnClickerListener
         binding.selectTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,12 +50,6 @@ public class MainActivity5 extends AppCompatActivity {
             }
         });
 
-//        binding.setAlarmBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                setAlarm();
-//            }
-//        });
 
         binding.cancelAlarmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,25 +60,29 @@ public class MainActivity5 extends AppCompatActivity {
 
     }
 
+    //making a method which will be used to cancel the alarm
     private void cancelAlarm() {
+        //checking the condition
         if (count < 1){
             Toast.makeText(this, "Select a time first", Toast.LENGTH_SHORT).show();
             return;
         }
+        //linking the pages
         Intent intent = new Intent(this,AlarmReceiver.class);
 
         pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
-
+        //cancelling the alarm
         if (alarmManager == null){
             alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         }
-
+        //giving the message that alarm has been cancelled
         alarmManager.cancel(pendingIntent);
         Toast.makeText(this, "Alarm Cancelled", Toast.LENGTH_SHORT).show();
     }
 
+    //making a method which will be used to set the alarm
     private void setAlarm() {
-
+        //using AlarmManager
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent(this,AlarmReceiver.class);
@@ -93,12 +91,13 @@ public class MainActivity5 extends AppCompatActivity {
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,pendingIntent);
-
+        //giving the message that alarm is set
         Toast.makeText(this, "Alarm set Successfully", Toast.LENGTH_SHORT).show();
     }
 
+    //method for picking up time correct format
     private void showTimePicker() {
-
+        //using TimeFormat
         picker = new MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_12H)
                 .setHour(12)
@@ -106,12 +105,12 @@ public class MainActivity5 extends AppCompatActivity {
                 .setTitleText("Select Alarm Time")
                 .build();
 
-        picker.show(getSupportFragmentManager(),"foxandroid");
+        picker.show(getSupportFragmentManager(),"Shamrock");
 
         picker.addOnPositiveButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //this will decide am or pm
                 if (picker.getHour() > 12){
 
                     binding.selectedTime.setText(
@@ -149,13 +148,14 @@ public class MainActivity5 extends AppCompatActivity {
 
     }
 
+    //this method is created for notification
     private void createNotificationChannel() {
-
+        //will be used to send notification to the user (Patients)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name = "foxandroidReminderChannel";
+            CharSequence name = "Shamrock Alarm";
             String description = "Channel For Alarm Manager";
             int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("foxandroid",name,importance);
+            NotificationChannel channel = new NotificationChannel("Shamrock",name,importance);
             channel.setDescription(description);
 
             NotificationManager notificationManager = getSystemService(NotificationManager.class);

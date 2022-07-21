@@ -104,6 +104,7 @@ public class MainActivity2 extends AppCompatActivity {
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
 
+        //error checking user input
         if (TextUtils.isEmpty(user)){
             editTextUsername.setError("Username cannot be empty");
             editTextUsername.requestFocus();
@@ -117,6 +118,7 @@ public class MainActivity2 extends AppCompatActivity {
             editTextPassword.requestFocus();
         }
         else{
+            //adding user to firebase authentication
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {

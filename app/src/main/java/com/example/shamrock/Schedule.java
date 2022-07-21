@@ -12,11 +12,7 @@ public class Schedule {
     private Integer Month;
     private Integer Year;
 
-
-    public ArrayList<Task> getTaskArrayList() {
-        return taskArrayList;
-    }
-
+    //constructors
     public Schedule(Calendar calendar, ArrayList<Task> taskArrayList) {
         this.calendar = calendar;
         this.taskArrayList = taskArrayList;
@@ -33,6 +29,7 @@ public class Schedule {
 
     }
 
+    //getters and setters
     public void setCalendar(Calendar calendar) {
         this.calendar = calendar;
     }
@@ -53,6 +50,10 @@ public class Schedule {
 
     public void setTaskArrayList(ArrayList<Task> taskArrayList) {
         this.taskArrayList = taskArrayList;
+    }
+
+    public ArrayList<Task> getTaskArrayList() {
+        return taskArrayList;
     }
 
 

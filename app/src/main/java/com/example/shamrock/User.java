@@ -1,5 +1,7 @@
 package com.example.shamrock;
 
+// This class is for store the information for each of our patient, so that we can list them
+// in our patient list at caregiver's home page.
 public class User {
 
     String name, list_patient_id, phoneNo, country;

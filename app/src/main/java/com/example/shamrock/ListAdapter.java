@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-
+//Adapter for our list
 public class ListAdapter extends ArrayAdapter<User> {
 
 
@@ -21,7 +21,7 @@ public class ListAdapter extends ArrayAdapter<User> {
         super(context, R.layout.patients_list_item,userArrayList);
 
     }
-
+    //get the current item id
     @Override
     public long getItemId(int position) {
         return super.getItemId(position);
@@ -38,7 +38,7 @@ public class ListAdapter extends ArrayAdapter<User> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.patients_list_item,parent,false);
 
         }
-
+        // all attributes for our item and subitem design, and set the source
         ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView userName = convertView.findViewById(R.id.personName);
         TextView id = convertView.findViewById(R.id.list_patient_id);

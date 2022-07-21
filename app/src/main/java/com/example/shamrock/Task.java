@@ -1,13 +1,17 @@
 package com.example.shamrock;
+//importing all the required libraries
 import com.google.firebase.firestore.Exclude;
 import java.util.Calendar;
 
+//this task class will help to store the set alarm in the database
 public class Task {
+    //initializing
     private Calendar calendar;
     private String Description;
     private String DocumentId;
 
     //Constructors
+    //without document id
     public Task(){
         this.DocumentId = null;
     }
