@@ -69,32 +69,24 @@ public class MainActivity6 extends AppCompatActivity {
         editTextGender = findViewById(R.id.edit_text_usergender);
         textViewData = findViewById(R.id.text_view_data);
         add_button = findViewById(R.id.patientInfo_set_confirm_button);
+
+        //displays the patient login id
+        String id = shortId();
+        String data = "";
+        data += "Patient Login ID: \n" + id + "\n";
+        textViewData.setText(data);
         
         //when add button clicked, call this method
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addPatient(view);
+                addPatient(view, id);
             }
         });
     }
 
-
-
-        public static void random_6_digit(String[] args){
-            int minimum = 0;
-            int maximum = 9999;
-            Random rand = new Random();
-            int randomNum = minimum + rand.nextInt((maximum-minimum)+1);
-            //System.out.println(randomNum);
-
-            int digit6 = rand.nextInt(9999999);
-            System.out.println(String.format("%06d",digit6));
-        }
-
-
     //adds a new patient with generated id
-    public void addPatient(View v) {
+    public void addPatient(View v, String id) {
         //gets user inputs
         String username = editTextUsername.getText().toString();
         String age = editTextAge.getText().toString();
@@ -108,7 +100,8 @@ public class MainActivity6 extends AppCompatActivity {
             //adding info into a document
 
             Map<String, Object> patient = new HashMap<>();
-            patient.put("loginId", shortId());
+            patient.put("loginId", id);
+//            patient.put("loginId", shortId());
             patient.put("username", username);
             patient.put("age", age);
             patient.put("sex", sex);
@@ -161,26 +154,26 @@ public class MainActivity6 extends AppCompatActivity {
         int digit6 = rand.nextInt(9999999);
         return Integer.toString(digit6);
     }
-    public void loadNote(View v){
-        pRef.get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        String data = "";
-
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                            Patient patient = documentSnapshot.toObject(Patient.class);
-                            patient.setDocumentId(documentSnapshot.getId());
-
-                            String documentId = patient.getLoginId();
+//    public void loadNote(View v){
+//        pRef.get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        String data = "";
 //
-                            //add name
-                            data += "Patient Login ID: " + documentId + "\n\n";
-
+//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+//                            Patient patient = documentSnapshot.toObject(Patient.class);
+//                            patient.setDocumentId(documentSnapshot.getId());
 //
-                        }
-                        textViewData.setText(data);
-                    }
-                });
-    }
+//                            String documentId = patient.getLoginId();
+////
+//                            //add name
+//                            data += "Patient Login ID: " + documentId + "\n\n";
+//
+////
+//                        }
+//                        textViewData.setText(data);
+//                    }
+//                });
+//    }
 }
