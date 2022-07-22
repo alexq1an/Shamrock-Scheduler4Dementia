@@ -42,6 +42,8 @@ public class MainActivity3 extends AppCompatActivity {
         int[] imageId = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e,
                 R.drawable.f,R.drawable.g,R.drawable.h,R.drawable.i};
         String[] name = {"Christopher","Craig","Sergio","Mubariz","Mike","Michael","Toa","Ivana","Alex"};
+        String[] age = {"","","","","","","","",""};
+        String[] sex = {"","","","","","","","",""};
         String[] list_patient_id = {"01","02","03","04","05",
                 "06","07","08","09"};
         String[] phoneNo = {"7656610000","9999043232","7834354323","9876543211","5434432343",
@@ -49,16 +51,16 @@ public class MainActivity3 extends AppCompatActivity {
         String[] country = {"United States","Russia","India","Israel","Germany","Thailand","Canada","France","Switzerland"};
 
         // An arraylist for list all the patient of that caregiver in our listview.
-        ArrayList<User> userArrayList = new ArrayList<>();
+        ArrayList<Patient> patientArrayList = new ArrayList<>();
 
         for(int i = 0;i< imageId.length;i++){
 
-            User user = new User(name[i],list_patient_id[i],phoneNo[i],country[i],imageId[i]);
-            userArrayList.add(user);
+            Patient patient = new Patient(name[i],age[i],sex[i],list_patient_id[i],phoneNo[i],country[i],imageId[i]);
+            patientArrayList.add(patient);
 
         }
         //Adapter for our arraylist
-        ListAdapter listAdapter = new ListAdapter(this,userArrayList);
+        ListAdapter listAdapter = new ListAdapter(this,patientArrayList);
 
         binding.patientsListView.setAdapter(listAdapter);
         binding.patientsListView.setClickable(true);
