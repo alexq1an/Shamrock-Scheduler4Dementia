@@ -32,6 +32,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,7 +55,7 @@ public class MainActivity6 extends AppCompatActivity {
     private EditText editTextUsername;
     private EditText editTextAge;
     private TextView editTextGender;
-
+    private TextView textViewData;
     private Button add_button;
 
     @Override
@@ -65,9 +67,9 @@ public class MainActivity6 extends AppCompatActivity {
         editTextUsername = findViewById(R.id.edit_text_username);
         editTextAge = findViewById(R.id.edit_text_userage);
         editTextGender = findViewById(R.id.edit_text_usergender);
-
+        textViewData = findViewById(R.id.text_view_data);
         add_button = findViewById(R.id.patientInfo_set_confirm_button);
-
+        
         //when add button clicked, call this method
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,11 +106,13 @@ public class MainActivity6 extends AppCompatActivity {
             editTextUsername.requestFocus();
         } else {
             //adding info into a document
+
             Map<String, Object> patient = new HashMap<>();
+            patient.put("loginId", shortId());
             patient.put("username", username);
             patient.put("age", age);
             patient.put("sex", sex);
-            patient.put("loginId", shortId());
+            //patient.put("loginId", shortId());
 
             //adding patient
             DocumentReference addedDocRef = db.collection("Patient").document();
@@ -132,6 +136,8 @@ public class MainActivity6 extends AppCompatActivity {
                                         newList.add(patientDocId);//add patient to the arraylist
                                         caregiver.setpList(newList);
                                         cRef.document(docId).set(caregiver);
+//                                        View v;
+//                                        loadNote(v);
                                     }
                                 }
                             });
@@ -154,5 +160,27 @@ public class MainActivity6 extends AppCompatActivity {
 
         int digit6 = rand.nextInt(9999999);
         return Integer.toString(digit6);
+    }
+    public void loadNote(View v){
+        pRef.get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        String data = "";
+
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            Patient patient = documentSnapshot.toObject(Patient.class);
+                            patient.setDocumentId(documentSnapshot.getId());
+
+                            String documentId = patient.getLoginId();
+//
+                            //add name
+                            data += "Patient Login ID: " + documentId + "\n\n";
+
+//
+                        }
+                        textViewData.setText(data);
+                    }
+                });
     }
 }
