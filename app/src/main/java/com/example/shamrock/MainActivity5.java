@@ -56,16 +56,16 @@ public class MainActivity5 extends AppCompatActivity {
     private Task task;
     private Integer count = 0;
     //button for adding image from gallery
-    private Button AddImage;
+    //private Button AddImage;
     //button for youtube link
     private Button Url;
     int SELECT_PHOTO = 1;
-    Uri uri;
+    public Uri imageUri;
     private FirebaseStorage storage;
     private StorageReference storageReference;
 
     //this will display the image
-    ImageView imageView;
+    private ImageView profilePic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         task = new Task();
@@ -89,18 +89,19 @@ public class MainActivity5 extends AppCompatActivity {
             }
         });
         //finding the image and button using their id
-        AddImage = findViewById(R.id.AddImage1);
-        imageView = findViewById(R.id.image);
+        profilePic = findViewById(R.id.profilePic);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        AddImage.setOnClickListener(new View.OnClickListener() {
+        profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             //using intent
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent,SELECT_PHOTO);
+                choosePicture();
+
             }
+
+
+
         });
         Url = findViewById(R.id.AddUrl);
         Url.setOnClickListener(new View.OnClickListener() {
@@ -117,22 +118,20 @@ public class MainActivity5 extends AppCompatActivity {
         });
 
     }
+    private void choosePicture() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,1);
+    }
 
     @Override
-
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == SELECT_PHOTO && requestCode == RESULT_OK && data != null && data.getData()!=null){
-            uri = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-                imageView.setImageBitmap(bitmap);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //uploadPicture();
+        if(requestCode==1 && requestCode==RESULT_OK && data!=null && data.getData()!=null){
+            imageUri = data.getData();
+            profilePic.setImageURI(imageUri);
+            uploadPicture();
         }
     }
 
@@ -144,18 +143,27 @@ public class MainActivity5 extends AppCompatActivity {
         final String randomKey = UUID.randomUUID().toString();
         StorageReference riverRef = storageReference.child("images/" + randomKey);
 
-        riverRef.putFile(uri)
+        riverRef.putFile(imageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
+                        pd.dismiss();
                         Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
+                        pd.dismiss();
                         Toast.makeText(getApplicationContext(), "Failed to Upload",Toast.LENGTH_LONG).show();
 
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot tasksnapshot) {
+                        double progressPercent  = (100.00 * tasksnapshot.getBytesTransferred() / tasksnapshot.getTotalByteCount());
+                        pd.setMessage("Progress: "+ (int) progressPercent + "%");
                     }
                 });
 

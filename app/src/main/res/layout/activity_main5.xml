@@ -43,60 +43,52 @@
     <!--        android:text="Set Alarm"-->
     <!--        android:textSize="26dp"-->
     <!--        />-->
+
     <Button
         android:id="@+id/selectTimeBtn"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="403dp"
+        android:layout_height="62dp"
         android:text="Select Time"
         android:textSize="26dp"
-        app:layout_constraintBottom_toTopOf="@+id/cancelAlarmBtn"
+        app:layout_constraintBottom_toBottomOf="@+id/profilePic"
         app:layout_constraintEnd_toEndOf="@+id/cancelAlarmBtn"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="@+id/cancelAlarmBtn"
         app:layout_constraintTop_toBottomOf="@+id/selectedTime" />
 
     <Button
         android:id="@+id/cancelAlarmBtn"
-        android:layout_width="361dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="26dp"
+        android:layout_width="396dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="80dp"
         android:layout_marginBottom="35dp"
         android:text="Cancel Alarm"
         android:textSize="26dp"
-        app:layout_constraintBottom_toTopOf="@+id/AddImage1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectTimeBtn" />
-
-    <Button
-        android:id="@+id/AddImage1"
-        android:layout_width="347dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="37dp"
-        android:text="Add Image"
-        android:textSize="26dp"
-        app:layout_constraintBottom_toTopOf="@+id/AddUrl"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cancelAlarmBtn" />
 
     <Button
         android:id="@+id/AddUrl"
         android:layout_width="221dp"
         android:layout_height="77dp"
-        android:layout_marginStart="92dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginBottom="76dp"
         android:text="URL"
         android:textSize="26dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddImage1" />
+        />
 
     <ImageView
-        android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        app:layout_constraintEnd_toStartOf="parent"
+        android:id="@+id/profilePic"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="112dp"
+        android:text="upload image"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
