@@ -10,7 +10,7 @@ public class Patient {
     private String age;
     private String sex;
     private String documentId;
-    private String loginId;
+//    private String loginId;
     //array list for storing patients
     private ArrayList<Schedule> sList;
     private int imageId;
@@ -27,11 +27,11 @@ public class Patient {
 //        this.age = age;
 //        this.sex = sex;
 //    }
-    public Patient(String username, String age, String sex, String loginId, String list_patient_id, String phoneNo, String country, int imageId){
+    public Patient(String username, String age, String sex, String list_patient_id, String phoneNo, String country, int imageId){
         this.username = username;
         this.age = age;
         this.sex = sex;
-        this.loginId = loginId;
+//        this.loginId = loginId;
         this.list_patient_id = list_patient_id;
         this.phoneNo = phoneNo;
         this.country = country;
@@ -60,9 +60,9 @@ public class Patient {
         return sex;
     }
 
-    public String getLoginId(){
-        return loginId;
-    }
+//    public String getLoginId(){
+//        return loginId;
+//    }
 
     public int getImageId(){
         return imageId;
