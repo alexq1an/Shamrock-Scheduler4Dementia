@@ -8,12 +8,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +56,9 @@ public class MainActivity6 extends AppCompatActivity {
 
     private Button add_button;
 
+    private final int GALLERY_REQ_CODE =1000;
+    ImageView imageButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +71,9 @@ public class MainActivity6 extends AppCompatActivity {
 
         add_button = findViewById(R.id.patientInfo_set_confirm_button);
 
+        ImageView add_picture_gallery=findViewById(R.id.add_picture_gallery);
+        Button imageButton =findViewById(R.id.imageButton);
+
         //when add button clicked, call this method
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +81,26 @@ public class MainActivity6 extends AppCompatActivity {
                 addPatient(view);
             }
         });
+
+        imageButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent igButton= new Intent(Intent.ACTION_PICK);
+                igButton.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(igButton, GALLERY_REQ_CODE);
+            }
+
+        });
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if(resultCode==RESULT_OK){
+            if(requestCode==GALLERY_REQ_CODE){
+                imageButton.setImageURI(data.getData());
+            }
+        }
+        
     }
 
 
