@@ -86,23 +86,24 @@ public class MainActivity6 extends AppCompatActivity {
         btnGallery.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent igGallery= new Intent(Intent.ACTION_PICK);
-                igGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(igGallery, GALLERY_REQ_CODE);
+                Intent iGallery= new Intent(Intent.ACTION_PICK);
+                iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(iGallery, GALLERY_REQ_CODE);
             }
 
         });
     }
 
     //
+    @Override
     protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if(resultCode==RESULT_OK){
+
             if(requestCode==GALLERY_REQ_CODE){
                 imgGallery.setImageURI(data.getData());
             }
         }
-        
     }
 
 
