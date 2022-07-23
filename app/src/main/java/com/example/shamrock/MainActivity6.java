@@ -34,10 +34,14 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import java.util.Random;
 
 /**
  * This page allows a caregiver to create a patient's account.
@@ -53,7 +57,7 @@ public class MainActivity6 extends AppCompatActivity {
     private EditText editTextUsername;
     private EditText editTextAge;
     private TextView editTextGender;
-
+    private TextView textViewData;
     private Button add_button;
 
     private final int GALLERY_REQ_CODE =1000;
@@ -68,9 +72,15 @@ public class MainActivity6 extends AppCompatActivity {
         editTextUsername = findViewById(R.id.edit_text_username);
         editTextAge = findViewById(R.id.edit_text_userage);
         editTextGender = findViewById(R.id.edit_text_usergender);
-
+        textViewData = findViewById(R.id.text_view_data);
         add_button = findViewById(R.id.patientInfo_set_confirm_button);
 
+        //displays the patient login id
+        String id = shortId();
+        String data = "";
+        data += "Patient Login ID: \n" + id + "\n";
+        textViewData.setText(data);
+        
         ImageView add_picture_gallery=findViewById(R.id.add_picture_gallery);
         Button imageButton =findViewById(R.id.imageButton);
 
@@ -78,7 +88,7 @@ public class MainActivity6 extends AppCompatActivity {
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addPatient(view);
+                addPatient(view, id);
             }
         });
 
@@ -103,22 +113,8 @@ public class MainActivity6 extends AppCompatActivity {
         
     }
 
-
-
-        public static void random_6_digit(String[] args){
-            int minimum = 0;
-            int maximum = 9999;
-            Random rand = new Random();
-            int randomNum = minimum + rand.nextInt((maximum-minimum)+1);
-            //System.out.println(randomNum);
-
-            int digit6 = rand.nextInt(9999999);
-            System.out.println(String.format("%06d",digit6));
-        }
-
-
     //adds a new patient with generated id
-    public void addPatient(View v) {
+    public void addPatient(View v, String id) {
         //gets user inputs
         String username = editTextUsername.getText().toString();
         String age = editTextAge.getText().toString();
@@ -130,10 +126,14 @@ public class MainActivity6 extends AppCompatActivity {
             editTextUsername.requestFocus();
         } else {
             //adding info into a document
+
             Map<String, Object> patient = new HashMap<>();
+            patient.put("loginId", id);
+//            patient.put("loginId", shortId());
             patient.put("username", username);
             patient.put("age", age);
             patient.put("sex", sex);
+            //patient.put("loginId", shortId());
 
             //adding patient
             DocumentReference addedDocRef = db.collection("Patient").document();
@@ -143,20 +143,22 @@ public class MainActivity6 extends AppCompatActivity {
             //adding first patient to Caregiver
             Bundle extras = getIntent().getExtras();
                 if(extras != null){
-                    String docId = extras.get("documentId").toString();
+                    String docId = extras.get("documentId").toString();//retrieves documentId
                     cRef.document(docId)
                             .addSnapshotListener(new EventListener<DocumentSnapshot>() {
                                 @Override
                                 public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                                    if(error != null){
+                                    if(error != null){//fail to create patient
                                         Toast.makeText(MainActivity6.this, error.toString(), Toast.LENGTH_SHORT).show();
                                         return;
                                     }else{
                                         Caregiver caregiver = value.toObject(Caregiver.class);
                                         ArrayList<String> newList = new ArrayList<>();
-                                        newList.add(patientDocId);
+                                        newList.add(patientDocId);//add patient to the arraylist
                                         caregiver.setpList(newList);
                                         cRef.document(docId).set(caregiver);
+//                                        View v;
+//                                        loadNote(v);
                                     }
                                 }
                             });
@@ -169,4 +171,37 @@ public class MainActivity6 extends AppCompatActivity {
 
         }
     }
+
+    //generates a 6 digit number id for patient
+    public String shortId(){
+        int min = 0;
+        int max = 9999;
+        Random rand = new Random();
+        int randomNum = min + rand.nextInt((max - min) + 1);
+
+        int digit6 = rand.nextInt(9999999);
+        return Integer.toString(digit6);
+    }
+//    public void loadNote(View v){
+//        pRef.get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        String data = "";
+//
+//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+//                            Patient patient = documentSnapshot.toObject(Patient.class);
+//                            patient.setDocumentId(documentSnapshot.getId());
+//
+//                            String documentId = patient.getLoginId();
+////
+//                            //add name
+//                            data += "Patient Login ID: " + documentId + "\n\n";
+//
+////
+//                        }
+//                        textViewData.setText(data);
+//                    }
+//                });
+//    }
 }
