@@ -13,12 +13,12 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 //Adapter for our list
-public class ListAdapter extends ArrayAdapter<User> {
+public class ListAdapter extends ArrayAdapter<Patient> {
 
 
-    public ListAdapter(Context context, ArrayList<User> userArrayList){
+    public ListAdapter(Context context, ArrayList<Patient> patientArrayList){
 
-        super(context, R.layout.patients_list_item,userArrayList);
+        super(context, R.layout.patients_list_item,patientArrayList);
 
     }
     //get the current item id
@@ -31,7 +31,7 @@ public class ListAdapter extends ArrayAdapter<User> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        User user = getItem(position);
+        Patient patient = getItem(position);
 
         if (convertView == null){
 
@@ -43,9 +43,9 @@ public class ListAdapter extends ArrayAdapter<User> {
         TextView userName = convertView.findViewById(R.id.personName);
         TextView id = convertView.findViewById(R.id.list_patient_id);
 
-        imageView.setImageResource(user.imageId);
-        userName.setText(user.name);
-        id.setText(user.list_patient_id);
+        imageView.setImageResource(patient.getImageId());
+        userName.setText(patient.getUsername());
+        id.setText(patient.getList_patient_id());
 
 
         return convertView;
