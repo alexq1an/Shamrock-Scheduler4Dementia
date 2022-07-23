@@ -19,7 +19,8 @@ public class patient_homepage extends AppCompatActivity {
     CollectionReference patientRef = db.collection("Patient");
 
 
-    TextView month,day,year;
+//    TextView month,day,year;
+    TextView day;
     @Override
     // present date-year-month
     protected  void onCreate(Bundle savedInstanceState){

@@ -79,13 +79,12 @@ public class MainActivity7 extends AppCompatActivity {
                                     //compare with caregiver pList reference
                                     //if matches, link the patient with the caregiver
                                     //login successful, lead to patient homepage
-//                                    Intent i = new Intent(MainActivity7.this, MainActivity6.class);
                                     Intent i = new Intent(MainActivity7.this, patient_homepage.class);
                                     i.putExtra("documentId", document.getId());
                                     startActivity(i);//passing patient documentId
                                 }
                             }
-                            //Never gets in this else case
+                            //Never gets into this else case
                             else {//login fails
                                 Toast.makeText(MainActivity7.this,
                                         "Login fail", Toast.LENGTH_SHORT).show();
