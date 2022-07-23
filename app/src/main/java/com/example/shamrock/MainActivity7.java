@@ -92,23 +92,6 @@ public class MainActivity7 extends AppCompatActivity {
                             }
                         }
                     });
-
-
-
-//            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                @Override
-//                public void onComplete(@NonNull Task<AuthResult> task) {
-//                    if (task.isSuccessful()){
-//                        Toast.makeText(MainActivity2.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
-//                        Intent i = new Intent(MainActivity2.this, MainActivity3.class);
-//                        i.putExtra("documentId",mAuth.getCurrentUser().getUid());
-//                        startActivity(i);
-//                    }
-//                    else{
-//                        Toast.makeText(MainActivity2.this, "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
         }
 
     }
