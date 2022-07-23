@@ -39,11 +39,11 @@ public class ListAdapter extends ArrayAdapter<Patient> {
 
         }
         // all attributes for our item and subitem design, and set the source
-        ImageView imageView = convertView.findViewById(R.id.profile_pic);
+//        ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView userName = convertView.findViewById(R.id.personName);
         TextView id = convertView.findViewById(R.id.list_patient_id);
 
-        imageView.setImageResource(patient.getImageId());
+//        imageView.setImageResource(patient.getImageId());
         userName.setText(patient.getUsername());
         id.setText(patient.getList_patient_id());
 
