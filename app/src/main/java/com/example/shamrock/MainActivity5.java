@@ -1,6 +1,7 @@
 package com.example.shamrock;
 
 //importing all the required libraries
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +9,7 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,16 +24,24 @@ import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain5Binding;
 import com.google.android.gms.cast.framework.media.ImagePicker;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.UUID;
 
 //making a public class
 public class MainActivity5 extends AppCompatActivity {
@@ -51,6 +61,9 @@ public class MainActivity5 extends AppCompatActivity {
     private Button Url;
     int SELECT_PHOTO = 1;
     Uri uri;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+
     //this will display the image
     ImageView imageView;
     @Override
@@ -78,6 +91,8 @@ public class MainActivity5 extends AppCompatActivity {
         //finding the image and button using their id
         AddImage = findViewById(R.id.AddImage1);
         imageView = findViewById(R.id.image);
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
         AddImage.setOnClickListener(new View.OnClickListener() {
             @Override
             //using intent
@@ -117,7 +132,35 @@ public class MainActivity5 extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            //uploadPicture();
         }
+    }
+
+    private void uploadPicture() {
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setTitle("Uploading Image.....");
+        pd.show();
+
+        final String randomKey = UUID.randomUUID().toString();
+        StorageReference riverRef = storageReference.child("images/" + randomKey);
+
+        riverRef.putFile(uri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
+                        Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Toast.makeText(getApplicationContext(), "Failed to Upload",Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+
+
     }
 
     //making a method which will be used to cancel the alarm
