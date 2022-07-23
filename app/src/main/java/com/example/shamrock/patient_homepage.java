@@ -6,11 +6,19 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class patient_homepage extends AppCompatActivity {
+    // Create firebase references
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference patientRef = db.collection("Patient");
+
+
     TextView month,day,year;
     @Override
     // present date-year-month

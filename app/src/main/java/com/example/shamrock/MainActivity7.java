@@ -74,21 +74,23 @@ public class MainActivity7 extends AppCompatActivity {
 //                                    document.getId();
                                     Toast.makeText(MainActivity7.this,
                                             "Login successful\n ID: " + document.getId(), Toast.LENGTH_SHORT).show();
-//                                    Log.d(TAG, document.getId() + " => " + document.getData());
+//                                    Log.d("Patient login", document.getId() + " => " + document.getData());
 
                                     //compare with caregiver pList reference
                                     //if matches, link the patient with the caregiver
                                     //login successful, lead to patient homepage
-                                    Intent i = new Intent(MainActivity7.this, patient_homepage.class);
+                                    Intent i = new Intent(MainActivity7.this, MainActivity6.class);
+//                                    Intent i = new Intent(MainActivity7.this, patient_homepage.class);
                                     i.putExtra("documentId", document.getId());
                                     startActivity(i);//passing patient documentId
                                 }
-                            } else {
-                                //login fails
+                            }
+                            //Never gets in this else case
+                            else {//login fails
                                 Toast.makeText(MainActivity7.this,
                                         "Login fail", Toast.LENGTH_SHORT).show();
 
-//                                Log.d(TAG, "Error getting documents: ", task.getException());
+//                                Log.d("Patient login", "Error getting documents: ", task.getException());
                             }
                         }
                     });
