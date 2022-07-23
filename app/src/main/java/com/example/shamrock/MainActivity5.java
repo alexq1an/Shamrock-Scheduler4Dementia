@@ -45,7 +45,10 @@ public class MainActivity5 extends AppCompatActivity {
     private CollectionReference taskRef = db.collection("Task");
     private Task task;
     private Integer count = 0;
+    //button for adding image from gallery
     private Button AddImage;
+    //button for youtube link
+    private Button Url;
     int SELECT_PHOTO = 1;
     Uri uri;
     //this will display the image
@@ -84,12 +87,24 @@ public class MainActivity5 extends AppCompatActivity {
                 startActivityForResult(intent,SELECT_PHOTO);
             }
         });
+        Url = findViewById(R.id.AddUrl);
+        Url.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //using method gotoUrl
+            //add the link to youtube main page
+            public void onClick(View view) {
+                gotoUrl("https://www.youtube.com");
+            }
+            private void gotoUrl(String s) {
+                Uri uri = Uri.parse(s);
+                startActivity((new Intent(Intent.ACTION_VIEW,uri)));
+            }
+        });
 
     }
 
     @Override
-    //here we are using bitmap (used for graphics)
-    //this will help in showing te image once its selected
+
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == SELECT_PHOTO && requestCode == RESULT_OK && data != null && data.getData()!=null){

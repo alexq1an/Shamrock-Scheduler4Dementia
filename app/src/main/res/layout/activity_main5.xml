@@ -1,33 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_edge"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
     <TextView
         android:id="@+id/selectedTime"
-        android:layout_width="match_parent"
+        android:layout_width="361dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:layout_marginBottom="36dp"
         android:text="08 : 45 PM"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="46dp" />
-
-
-    <Button
-        android:id="@+id/selectTimeBtn"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginHorizontal="26dp"
-        android:layout_marginTop="36dp"
-        android:text="Select Time"
-        android:textSize="26dp" />
+        android:textSize="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/selectTimeBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <!--    <Button-->
@@ -49,30 +43,60 @@
     <!--        android:text="Set Alarm"-->
     <!--        android:textSize="26dp"-->
     <!--        />-->
-
+    <Button
+        android:id="@+id/selectTimeBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:text="Select Time"
+        android:textSize="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/cancelAlarmBtn"
+        app:layout_constraintEnd_toEndOf="@+id/cancelAlarmBtn"
+        app:layout_constraintStart_toStartOf="@+id/cancelAlarmBtn"
+        app:layout_constraintTop_toBottomOf="@+id/selectedTime" />
 
     <Button
         android:id="@+id/cancelAlarmBtn"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginHorizontal="26dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="361dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginBottom="35dp"
         android:text="Cancel Alarm"
-        android:textSize="26dp" />
+        android:textSize="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/AddImage1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectTimeBtn" />
 
     <Button
         android:id="@+id/AddImage1"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginHorizontal="26dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="347dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="37dp"
         android:text="Add Image"
-        android:textSize="26dp" />
+        android:textSize="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/AddUrl"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cancelAlarmBtn" />
+
+    <Button
+        android:id="@+id/AddUrl"
+        android:layout_width="221dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="92dp"
+        android:text="URL"
+        android:textSize="26dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddImage1" />
 
     <ImageView
+        android:id="@+id/image"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:id = "@+id/image"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
