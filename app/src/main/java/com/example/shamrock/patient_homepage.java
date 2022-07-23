@@ -13,13 +13,14 @@ import java.util.Date;
 public class patient_homepage extends AppCompatActivity {
     TextView month,day,year;
     @Override
+    // present date-year-month
     protected  void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_homepage);
 
-        month = findViewById(R.id.month);
+//        month = findViewById(R.id.month);
         day =findViewById(R.id.day);
-        year=findViewById(R.id.year);
+//        year=findViewById(R.id.year);
 
 
 
@@ -29,13 +30,13 @@ public class patient_homepage extends AppCompatActivity {
         String[] splitDate = formattedDate.split(",");
         Log.d("my Log",currentTime.toString());
         Log.d("my Log",formattedDate);
-        month.setText(splitDate[1]);
+//        month.setText(splitDate[1]);
         day.setText(splitDate[0]);
-        year.setText(splitDate[2]);
+//        year.setText(splitDate[2]);
 
         Log.d("my Log",splitDate[0].trim());
-        Log.d("my Log",splitDate[1].trim());
-        Log.d("my Log",splitDate[2].trim());
+//        Log.d("my Log",splitDate[1].trim());
+//        Log.d("my Log",splitDate[2].trim());
 
     }
 }
