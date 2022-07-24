@@ -42,17 +42,6 @@ public class MainActivity4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 
-        //for set the patient name in patient's task page(Activity4)
-
-//        patientName = (TextView) findViewById(R.id.patient_name);
-//        if (temp_patient.getUsername() == null){
-//            patientName.setText("Defalut Patient");
-//        }
-//        else {
-//            patientName.setText(temp_patient.getUsername());
-//        }
-
-
         tvDate = findViewById(R.id.tv_date);
         etDate = findViewById(R.id.et_date);
 
@@ -106,23 +95,6 @@ public class MainActivity4 extends AppCompatActivity {
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        //tvDate
-//        DatePickerDialog datePickerDialog = new DatePickerDialog(
-//                MainActivity4.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-//                setListener, year, month, day);
-//        datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        datePickerDialog.show();
-
-//        setListener = new DatePickerDialog.OnDateSetListener() {
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int month, int day) {
-//                month = month +1;
-//                String date = day + "/" + month + "/" + year;
-//                tvDate.setText(date);
-//            }
-//        };
-
-
         //etDate
         DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity4.this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -131,13 +103,17 @@ public class MainActivity4 extends AppCompatActivity {
                 String date = day + "/" + month + "/" + year;
                 etDate.setText(date);
                 count++;
+                //pre set time for date
+                calendar.set(year, month, day, 0, 0, 0);
+                calendar.setTimeInMillis(0);
             }
         },year,month,day);
         datePickerDialog.show();
 
 
-        //pre set time for date
+
         //query database for existing date
+        sRef.whereEqualTo("calendar", calendar);
         //if exists grab schedule task for that day and add
         //if doesn't exist create new schedule
         //add calendar to intent
@@ -146,7 +122,6 @@ public class MainActivity4 extends AppCompatActivity {
         Schedule schedule = new Schedule(addedDocRef.getId());
         schedule.setCalendar(calendar);
         addedDocRef.set(schedule);
-
     }
 
 }
