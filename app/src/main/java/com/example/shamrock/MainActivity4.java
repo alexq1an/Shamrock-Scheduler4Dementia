@@ -80,7 +80,7 @@ public class MainActivity4 extends AppCompatActivity {
         changePatientInfo_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity6();
+                openActivity8();
             }
         });
 
@@ -94,8 +94,8 @@ public class MainActivity4 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openActivity6(){
-        Intent intent = new Intent(this,MainActivity6.class);
+    public void openActivity8(){
+        Intent intent = new Intent(this,MainActivity8.class);
         startActivity(intent);
     }
 
