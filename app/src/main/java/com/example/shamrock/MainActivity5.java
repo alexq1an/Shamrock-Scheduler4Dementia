@@ -101,6 +101,11 @@ public class MainActivity5 extends AppCompatActivity {
             }
         });
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String date = extras.getString("date");
+        }
+
     }
 
     @Override

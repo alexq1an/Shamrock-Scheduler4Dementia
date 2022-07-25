@@ -44,6 +44,7 @@ public class MainActivity4 extends AppCompatActivity {
     public String username;
     public String loginId;
     public String patientDocId;
+    public String date;
 
 
     public Patient temp_patient;
@@ -65,7 +66,7 @@ public class MainActivity4 extends AppCompatActivity {
         if(extras != null) {
              username = extras.getString("username");
              loginId = extras.getString("loginId");
-             patientDocId = extras.getString("documentId");
+             patientDocId = extras.getString("patientDocId");
 
             Toast.makeText(MainActivity4.this, "DocumentId: " + patientDocId, Toast.LENGTH_SHORT).show();
 
@@ -127,7 +128,7 @@ public class MainActivity4 extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 month = month +1;
-                String date = day + "/" + month + "/" + year;
+                date = day + "/" + month + "/" + year;
                 etDate.setText(date);
                 count++;
                 //pre set time for date
@@ -136,6 +137,10 @@ public class MainActivity4 extends AppCompatActivity {
             }
         },year,month,day);
         datePickerDialog.show();
+
+        //passing date to MA5
+        Intent i = new Intent(MainActivity4.this, MainActivity5.class);
+        i.putExtra("date",date);
 
 
 

@@ -7,11 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+
 public class MainActivity extends AppCompatActivity {
 
     //initializing all the buttons used
     private Button button;
     private Button pButton;
+    FirebaseAuth auth;
+    FirebaseUser User;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +42,28 @@ public class MainActivity extends AppCompatActivity {
     }
     //lead to Caregiver page
     public void openActivity2(){
-        Intent intent = new Intent(this,MainActivity2.class);
-        startActivity(intent);
+        auth = FirebaseAuth.getInstance();
+        User = auth.getCurrentUser();
+        if (User == null) {
+            Intent intent = new Intent(this, MainActivity2.class);
+            startActivity(intent);
+        }
+        else{
+            Intent intent = new Intent(this, MainActivity3.class);
+            startActivity(intent);
+        }
     }
     //lead to Patient page
     public void openPatientLogin(){
-        Intent intent = new Intent(this,MainActivity7.class);
-        startActivity(intent);
+        auth = FirebaseAuth.getInstance();
+        User = auth.getCurrentUser();
+        if (User == null) {
+            Intent intent = new Intent(this, MainActivity7.class);
+            startActivity(intent);
+        }
+        else{
+            Intent intent = new Intent(this, patient_homepage.class);
+            startActivity(intent);
+        }
     }
 }
