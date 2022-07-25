@@ -88,6 +88,8 @@ public class MainActivity3 extends AppCompatActivity {
                 i.putExtra("username",patients.get(position).getUsername());
                 i.putExtra("loginId",patients.get(position).getList_patient_id());
 //                i.putExtra("imageid",imageId[position]);
+                String patientDocId = patients.get(position).getDocumentId();
+                i.putExtra("patientDocId", patientDocId);//passing patient's documentId
                 startActivity(i);
 
             }

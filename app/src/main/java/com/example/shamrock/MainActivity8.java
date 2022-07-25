@@ -90,11 +90,10 @@ public class MainActivity8 extends AppCompatActivity {
         String age = editTextAge.getText().toString();
         String sex = editTextGender.getText().toString();
 
-
+        //grabbing patientDocId passed from MainActivity4
         Bundle extras = getIntent().getExtras();
-
         if (extras != null) {
-            DocumentReference currentPRef = pRef.document(extras.get("documentId").toString());
+            DocumentReference currentPRef = pRef.document(extras.get("patientDocId").toString());
             //check which data to update
             if (!TextUtils.isEmpty(username)) {
                 //update username

@@ -4,19 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
@@ -35,6 +34,10 @@ public class MainActivity4 extends AppCompatActivity {
     private Integer count = 0;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference sRef = db.collection("Schedule");
+    private CollectionReference pRef = db.collection("Patient");
+
+    private DocumentReference pDocId;
+
 
     public Patient temp_patient;
     @Override
@@ -84,8 +87,18 @@ public class MainActivity4 extends AppCompatActivity {
     }
 
     public void openActivity8(){
-        Intent intent = new Intent(this,MainActivity8.class);
-        startActivity(intent);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+//            String pDocId = extras.get("patientDocId").toString();
+
+            String patientDocId = extras.getString("patientDocId");
+
+
+            Intent intent = new Intent(this,MainActivity8.class);
+            //grabbing and passing documentId fails
+            intent.putExtra("patientDocId", patientDocId);
+            startActivity(intent);
+        }
     }
 
     public void selectDate(){
