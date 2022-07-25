@@ -22,14 +22,12 @@ public class UserActivity extends AppCompatActivity {
         if (intent != null){
             //match each items in the xml file
             String name = intent.getStringExtra("name");
-            String phone = intent.getStringExtra("phone");
-            String country = intent.getStringExtra("country");
-            int imageid = intent.getIntExtra("imageid", R.drawable.a);
+            String login = intent.getStringExtra("loginId");
+//            int imageid = intent.getIntExtra("imageid", R.drawable.a);
             //set the attributes
             binding.nameProfile.setText(name);
-            binding.phoneProfile.setText(phone);
-            binding.countryProfile.setText(country);
-            binding.profileImage.setImageResource(imageid);
+            binding.phoneProfile.setText(login);
+//            binding.profileImage.setImageResource(imageid);
 
 
         }

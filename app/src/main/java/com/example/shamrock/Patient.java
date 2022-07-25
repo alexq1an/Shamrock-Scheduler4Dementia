@@ -10,6 +10,7 @@ public class Patient {
     private String age;
     private String sex;
     private String documentId;
+//    private String loginId;
     //array list for storing patients
     private ArrayList<Schedule> sList;
     private int imageId;
@@ -30,6 +31,7 @@ public class Patient {
         this.username = username;
         this.age = age;
         this.sex = sex;
+//        this.loginId = loginId;
         this.list_patient_id = list_patient_id;
         this.phoneNo = phoneNo;
         this.country = country;
@@ -57,6 +59,10 @@ public class Patient {
     public String getSex(){
         return sex;
     }
+
+//    public String getLoginId(){
+//        return loginId;
+//    }
 
     public int getImageId(){
         return imageId;
@@ -104,5 +110,4 @@ public class Patient {
     public void setCountry(){
         this.phoneNo = phoneNo;
     }
-
 }
