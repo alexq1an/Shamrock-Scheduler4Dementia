@@ -19,6 +19,21 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/add_patient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_circle_shape"
+
+        android:text="Add Patient"
+        android:textColor="@color/white"
+
+        android:textSize="15dp" />
+
     <ListView
         android:id="@+id/patientsListView"
         android:layout_width="match_parent"
