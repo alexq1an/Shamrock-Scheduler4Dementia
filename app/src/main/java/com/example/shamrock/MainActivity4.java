@@ -44,6 +44,12 @@ public class MainActivity4 extends AppCompatActivity {
 
         tvDate = findViewById(R.id.tv_date);
         etDate = findViewById(R.id.et_date);
+        patientName = findViewById(R.id.patient_name);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            patientName.setText(extras.get("username").toString());
+        }
 
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
