@@ -63,9 +63,12 @@ public class MainActivity4 extends AppCompatActivity {
         //grabbing the transferred patient information from MainActivity3
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-            String username = extras.getString("username");
-            String loginId = extras.getString("loginId");
-            String patientDocId = extras.get("documentId").toString();
+             username = extras.getString("username");
+             loginId = extras.getString("loginId");
+             patientDocId = extras.getString("documentId");
+
+            Toast.makeText(MainActivity4.this, "DocumentId: " + patientDocId, Toast.LENGTH_SHORT).show();
+
 
 //            DocumentReference patientDocId = pRef.document(extras.get("documentId").toString());
         }
@@ -91,7 +94,7 @@ public class MainActivity4 extends AppCompatActivity {
         changePatientInfo_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity8();
+                openActivity8(patientDocId);
             }
         });
 
@@ -105,19 +108,11 @@ public class MainActivity4 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openActivity8(){
-//        Bundle extras = getIntent().getExtras();
-//        if(extras != null) {
-////            String pDocId = extras.get("patientDocId").toString();
-//
-//            String patientDocId = extras.getString("patientDocId");
-
-
+    public void openActivity8(String patientDocId){
             Intent intent = new Intent(this,MainActivity8.class);
-            //grabbing and passing documentId fails
-//            intent.putExtra("patientDocId", patientDocId);
+            //passing documentId to MainActivity8
+            intent.putExtra("patientDocId", patientDocId);
             startActivity(intent);
-//        }
     }
 
     public void selectDate(){

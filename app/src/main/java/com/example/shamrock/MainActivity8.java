@@ -37,6 +37,8 @@ public class MainActivity8 extends AppCompatActivity {
     private TextView textViewData;
     private Button update_button;
 
+    public String patientDocId;
+
     private final int GALLERY_REQ_CODE =1000;
     ImageView imageButton;
 
@@ -55,11 +57,18 @@ public class MainActivity8 extends AppCompatActivity {
         ImageView add_picture_gallery=findViewById(R.id.add_picture_gallery);
         Button imageButton =findViewById(R.id.imageButton);
 
+        //grabbing the transferred patient information from MainActivity3
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            patientDocId = extras.getString("documentId");
+//            DocumentReference patientDocId = pRef.document(extras.get("documentId").toString());
+        }
+
         //when add button clicked, call this method
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateInfo();
+                updateInfo(patientDocId);
             }
         });
 
@@ -85,7 +94,7 @@ public class MainActivity8 extends AppCompatActivity {
     }
 
     //updates a patient's information
-    public void updateInfo() {
+    public void updateInfo(String patientDocId) {
         //gets user inputs
         String username = editTextUsername.getText().toString();
         String age = editTextAge.getText().toString();
@@ -94,9 +103,9 @@ public class MainActivity8 extends AppCompatActivity {
         //grabbing patientDocId passed from MainActivity4
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            DocumentReference currentPRef = pRef.document(extras.get("patientDocId").toString());
+//            DocumentReference currentPRef = pRef.document(extras.get("patientDocId").toString());
 //            String cPRef = extras.get("patientDocId").toString();
-//            DocumentReference currentPRef = pRef.document(cPRef);
+            DocumentReference currentPRef = pRef.document(patientDocId);
 
 
             //check which data to update
