@@ -29,7 +29,7 @@ public class MainActivity9 extends AppCompatActivity {
 
     //widgets
 
-    private Button uploadBtn;//showAllBtn;
+    private Button uploadBtn, showAllBtn;
     private ImageView imageView;
     private ProgressBar progressBar;
 
@@ -44,18 +44,18 @@ public class MainActivity9 extends AppCompatActivity {
 
 
         uploadBtn = findViewById(R.id.upload_btn);
-        //showAllBtn = findViewById(R.id.showall_btn);
+        showAllBtn = findViewById(R.id.show);
         progressBar = findViewById(R.id.progressBar);
         imageView = findViewById(R.id.imageView);
 
         progressBar.setVisibility(View.INVISIBLE);
 
-       /* showAllBtn.setOnClickListener(new View.OnClickListener() {
+        showAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity( new Intent(MainActivity9.this , ShowActivity .class));
             }
-        });*/
+        });
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
