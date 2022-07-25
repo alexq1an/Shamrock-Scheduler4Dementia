@@ -1,8 +1,5 @@
 package com.example.shamrock;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -94,6 +95,10 @@ public class MainActivity8 extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             DocumentReference currentPRef = pRef.document(extras.get("patientDocId").toString());
+//            String cPRef = extras.get("patientDocId").toString();
+//            DocumentReference currentPRef = pRef.document(cPRef);
+
+
             //check which data to update
             if (!TextUtils.isEmpty(username)) {
                 //update username

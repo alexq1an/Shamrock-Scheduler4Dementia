@@ -27,7 +27,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.ArrayList;
 
 
-
+/**
+ * This is the caregiver homepage with the list of patients
+* */
 public class MainActivity3 extends AppCompatActivity {
 
     private CollectionReference cRef = FirebaseFirestore.getInstance().collection("Caregiver");
@@ -84,13 +86,18 @@ public class MainActivity3 extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 // insert the data using the position
+
+                //passing patient information
                 Intent i = new Intent(MainActivity3.this,MainActivity4.class);
                 i.putExtra("username",patients.get(position).getUsername());
                 i.putExtra("loginId",patients.get(position).getList_patient_id());
-//                i.putExtra("imageid",imageId[position]);
-                String patientDocId = patients.get(position).getDocumentId();
-                i.putExtra("patientDocId", patientDocId);//passing patient's documentId
+                //                i.putExtra("imageid",imageId[position]);
+                i.putExtra("patientDocId", patients.get(position).getDocumentId());
                 startActivity(i);
+
+//                Intent i2 = new Intent(MainActivity3.this,MainActivity8.class);
+//                i2.putExtra("patientDocId", patients.get(position).getDocumentId());//passing patient's documentId
+//                startActivity(i2);
 
             }
         });

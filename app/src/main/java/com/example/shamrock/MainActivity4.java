@@ -20,6 +20,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 
+/**
+ * This page is for editing patient information and setting tasks
+ * */
 /*
    *Page is still in progress
  */
@@ -36,7 +39,11 @@ public class MainActivity4 extends AppCompatActivity {
     private CollectionReference sRef = db.collection("Schedule");
     private CollectionReference pRef = db.collection("Patient");
 
-    private DocumentReference pDocId;
+    //transferred patient information
+//    private DocumentReference pDocId;
+    public String username;
+    public String loginId;
+    public String patientDocId;
 
 
     public Patient temp_patient;
@@ -52,6 +59,18 @@ public class MainActivity4 extends AppCompatActivity {
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        //grabbing the transferred patient information from MainActivity3
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            String username = extras.getString("username");
+            String loginId = extras.getString("loginId");
+            String patientDocId = extras.get("documentId").toString();
+
+//            DocumentReference patientDocId = pRef.document(extras.get("documentId").toString());
+        }
+
+
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,18 +106,18 @@ public class MainActivity4 extends AppCompatActivity {
     }
 
     public void openActivity8(){
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-//            String pDocId = extras.get("patientDocId").toString();
-
-            String patientDocId = extras.getString("patientDocId");
+//        Bundle extras = getIntent().getExtras();
+//        if(extras != null) {
+////            String pDocId = extras.get("patientDocId").toString();
+//
+//            String patientDocId = extras.getString("patientDocId");
 
 
             Intent intent = new Intent(this,MainActivity8.class);
             //grabbing and passing documentId fails
-            intent.putExtra("patientDocId", patientDocId);
+//            intent.putExtra("patientDocId", patientDocId);
             startActivity(intent);
-        }
+//        }
     }
 
     public void selectDate(){
