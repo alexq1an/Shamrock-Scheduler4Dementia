@@ -1,5 +1,6 @@
 package com.example.shamrock;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,9 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain3Binding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -25,8 +31,10 @@ import java.util.ArrayList;
 public class MainActivity3 extends AppCompatActivity {
 
     private CollectionReference cRef = FirebaseFirestore.getInstance().collection("Caregiver");
+    private CollectionReference pRef = FirebaseFirestore.getInstance().collection("Patient");
 
     public ActivityMain3Binding binding;
+    public ArrayList<Patient> patients = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,30 +45,37 @@ public class MainActivity3 extends AppCompatActivity {
         binding = ActivityMain3Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //The part below should pull the data from our database and store at local, we will
-        //implement this in sprint3.
-        int[] imageId = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d,R.drawable.e,
-                R.drawable.f,R.drawable.g,R.drawable.h,R.drawable.i};
-        String[] name = {"Christopher","Craig","Sergio","Mubariz","Mike","Michael","Toa","Ivana","Alex"};
-        String[] age = {"","","","","","","","",""};
-        String[] sex = {"","","","","","","","",""};
-        String[] list_patient_id = {"01","02","03","04","05",
-                "06","07","08","09"};
-        String[] phoneNo = {"7656610000","9999043232","7834354323","9876543211","5434432343",
-                "9439043232","7534354323","6545543211","7654432343"};
-        String[] country = {"United States","Russia","India","Israel","Germany","Thailand","Canada","France","Switzerland"};
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            cRef.document(extras.get("documentId").toString())
+                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
 
-        // An arraylist for list all the patient of that caregiver in our listview.
-        ArrayList<Patient> patientArrayList = new ArrayList<>();
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error != null){
+                            Toast.makeText(MainActivity3.this, error.toString(), Toast.LENGTH_SHORT).show();
+                        }else{
+                            Caregiver caregiver = value.toObject(Caregiver.class);
 
-        for(int i = 0;i< imageId.length;i++){
-
-            Patient patient = new Patient(name[i],age[i],sex[i],list_patient_id[i],phoneNo[i],country[i],imageId[i]);
-            patientArrayList.add(patient);
+                            //iterating through caregiver's patients
+                            for(int i = 0; i < caregiver.getpList().size(); i++){
+                                pRef.document(caregiver.getpList().get(i)).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                                    //adding each patient to list for ListAdapter
+                                    @Override
+                                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                                        Patient patient = value.toObject(Patient.class);
+                                        patients.add(patient);
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
 
         }
+
         //Adapter for our arraylist
-        ListAdapter listAdapter = new ListAdapter(this,patientArrayList);
+        ListAdapter listAdapter = new ListAdapter(this,patients);
 
         binding.patientsListView.setAdapter(listAdapter);
         binding.patientsListView.setClickable(true);
@@ -70,10 +85,11 @@ public class MainActivity3 extends AppCompatActivity {
 
                 // insert the data using the position
                 Intent i = new Intent(MainActivity3.this,MainActivity4.class);
-                i.putExtra("name",name[position]);
-                i.putExtra("phone",phoneNo[position]);
-                i.putExtra("country",country[position]);
-                i.putExtra("imageid",imageId[position]);
+                i.putExtra("username",patients.get(position).getUsername());
+                i.putExtra("loginId",patients.get(position).getList_patient_id());
+//                i.putExtra("imageid",imageId[position]);
+                String patientDocId = patients.get(position).getDocumentId();
+                i.putExtra("patientDocId", patientDocId);//passing patient's documentId
                 startActivity(i);
 
             }
@@ -81,30 +97,10 @@ public class MainActivity3 extends AppCompatActivity {
 
     }
 
-
     public void openActivity5(){
         Intent intent = new Intent(this,MainActivity5.class);
         startActivity(intent);
     }
 
-    //temporary function for testing if data transfers over
-    public void testing(){
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            cRef.document(extras.get("documentId").toString())
-                    .addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                        @Override
-                        public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                            if(error != null){
-                                Toast.makeText(MainActivity3.this, error.toString(), Toast.LENGTH_SHORT).show();
-                            }else{
-                                Caregiver caregiver = value.toObject(Caregiver.class);
-                                String username = caregiver.getUsername();
-                                Toast.makeText(MainActivity3.this, username, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        }
 
-    }
 }
