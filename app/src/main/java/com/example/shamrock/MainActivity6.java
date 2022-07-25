@@ -61,7 +61,7 @@ public class MainActivity6 extends AppCompatActivity {
     private Button add_button;
 
     private final int GALLERY_REQ_CODE =1000;
-    ImageView imageButton;
+    ImageView imgGallery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +81,8 @@ public class MainActivity6 extends AppCompatActivity {
         data += "Patient Login ID: \n" + id + "\n";
         textViewData.setText(data);
         
-        ImageView add_picture_gallery=findViewById(R.id.add_picture_gallery);
-        Button imageButton =findViewById(R.id.imageButton);
+        imgGallery=findViewById(R.id.imgGallery);
+        Button imageButton =findViewById(R.id.btnCamera);
 
         //when add button clicked, call this method
         add_button.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +107,7 @@ public class MainActivity6 extends AppCompatActivity {
         super.onActivityResult(requestCode,resultCode,data);
         if(resultCode==RESULT_OK){
             if(requestCode==GALLERY_REQ_CODE){
-                imageButton.setImageURI(data.getData());
+                imgGallery.setImageURI(data.getData());
             }
         }
         
