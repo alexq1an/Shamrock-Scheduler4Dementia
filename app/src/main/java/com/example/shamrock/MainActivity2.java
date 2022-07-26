@@ -87,7 +87,40 @@ public class MainActivity2 extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logIn(view);
+                String user = editTextUsername.getText().toString();
+                String email = editTextEmail.getText().toString();
+                String password = editTextPassword.getText().toString();
+
+                //error checking user input
+                if (TextUtils.isEmpty(user)){
+                    editTextUsername.setError("Username cannot be empty");
+                    editTextUsername.requestFocus();
+                }
+                else if (TextUtils.isEmpty(email)){
+                    editTextEmail.setError("Email cannot be empty");
+                    editTextEmail.requestFocus();
+                }
+                else if (TextUtils.isEmpty(password)){
+                    editTextPassword.setError("Password cannot be empty");
+                    editTextPassword.requestFocus();
+                }
+                else{
+                    //adding user to firebase authentication
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()){
+                                Toast.makeText(MainActivity2.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(MainActivity2.this, MainActivity3.class);
+                                i.putExtra("documentId",mAuth.getCurrentUser().getUid());
+                                startActivity(i);
+                            }
+                            else{
+                                Toast.makeText(MainActivity2.this, "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
             }
         });
 
@@ -177,3 +210,4 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
 }
+

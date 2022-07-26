@@ -19,6 +19,9 @@
             android:name=".MainActivity8"
             android:exported="false" />
         <activity
+            android:name=".patient_homepage"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity7"
             android:exported="false" />
         <activity
