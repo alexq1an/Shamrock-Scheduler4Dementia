@@ -4,23 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 
+/**
+ * This page is for editing patient information and setting tasks
+ * */
 /*
    *Page is still in progress
  */
@@ -35,23 +37,21 @@ public class MainActivity4 extends AppCompatActivity {
     private Integer count = 0;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference sRef = db.collection("Schedule");
+    private CollectionReference pRef = db.collection("Patient");
+
+    //transferred patient information
+//    private DocumentReference pDocId;
+    public String username;
+    public String loginId;
+    public String patientDocId;
+    public String date;
+
 
     public Patient temp_patient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
-
-        //for set the patient name in patient's task page(Activity4)
-
-//        patientName = (TextView) findViewById(R.id.patient_name);
-//        if (temp_patient.getUsername() == null){
-//            patientName.setText("Defalut Patient");
-//        }
-//        else {
-//            patientName.setText(temp_patient.getUsername());
-//        }
-
 
         tvDate = findViewById(R.id.tv_date);
         etDate = findViewById(R.id.et_date);
@@ -60,6 +60,21 @@ public class MainActivity4 extends AppCompatActivity {
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        //grabbing the transferred patient information from MainActivity3
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+             username = extras.getString("username");
+             loginId = extras.getString("loginId");
+             patientDocId = extras.getString("patientDocId");
+
+            Toast.makeText(MainActivity4.this, "DocumentId: " + patientDocId, Toast.LENGTH_SHORT).show();
+
+
+//            DocumentReference patientDocId = pRef.document(extras.get("documentId").toString());
+        }
+
+
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +95,7 @@ public class MainActivity4 extends AppCompatActivity {
         changePatientInfo_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity6();
+                openActivity8(patientDocId);
             }
         });
 
@@ -94,9 +109,11 @@ public class MainActivity4 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openActivity6(){
-        Intent intent = new Intent(this,MainActivity6.class);
-        startActivity(intent);
+    public void openActivity8(String patientDocId){
+            Intent intent = new Intent(this,MainActivity8.class);
+            //passing documentId to MainActivity8
+            intent.putExtra("patientDocId", patientDocId);
+            startActivity(intent);
     }
 
     public void selectDate(){
@@ -106,38 +123,29 @@ public class MainActivity4 extends AppCompatActivity {
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        //tvDate
-//        DatePickerDialog datePickerDialog = new DatePickerDialog(
-//                MainActivity4.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-//                setListener, year, month, day);
-//        datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        datePickerDialog.show();
-
-//        setListener = new DatePickerDialog.OnDateSetListener() {
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int month, int day) {
-//                month = month +1;
-//                String date = day + "/" + month + "/" + year;
-//                tvDate.setText(date);
-//            }
-//        };
-
-
         //etDate
         DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity4.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 month = month +1;
-                String date = day + "/" + month + "/" + year;
+                date = day + "/" + month + "/" + year;
                 etDate.setText(date);
                 count++;
+                //pre set time for date
+                calendar.set(year, month, day, 0, 0, 0);
+                calendar.setTimeInMillis(0);
             }
         },year,month,day);
         datePickerDialog.show();
 
+        //passing date to MA5
+        Intent i = new Intent(MainActivity4.this, MainActivity5.class);
+        i.putExtra("date",date);
 
-        //pre set time for date
+
+
         //query database for existing date
+        sRef.whereEqualTo("calendar", calendar);
         //if exists grab schedule task for that day and add
         //if doesn't exist create new schedule
         //add calendar to intent
@@ -146,7 +154,6 @@ public class MainActivity4 extends AppCompatActivity {
         Schedule schedule = new Schedule(addedDocRef.getId());
         schedule.setCalendar(calendar);
         addedDocRef.set(schedule);
-
     }
 
 }
