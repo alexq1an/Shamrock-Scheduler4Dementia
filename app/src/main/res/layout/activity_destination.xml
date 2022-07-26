@@ -1,129 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@drawable/background_edge"
     tools:context=".DestinationActivity">
 
     <TextView
-        android:id="@+id/patient_output_title"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:text="Notification Activity"
         android:textColor="@color/black"
-        android:layout_gravity="center"
-        android:textSize="30dp"
-        />
+        android:textSize="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="382dp"
-        android:layout_height="wrap_content"
-
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/patient_output_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Patient Id:"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/patient_output_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Patient name:"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-
-            <!--        (Fill in the specific content name that needs to be entered)-->
-            <TextView
-                android:id="@+id/patient_output_1"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:text="Patient 1:"
-
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/patient_output_edit_id"
-                android:layout_width="288dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-
-
-                android:hint="ID"
-                android:inputType="text"
-                android:textSize="10dp" />
-
-            <EditText
-                android:id="@+id/patient_output_edit_id_username"
-                android:layout_width="288dp"
-                android:layout_height="wrap_content"
-
-
-                android:hint="name"
-                android:inputType="text"
-                android:textSize="10dp" />
-
-            <EditText
-                android:id="@+id/patient_output_edit_Patient1"
-                android:layout_width="288dp"
-                android:layout_height="wrap_content"
-
-
-                android:hint="name"
-                android:inputType="text"
-                android:textSize="10dp" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars"
-        android:layout_gravity="center"/>
-
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="245dp"
-        android:layout_height="198dp"
-        android:layout_gravity="center" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Complete" />
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
