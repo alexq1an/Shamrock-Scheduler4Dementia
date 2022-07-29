@@ -42,6 +42,7 @@ public class MainActivity3 extends AppCompatActivity {
     public String pDocId;
     ArrayList<String> DocID;
     Caregiver caregiver;
+    Button addpatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +100,15 @@ public class MainActivity3 extends AppCompatActivity {
                     });
 
         }
+        //lead to addpatientpage(MA8)
+        addpatient = findViewById(R.id.add_patient);
+        addpatient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoaddpatient();
+            }
+        });
+
 
         //Adapter for our arraylist
         ListAdapter listAdapter = new ListAdapter(this,patients);
@@ -132,6 +142,11 @@ public class MainActivity3 extends AppCompatActivity {
 
     public void openActivity5(){
         Intent intent = new Intent(this,MainActivity5.class);
+        startActivity(intent);
+    }
+
+    public void gotoaddpatient(){
+        Intent intent = new Intent(this,MainActivity8.class);
         startActivity(intent);
     }
 

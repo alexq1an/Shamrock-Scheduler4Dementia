@@ -69,6 +69,7 @@ public class MainActivity8 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateInfo(patientDocId);
+                gobacktoHome();
             }
         });
 
@@ -161,6 +162,11 @@ public class MainActivity8 extends AppCompatActivity {
                         });
             }
         }
+    }
+
+    public void gobacktoHome(){
+        Intent intent = new Intent(this,MainActivity3.class);
+        startActivity(intent);
     }
 }
 
