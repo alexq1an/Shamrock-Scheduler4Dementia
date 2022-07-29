@@ -72,6 +72,7 @@ public class MainActivity8 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateInfo(patientDocId);
+//                openActivity4(patientDocId);//return back to MA4 page after updating
             }
         });
 
@@ -96,6 +97,14 @@ public class MainActivity8 extends AppCompatActivity {
 
     }
 
+    //returning to MA4 after updating information
+    public void openActivity4(String patientDocId){
+        Intent intent = new Intent(this,MainActivity4.class);
+        //passing documentId to MainActivity4
+        intent.putExtra("patientDocId", patientDocId);
+        startActivity(intent);
+    }
+
     //updates a patient's information
     public void updateInfo(String patientDocId) {
         //gets user inputs
@@ -114,12 +123,14 @@ public class MainActivity8 extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "Patient username updated!");
+                            Toast.makeText(MainActivity8.this, "Username updated!", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.w(TAG, "Error updating", e);
+                            Toast.makeText(MainActivity8.this, "Update fail", Toast.LENGTH_SHORT).show();
                         }
                     });
         }
@@ -131,12 +142,14 @@ public class MainActivity8 extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "Patient age updated!");
+                            Toast.makeText(MainActivity8.this, "Age updated!", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.w(TAG, "Error updating", e);
+                            Toast.makeText(MainActivity8.this, "Update fail", Toast.LENGTH_SHORT).show();
                         }
                     });
         }
@@ -148,12 +161,14 @@ public class MainActivity8 extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "Patient sex updated!");
+                            Toast.makeText(MainActivity8.this, "Sex updated!", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.w(TAG, "Error updating", e);
+                            Toast.makeText(MainActivity8.this, "Update fail", Toast.LENGTH_SHORT).show();
                         }
                     });
         }
