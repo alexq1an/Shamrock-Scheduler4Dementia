@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -57,14 +59,17 @@ public class MainActivity8 extends AppCompatActivity {
         ImageView add_picture_gallery=findViewById(R.id.add_picture_gallery);
         Button imageButton =findViewById(R.id.imageButton);
 
-        //grabbing the transferred patient information from MainActivity3
+        //grabbing the transferred patient information from MainActivity4
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-            patientDocId = extras.getString("documentId");
-//            DocumentReference patientDocId = pRef.document(extras.get("documentId").toString());
+            patientDocId = extras.getString("patientDocId");
+            //Toast for testing
+//            Toast.makeText(MainActivity8.this, "DocumentId: " + patientDocId, Toast.LENGTH_SHORT).show();
+
         }
 
-        //when add button clicked, call this method
+        //when update button clicked, call this method
+
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,66 +106,65 @@ public class MainActivity8 extends AppCompatActivity {
         String age = editTextAge.getText().toString();
         String sex = editTextGender.getText().toString();
 
-        //grabbing patientDocId passed from MainActivity4
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-//            DocumentReference currentPRef = pRef.document(extras.get("patientDocId").toString());
-//            String cPRef = extras.get("patientDocId").toString();
-            DocumentReference currentPRef = pRef.document(patientDocId);
+        DocumentReference currentPRef = pRef.document(patientDocId);
 
-
-            //check which data to update
-            if (!TextUtils.isEmpty(username)) {
-                //update username
-                currentPRef
-                        .update("username", username)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "Patient username updated!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error updating", e);
-                            }
-                        });
-            }
-            if (!TextUtils.isEmpty(age)) {
-                //update age
-                currentPRef
-                        .update("age", age)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "Patient age updated!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error updating", e);
-                            }
-                        });
-            }
-            if (!TextUtils.isEmpty(sex)) {
-                //update sex
-                currentPRef
-                        .update("sex", sex)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "Patient sex updated!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error updating", e);
-                            }
-                        });
-            }
+        //check which field to update
+        if (!TextUtils.isEmpty(username)) {
+            //update username
+            currentPRef
+                    .update("username", username)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "Patient username updated!");
+                            Toast.makeText(MainActivity8.this, "Username updated!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error updating", e);
+                            Toast.makeText(MainActivity8.this, "Update fail", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+        if (!TextUtils.isEmpty(age)) {
+            //update age
+            currentPRef
+                    .update("age", age)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "Patient age updated!");
+                            Toast.makeText(MainActivity8.this, "Age updated!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error updating", e);
+                            Toast.makeText(MainActivity8.this, "Update fail", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+        if (!TextUtils.isEmpty(sex)) {
+            //update sex
+            currentPRef
+                    .update("sex", sex)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "Patient sex updated!");
+                            Toast.makeText(MainActivity8.this, "Sex updated!", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error updating", e);
+                            Toast.makeText(MainActivity8.this, "Update fail", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
     }
 
@@ -192,4 +196,3 @@ public class MainActivity8 extends AppCompatActivity {
 //                    }
 //                });
 //    }
-
