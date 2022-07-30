@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain5Binding;
-import com.google.android.gms.cast.framework.media.ImagePicker;
+//import com.google.android.gms.cast.framework.media.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
@@ -100,6 +100,11 @@ public class MainActivity5 extends AppCompatActivity {
                 startActivity((new Intent(Intent.ACTION_VIEW,uri)));
             }
         });
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String date = extras.getString("date");
+        }
 
     }
 

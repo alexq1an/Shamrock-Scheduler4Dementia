@@ -81,7 +81,12 @@ public class MainActivity7 extends AppCompatActivity {
                                     //login successful, lead to patient homepage
                                     Intent i = new Intent(MainActivity7.this, patient_homepage.class);
                                     i.putExtra("documentId", document.getId());
+
+                                    Intent i2 = new Intent(MainActivity7.this, DestinationActivity.class);
+                                    i.putExtra("documentId",document.getId());
+
                                     startActivity(i);//passing patient documentId
+                                    startActivity(i2);
                                 }
                             }
                             //Never gets into this else case
