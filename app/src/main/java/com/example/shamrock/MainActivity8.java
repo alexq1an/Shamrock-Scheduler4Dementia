@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,11 +69,12 @@ public class MainActivity8 extends AppCompatActivity {
         }
 
         //when update button clicked, call this method
+
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateInfo(patientDocId);
-                openActivity3(patientDocId);//return back to MA3 page after updating
+                gobacktoHome();
             }
         });
 
@@ -95,14 +97,6 @@ public class MainActivity8 extends AppCompatActivity {
             }
         }
 
-    }
-
-    //returning to MA3 after updating information
-    public void openActivity3(String patientDocId){
-        Intent intent = new Intent(this,MainActivity3.class);
-        //passing documentId to MainActivity3
-//        intent.putExtra("patientDocId", patientDocId);
-        startActivity(intent);
     }
 
     //updates a patient's information
@@ -173,4 +167,32 @@ public class MainActivity8 extends AppCompatActivity {
                     });
         }
     }
+
+    public void gobacktoHome(){
+        Intent intent = new Intent(this,MainActivity3.class);
+        startActivity(intent);
+    }
 }
+
+//    public void loadNote(View v){
+//        pRef.get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        String data = "";
+//
+//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+//                            Patient patient = documentSnapshot.toObject(Patient.class);
+//                            patient.setDocumentId(documentSnapshot.getId());
+//
+//                            String documentId = patient.getLoginId();
+////
+//                            //add name
+//                            data += "Patient Login ID: " + documentId + "\n\n";
+//
+////
+//                        }
+//                        textViewData.setText(data);
+//                    }
+//                });
+//    }
