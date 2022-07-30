@@ -72,7 +72,7 @@ public class MainActivity8 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateInfo(patientDocId);
-//                openActivity4(patientDocId);//return back to MA4 page after updating
+                openActivity3(patientDocId);//return back to MA3 page after updating
             }
         });
 
@@ -97,11 +97,11 @@ public class MainActivity8 extends AppCompatActivity {
 
     }
 
-    //returning to MA4 after updating information
-    public void openActivity4(String patientDocId){
-        Intent intent = new Intent(this,MainActivity4.class);
-        //passing documentId to MainActivity4
-        intent.putExtra("patientDocId", patientDocId);
+    //returning to MA3 after updating information
+    public void openActivity3(String patientDocId){
+        Intent intent = new Intent(this,MainActivity3.class);
+        //passing documentId to MainActivity3
+//        intent.putExtra("patientDocId", patientDocId);
         startActivity(intent);
     }
 
