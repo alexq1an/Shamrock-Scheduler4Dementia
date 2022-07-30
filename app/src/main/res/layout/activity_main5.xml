@@ -4,13 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/background_edge"
     tools:context=".MainActivity">
 
-
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <!--    <Button-->
     <!--        android:id="@+id/setAlarmBtn"-->
@@ -31,22 +37,29 @@
     <!--        android:text="Set Alarm"-->
     <!--        android:textSize="26dp"-->
     <!--        />-->
-
-    <TextView
-        android:id="@+id/selectedTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="08 : 45 PM"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/selectTimeBtn"
-        />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Describe your task"
+                android:layout_gravity="center"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/selectedTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="08 : 45 PM"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="50dp"
+                app:layout_constraintBottom_toTopOf="@+id/selectTimeBtn"
+                />
 
     <Button
         android:id="@+id/selectTimeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="Select Time"
         android:textSize="25dp"
@@ -59,13 +72,10 @@
         android:id="@+id/cancelAlarmBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="20dp"
         android:text="Cancel Alarm"
         android:textSize="25dp"
-
-
-         />
+        android:layout_gravity="center"/>
 
     <Button
         android:id="@+id/AddImage1"
@@ -73,30 +83,31 @@
         android:layout_height="wrap_content"
         android:text="Add Image"
         android:textSize="25dp"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         />
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="258dp"
-        android:layout_height="192dp"
-        android:layout_marginTop="26dp"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
 
-    <Button
-        android:id="@+id/AddUrl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="201dp"
+                android:layout_height="203dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="26dp" />
 
-        android:layout_marginTop="20dp"
-        android:text="URL"
+            <Button
+                android:id="@+id/AddUrl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="URL"
+                android:textSize="25dp" />
 
-        android:textSize="25dp"
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddImage1" />
+        </LinearLayout>
+    </ScrollView>
+
+
 
 </LinearLayout>

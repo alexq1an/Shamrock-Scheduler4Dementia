@@ -6,37 +6,47 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity8">
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+    android:background="@drawable/background_edge"
+
+    tools:context=".MainActivity8" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="SHAMROCK"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Patient Information"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:id ="@+id/add_picture_gallery" />
 
-        android:textSize="35sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="100dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add your picture"
+            />
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="105dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:srcCompat="@drawable/sham" />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/user_id"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+
         android:text="Username:"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -49,10 +59,13 @@
         android:layout_marginLeft="20dp"
         android:hint="Username"
         android:inputType="text" />
-    /*Change start*/
+
+
+
+
     <TextView
         android:id="@+id/user_age"
-        android:text="Age:"
+        android:text="User Age:"
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,17 +75,16 @@
 
 
     <EditText
-        android:id="@+id/edit_text_age"
+        android:id="@+id/edit_text_userage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:hint="Age"
+        android:hint="User Age"
         android:inputType="text"/>
-    /*End*/
 
     <TextView
-        android:id="@+id/user_gender"
-        android:text="Gender:"
+        android:id="@+id/user_sex"
+        android:text="User gender:"
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,25 +92,53 @@
         android:layout_marginLeft="20dp"
         app:layout_constraintTop_toBottomOf="@id/icon" />
 
-
     <EditText
-        android:id="@+id/edit_text_gender"
+        android:id="@+id/edit_text_usergender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:hint="Gender"
+        android:hint="User Gender"
         android:inputType="text"/>
 
-    <Button
-        android:id="@+id/add_patient_button"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/user_description"
+        android:text="User Description:"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add patient"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="20dp"
+
+        app:layout_constraintTop_toBottomOf="@id/icon" />
+
+
+    <EditText
+        android:id="@+id/user_description_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:hint="User Description"
+        android:inputType="text"
+        android:maxLines="6"/>
+
+    <Button
+        android:id="@+id/update_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/button_colour_2"
+
+
+        android:text="Update"
+        android:textSize="30dp" />
+
 
     <TextView
         android:id="@+id/text_view_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp" />
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        android:textSize="30sp" />
 
 </LinearLayout>
