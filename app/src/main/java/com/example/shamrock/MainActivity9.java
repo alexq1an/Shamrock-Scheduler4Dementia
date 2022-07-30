@@ -29,12 +29,13 @@ public class MainActivity9 extends AppCompatActivity {
 
     //widgets
 
-    private Button uploadBtn, showAllBtn;
+    private Button uploadBtn, showAllBtn, show_1;
     private ImageView imageView;
     private ProgressBar progressBar;
 
     //vars
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference("Image");
+
     private StorageReference reference = FirebaseStorage.getInstance().getReference();
     private Uri imageUri;
     @Override
@@ -42,14 +43,19 @@ public class MainActivity9 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main9);
 
-
+        show_1 = findViewById(R.id.show1);
         uploadBtn = findViewById(R.id.upload_btn);
         showAllBtn = findViewById(R.id.show);
         progressBar = findViewById(R.id.progressBar);
         imageView = findViewById(R.id.imageView);
 
         progressBar.setVisibility(View.INVISIBLE);
-
+        show_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity( new Intent(MainActivity9.this , MainActivity10 .class));
+            }
+        });
         showAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
