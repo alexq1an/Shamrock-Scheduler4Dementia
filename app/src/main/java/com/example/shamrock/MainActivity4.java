@@ -18,6 +18,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 /**
@@ -67,20 +68,6 @@ public class MainActivity4 extends AppCompatActivity {
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        //grabbing the transferred patient information from MainActivity3
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-             username = extras.getString("username");
-             loginId = extras.getString("loginId");
-             patientDocId = extras.getString("patientDocId");
-
-            Toast.makeText(MainActivity4.this, "DocumentId: " + patientDocId, Toast.LENGTH_SHORT).show();
-
-
-//            DocumentReference patientDocId = pRef.document(extras.get("documentId").toString());
-        }
-
-
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,10 +111,12 @@ public class MainActivity4 extends AppCompatActivity {
 
     public void selectDate(){
 
+        //problem is here
         Calendar calendar = Calendar.getInstance();
-        final int year = calendar.get(Calendar.YEAR);
-        final int month = calendar.get(Calendar.MONTH);
-        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+         int year = calendar.get(Calendar.YEAR);
+         int month = calendar.get(Calendar.MONTH);
+         int day = calendar.get(Calendar.DAY_OF_MONTH);
+
 
         //etDate
         DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity4.this, new DatePickerDialog.OnDateSetListener() {
@@ -135,23 +124,24 @@ public class MainActivity4 extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 month = month +1;
                 date = day + "/" + month + "/" + year;
+                String date = day + "/" + month + "/" + year;
+//                LocalDate date1 = LocalDate.of(year, month, day);
+
+                        calendar.set(year, month, day);
+
                 etDate.setText(date);
                 count++;
                 //pre set time for date
-                calendar.set(year, month, day, 0, 0, 0);
-                calendar.setTimeInMillis(0);
             }
         },year,month,day);
         datePickerDialog.show();
-
-        //passing date to MA5
-        Intent i = new Intent(MainActivity4.this, MainActivity5.class);
-        i.putExtra("date",date);
+//        datePickerDialog.onDateChanged();
+        Toast.makeText(this, "Hello" + calendar.getTime(), Toast.LENGTH_SHORT).show();
 
 
 
         //query database for existing date
-        sRef.whereEqualTo("calendar", calendar);
+//        sRef.whereEqualTo("calendar", calendar);
         //if exists grab schedule task for that day and add
         //if doesn't exist create new schedule
         //add calendar to intent
