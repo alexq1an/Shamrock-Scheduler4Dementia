@@ -200,7 +200,7 @@ public class MainActivity5 extends AppCompatActivity {
                     taskRef.document(task.getDocumentId()).set(calendar);
                 }else{
                     DocumentReference addedDocRef = taskRef.document();
-                    task.setCalendar(calendar);
+                    task.setCalendar(calendar); //change
                     task.setDocumentId(addedDocRef.getId());
                     addedDocRef.set(task);
                 }

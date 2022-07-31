@@ -164,11 +164,9 @@ public class MainActivity6 extends AppCompatActivity {
                             });
                     //lead to Home page
                     Intent intent = new Intent(MainActivity6.this, MainActivity3.class);
+                    intent.putExtra("documentId", docId);
                     startActivity(intent);
         }
-
-
-
         }
     }
 

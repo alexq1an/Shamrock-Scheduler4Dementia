@@ -56,5 +56,34 @@ public class Schedule {
         return taskArrayList;
     }
 
+    public Integer getDay() {
+        return Day;
+    }
+
+    public void setDay(Integer day) {
+        Day = day;
+    }
+
+    public Integer getMonth() {
+        return Month;
+    }
+
+    public void setMonth(Integer month) {
+        Month = month;
+    }
+
+    public Integer getYear() {
+        return Year;
+    }
+
+    public void setYear(Integer year) {
+        Year = year;
+    }
+
+    public void setDate(Integer year, Integer month, Integer day){
+        Year = year;
+        Month = month;
+        Day = day;
+    }
 
 }

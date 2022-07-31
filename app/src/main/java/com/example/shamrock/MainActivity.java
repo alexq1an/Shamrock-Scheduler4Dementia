@@ -44,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
     public void openActivity2(){
         auth = FirebaseAuth.getInstance();
         User = auth.getCurrentUser();
-        if (User == null) {
+//        if (User == null) {
             Intent intent = new Intent(this, MainActivity2.class);
             startActivity(intent);
-        }
-        else{
-            Intent intent = new Intent(this, MainActivity3.class);
-            startActivity(intent);
-        }
+//        }
+//        else{
+//            Intent intent = new Intent(this, MainActivity3.class);
+//            startActivity(intent);
+//        }
     }
     //lead to Patient page
     public void openPatientLogin(){
