@@ -99,7 +99,7 @@ public class MainActivity9 extends AppCompatActivity {
 
     private void uploadToFirebase(Uri uri){
 
-        final StorageReference fileRef = reference.child(System.currentTimeMillis() + "." + getFileExtension(uri));
+        final StorageReference fileRef = reference.child("TASK" + 1+ "." + getFileExtension(uri));
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

@@ -253,6 +253,7 @@ public class MainActivity5 extends AppCompatActivity {
                 if(task.getDocumentId() != null ){
 //                    cancelAlarm();
                     taskRef.document(task.getDocumentId()).set(calendar);
+                    taskRef.document(task.getDocumentId()).set()
                 }else{
                     DocumentReference addedDocRef = taskRef.document();
                     task.setCalendar(calendar);
