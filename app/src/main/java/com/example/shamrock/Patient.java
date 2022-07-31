@@ -12,7 +12,7 @@ public class Patient {
     private String documentId;
 //    private String loginId;
     //array list for storing patients
-    private ArrayList<Schedule> sList;
+//    private ArrayList<Schedule> sList;
     private int imageId;
     private String list_patient_id;
     private String phoneNo;
@@ -27,7 +27,8 @@ public class Patient {
 //        this.age = age;
 //        this.sex = sex;
 //    }
-    public Patient(String username, String age, String sex, String list_patient_id, String phoneNo, String country, int imageId){
+    public Patient(String username, String age, String sex, String list_patient_id,
+                   String phoneNo, String country, int imageId){
         this.username = username;
         this.age = age;
         this.sex = sex;
@@ -37,6 +38,7 @@ public class Patient {
         this.country = country;
         this.imageId = imageId;
     }
+
 
     @Exclude
     //getters and setters

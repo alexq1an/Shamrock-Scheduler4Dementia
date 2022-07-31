@@ -63,9 +63,10 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/patientsListView"
+        android:id="@+id/patientTaskListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5" />
+        android:layout_weight="5"
+        tools:listitem="@layout/task_list_item"/>
 
 </LinearLayout>
