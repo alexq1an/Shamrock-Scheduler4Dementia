@@ -51,7 +51,10 @@ public class MainActivity5 extends AppCompatActivity {
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference taskRef = db.collection("Task");
+    private CollectionReference taskRef = db.collection("Patient").document("PatientID")
+                                        .collection("Schedule")
+                                        .document("Scheduled_Day")
+                                        .collection("Task");
     private Task task;
     private Integer count = 0;
     //button for adding image from gallery
@@ -97,20 +100,7 @@ public class MainActivity5 extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        //profilePic = findViewById(R.id.profilePic);
-        //storage = FirebaseStorage.getInstance();
-        //storageReference = storage.getReference();
-        //profilePic.setOnClickListener(new View.OnClickListener() {
-        //@Override
-        //using intent
-        //public void onClick(View view) {
-        //  choosePicture();
 
-        //}
-
-
-
-        // });
         Url = findViewById(R.id.AddUrl);
         Url.setOnClickListener(new View.OnClickListener() {
             @Override

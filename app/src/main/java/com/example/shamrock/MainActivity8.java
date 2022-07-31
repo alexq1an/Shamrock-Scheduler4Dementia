@@ -64,7 +64,7 @@ public class MainActivity8 extends AppCompatActivity {
         if(extras != null) {
             patientDocId = extras.getString("patientDocId");
             //Toast for testing
-//            Toast.makeText(MainActivity8.this, "DocumentId: " + patientDocId, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity8.this, "DocumentId: " + patientDocId, Toast.LENGTH_SHORT).show();
 
         }
 
@@ -174,25 +174,3 @@ public class MainActivity8 extends AppCompatActivity {
     }
 }
 
-//    public void loadNote(View v){
-//        pRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        String data = "";
-//
-//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                            Patient patient = documentSnapshot.toObject(Patient.class);
-//                            patient.setDocumentId(documentSnapshot.getId());
-//
-//                            String documentId = patient.getLoginId();
-////
-//                            //add name
-//                            data += "Patient Login ID: " + documentId + "\n\n";
-//
-////
-//                        }
-//                        textViewData.setText(data);
-//                    }
-//                });
-//    }

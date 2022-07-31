@@ -157,8 +157,7 @@ public class MainActivity6 extends AppCompatActivity {
                                         newList.add(patientDocId);//add patient to the arraylist
                                         caregiver.setpList(newList);
                                         cRef.document(docId).set(caregiver);
-//                                        View v;
-//                                        loadNote(v);
+
                                     }
                                 }
                             });
@@ -180,26 +179,4 @@ public class MainActivity6 extends AppCompatActivity {
         int digit6 = rand.nextInt(9999999);
         return Integer.toString(digit6);
     }
-//    public void loadNote(View v){
-//        pRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        String data = "";
-//
-//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                            Patient patient = documentSnapshot.toObject(Patient.class);
-//                            patient.setDocumentId(documentSnapshot.getId());
-//
-//                            String documentId = patient.getLoginId();
-////
-//                            //add name
-//                            data += "Patient Login ID: " + documentId + "\n\n";
-//
-////
-//                        }
-//                        textViewData.setText(data);
-//                    }
-//                });
-//    }
 }
