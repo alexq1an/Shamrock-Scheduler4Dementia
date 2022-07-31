@@ -129,7 +129,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
         //query database for existing date
         pRef.document(patientDocId).collection("Schedule")
                 .whereEqualTo("day", c.get(Calendar.DAY_OF_MONTH))
-                .whereEqualTo("month",  c.get(Calendar.MONTH))
+                .whereEqualTo("month", c.get(Calendar.MONTH))
                 .whereEqualTo("year", c.get(Calendar.YEAR))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -138,16 +138,16 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
                         if (task.isSuccessful()){
                             int counter = 0;
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                                counter++;
-                                Schedule schedule = documentSnapshot.toObject(Schedule.class);
-                                String id = documentSnapshot.getId();
+                                    counter++;
+                                    Schedule schedule = documentSnapshot.toObject(Schedule.class);
+                                    String id = documentSnapshot.getId();
 
-                                schedule.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                                    schedule.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 
-                                sRef.document(id).set(schedule);
+                                pRef.document(patientDocId).collection("Schedule").document(id).set(schedule);
                             }
                             if(counter == 0){
-                                DocumentReference addedDocRef = sRef.document();
+                                DocumentReference addedDocRef = pRef.document(patientDocId).collection("Schedule").document();
                                 Schedule schedule = new Schedule(addedDocRef.getId());
                                 schedule.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
                                 addedDocRef.set(schedule);
