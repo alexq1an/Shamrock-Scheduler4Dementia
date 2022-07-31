@@ -106,6 +106,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
         }
         Intent intent = new Intent(this,MainActivity5.class);
         intent.putExtra("calendar", calendar);
+        intent.putExtra("patientDocId", patientDocId);
         startActivity(intent);
     }
 

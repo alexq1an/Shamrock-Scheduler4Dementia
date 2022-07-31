@@ -167,9 +167,6 @@ public class MainActivity6 extends AppCompatActivity {
                     intent.putExtra("documentId", docId);
                     startActivity(intent);
         }
-
-
-
         }
     }
 
