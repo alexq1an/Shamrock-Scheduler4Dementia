@@ -57,13 +57,13 @@ public class MainActivity extends AppCompatActivity {
     public void openPatientLogin(){
         auth = FirebaseAuth.getInstance();
         User = auth.getCurrentUser();
-        if (User == null) {
+//        if (User == null) {
             Intent intent = new Intent(this, MainActivity7.class);
             startActivity(intent);
-        }
-        else{
-            Intent intent = new Intent(this, patient_homepage.class);
-            startActivity(intent);
-        }
+//        }
+//        else{
+//            Intent intent = new Intent(this, patient_homepage.class);
+//            startActivity(intent);
+//        }
     }
 }

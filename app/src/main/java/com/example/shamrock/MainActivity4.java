@@ -56,6 +56,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
     public String date;
     public Calendar calendar;
     public String scheduleID;
+    public String caregiverID;
 
     public Patient temp_patient;
     @Override
@@ -71,6 +72,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
         if(extras != null) {
             patientName.setText(extras.get("username").toString());
             patientDocId = extras.get("patientDocId").toString();
+            caregiverID = extras.get("caregiverDocId").toString();
         }
 
         etDate.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +95,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
         changePatientInfo_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openActivity8(patientDocId);
+                openActivity8();
             }
         });
 
@@ -107,14 +109,16 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
         intent.putExtra("calendar", calendar);
         intent.putExtra("scheduleDocId", scheduleID);
         intent.putExtra("patientDocId", patientDocId);
+        intent.putExtra("caregiverDocId", caregiverID);
         startActivity(intent);
     }
 
-    public void openActivity8(String patientDocId){
-        Intent intent = new Intent(this,MainActivity8.class);
+    public void openActivity8(){
+        Intent i = new Intent(this,MainActivity8.class);
         //passing documentId to MainActivity8
-        intent.putExtra("patientDocId", patientDocId);
-        startActivity(intent);
+        i.putExtra("patientDocId", patientDocId);
+        i.putExtra("caregiverDocId", caregiverID);
+        startActivity(i);
     }
 
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth){

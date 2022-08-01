@@ -40,6 +40,7 @@ public class MainActivity3 extends AppCompatActivity {
     public ActivityMain3Binding binding;
     public ArrayList<Patient> patients = new ArrayList<>();
     public String pDocId;
+    public String docId;
     ArrayList<String> DocID;
     Caregiver caregiver;
 //    Button addpatient;
@@ -55,7 +56,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            String docId = extras.get("documentId").toString();
+            docId = extras.get("documentId").toString();
             cRef.document(extras.get("documentId").toString())
                     .addSnapshotListener(new EventListener<DocumentSnapshot>() {
 
@@ -132,6 +133,7 @@ public class MainActivity3 extends AppCompatActivity {
 
                 pDocId = patients.get(position).getDocumentId();
                 i.putExtra("patientDocId", DocID.get(position));
+                i.putExtra("caregiverDocId", docId);
                 startActivity(i);
 
 //                Intent i2 = new Intent(MainActivity3.this,MainActivity8.class);

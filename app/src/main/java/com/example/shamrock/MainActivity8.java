@@ -40,9 +40,8 @@ public class MainActivity8 extends AppCompatActivity {
     private Button update_button;
 
     public String patientDocId;
+    public String caregiverID;
 
-    private final int GALLERY_REQ_CODE =1000;
-    ImageView imageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +60,9 @@ public class MainActivity8 extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             patientDocId = extras.getString("patientDocId");
+            caregiverID = extras.getString("caregiverDocId");
             //Toast for testing
-            Toast.makeText(MainActivity8.this, "DocumentId: " + patientDocId, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MainActivity8.this, "DocumentId: " + patientDocId, Toast.LENGTH_SHORT).show();
 
         }
 
@@ -76,24 +76,6 @@ public class MainActivity8 extends AppCompatActivity {
             }
         });
 
-        imageButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent igButton= new Intent(Intent.ACTION_PICK);
-                igButton.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(igButton, GALLERY_REQ_CODE);
-            }
-
-        });
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if(resultCode==RESULT_OK){
-            if(requestCode==GALLERY_REQ_CODE){
-                imageButton.setImageURI(data.getData());
-            }
-        }
 
     }
 
@@ -168,7 +150,30 @@ public class MainActivity8 extends AppCompatActivity {
 
     public void gobacktoHome(){
         Intent intent = new Intent(this,MainActivity3.class);
+        intent.putExtra("documentId", caregiverID);
         startActivity(intent);
     }
 }
 
+//    public void loadNote(View v){
+//        pRef.get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        String data = "";
+//
+//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+//                            Patient patient = documentSnapshot.toObject(Patient.class);
+//                            patient.setDocumentId(documentSnapshot.getId());
+//
+//                            String documentId = patient.getLoginId();
+////
+//                            //add name
+//                            data += "Patient Login ID: " + documentId + "\n\n";
+//
+////
+//                        }
+//                        textViewData.setText(data);
+//                    }
+//                });
+//    }

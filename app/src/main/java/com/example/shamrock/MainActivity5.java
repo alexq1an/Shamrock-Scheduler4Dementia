@@ -2,12 +2,14 @@ package com.example.shamrock;
 
 //importing all the required libraries
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,16 +17,23 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain5Binding;
 
 //import com.google.android.gms.cast.framework.media.ImagePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -69,12 +78,51 @@ public class MainActivity5 extends AppCompatActivity {
     //this will display the image
     //private ImageView profilePic;
 
+    private Button uploadBtn;
+    private ImageView imageView;
+    private ProgressBar progressBar;
+
+    //vars
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference("Image");
+
+    private StorageReference reference = FirebaseStorage.getInstance().getReference();
+    private Uri imageUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMain5Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         createNotificationChannel();
+
+        //image stuff
+        uploadBtn = findViewById(R.id.upload_btn);
+        progressBar = findViewById(R.id.progressBar);
+        imageView = findViewById(R.id.imageView);
+
+        uploadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent galleryIntent = new Intent();
+                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent , 2);
+
+                if (imageUri != null){
+                    uploadToFirebase(imageUri);
+                }else{
+                    Toast.makeText(MainActivity5.this, "Please Select Image", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+//        uploadBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+
 
         title = findViewById(R.id.title);
         description = findViewById(R.id.task_description);
@@ -100,14 +148,14 @@ public class MainActivity5 extends AppCompatActivity {
             }
         });
         //finding the image and button using their id
-        AddImage = findViewById(R.id.AddImage1);
-        AddImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity5.this , MainActivity9.class);
-                startActivity(i);
-            }
-        });
+//        AddImage = findViewById(R.id.AddImage1);
+//        AddImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(MainActivity5.this , MainActivity9.class);
+//                startActivity(i);
+//            }
+//        });
 
         Url = findViewById(R.id.AddUrl);
         Url.setOnClickListener(new View.OnClickListener() {
@@ -133,58 +181,58 @@ public class MainActivity5 extends AppCompatActivity {
 
     }
 
-//    private void choosePicture() {
-//        Intent intent = new Intent();
-//        intent.setType("image/*");
-//        intent.setAction(Intent.ACTION_GET_CONTENT);
-//        startActivityForResult(intent,1);
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode==1 && requestCode==RESULT_OK && data!=null && data.getData()!=null){
-//            imageUri = data.getData();
-//            profilePic.setImageURI(imageUri);
-//            uploadPicture();
-//        }
-//    }
+        if (requestCode ==2 && resultCode == RESULT_OK && data != null){
 
-//    private void uploadPicture() {
-//        final ProgressDialog pd = new ProgressDialog(this);
-//        pd.setTitle("Uploading Image.....");
-//        pd.show();
-//
-//        final String randomKey = UUID.randomUUID().toString();
-//        StorageReference riverRef = storageReference.child("images/" + randomKey);
-//
-//        riverRef.putFile(imageUri)
-//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
-//                        pd.dismiss();
-//                        Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception exception) {
-//                        pd.dismiss();
-//                        Toast.makeText(getApplicationContext(), "Failed to Upload",Toast.LENGTH_LONG).show();
-//
-//                    }
-//                })
-//                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onProgress(@NonNull UploadTask.TaskSnapshot tasksnapshot) {
-//                        double progressPercent  = (100.00 * tasksnapshot.getBytesTransferred() / tasksnapshot.getTotalByteCount());
-//                        pd.setMessage("Progress: "+ (int) progressPercent + "%");
-//                    }
-//                });
+            imageUri = data.getData();
+            //imageView.setImageURI(imageUri);
 
+        }
+    }
 
+    private void uploadToFirebase(Uri uri){
 
-    //}
+        final StorageReference fileRef = reference.child("TASK" + 1+ "." + getFileExtension(uri));
+        fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+
+                        Model model = new Model(uri.toString());
+                        String modelId = root.push().getKey();
+                        root.child(modelId).setValue(model);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(MainActivity5.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                        imageView.setImageResource(R.drawable.ic_baseline_add_a_photo_24);
+                    }
+                });
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                progressBar.setVisibility(View.VISIBLE);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(MainActivity5.this, "Uploading Failed !!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private String getFileExtension(Uri mUri){
+
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(mUri));
+
+    }
+
 
     //making a method which will be used to cancel the alarm
     private void cancelAlarm() {
@@ -221,6 +269,9 @@ public class MainActivity5 extends AppCompatActivity {
         Intent intent = new Intent(this,AlarmReceiver.class);
 
         pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+        intent.putExtra("patientDocID", patientID);
+        intent.putExtra("taskDocID", currentID);
+        intent.putExtra("scheduleDocID", scheduleID);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,pendingIntent);
@@ -280,7 +331,6 @@ public class MainActivity5 extends AppCompatActivity {
                                     int counter = 0;
                                     for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                         counter++;
-                                        Toast.makeText(MainActivity5.this, "counter: " + counter, Toast.LENGTH_SHORT).show();
                                         Task tempTask = documentSnapshot.toObject(Task.class);
                                         String id = documentSnapshot.getId();
                                         currentID = documentSnapshot.getId();

@@ -1,100 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_edge"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@drawable/background_edge"
     tools:context=".MainActivity">
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="571dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:layout_width="241dp"
+                android:layout_height="59dp"
+                android:layout_marginTop="16dp"
                 android:hint="Title"
-                android:textSize="40dp" />
+                android:textSize="40dp"
+                app:layout_constraintEnd_toEndOf="@+id/selectedTime"
+                app:layout_constraintStart_toStartOf="@+id/task_description"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/task_description"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="31dp"
+                android:layout_marginRight="31dp"
                 android:hint="enter a description of your task"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <TextView
                 android:id="@+id/selectedTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_width="266dp"
+                android:layout_height="64dp"
                 android:text="08 : 45 PM"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="50dp"
-                app:layout_constraintBottom_toTopOf="@+id/selectTimeBtn" />
+                app:layout_constraintBottom_toTopOf="@+id/selectTimeBtn"
+                app:layout_constraintEnd_toEndOf="@+id/cancelAlarmBtn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/cancelAlarmBtn"
+                app:layout_constraintTop_toBottomOf="@+id/task_description" />
 
             <Button
                 android:id="@+id/selectTimeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="4dp"
                 android:text="Select Time"
                 android:textSize="25dp"
-                app:layout_constraintBottom_toTopOf="@+id/cancelAlarmBtn" />
+                app:layout_constraintBottom_toTopOf="@+id/cancelAlarmBtn"
+                app:layout_constraintStart_toStartOf="@+id/selectedTime" />
 
             <Button
                 android:id="@+id/cancelAlarmBtn"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="21dp"
                 android:text="Cancel Alarm"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                app:layout_constraintBottom_toTopOf="@+id/upload_btn"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
-                android:id="@+id/AddImage1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="Add Image"
-                android:textSize="25dp" />
+                android:id="@+id/upload_btn"
+                android:layout_width="174dp"
+                android:layout_height="59dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="16dp"
+                android:text="upload"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toTopOf="@+id/AddUrl"
+                app:layout_constraintEnd_toEndOf="@+id/AddUrl"
+                app:layout_constraintHorizontal_bias="0.741"
+                app:layout_constraintStart_toStartOf="@+id/cancelAlarmBtn" />
 
             <Button
                 android:id="@+id/AddUrl"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="19dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginEnd="19dp"
+                android:layout_marginRight="19dp"
+                android:layout_marginBottom="21dp"
                 android:text="URL"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                app:layout_constraintBottom_toTopOf="@+id/confirm_button"
+                app:layout_constraintEnd_toEndOf="@+id/cancelAlarmBtn"
+                app:layout_constraintStart_toStartOf="@+id/cancelAlarmBtn" />
 
             <Button
                 android:id="@+id/confirm_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
                 android:text="Confirm"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/AddUrl" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
