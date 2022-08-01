@@ -21,24 +21,32 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * This is the home page for patient.
+ * It shows the list of tasks being scheduled on the current day.
+ */
 public class patient_homepage extends AppCompatActivity {
     // Create firebase references
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference pRef = db.collection("Patient");
 
-    //define variables for showing task list
+    //define variables for showing the task list
+    private static final String TAG = "patient_homepage";
     public DocumentReference pDocId;
-    public ActivityMain3Binding binding;
+    public CollectionReference scheduleRef;
+    public String todayId;
+    public CollectionReference taskRef;
+
     public ArrayList<Task> taskList = new ArrayList<>();
-    ArrayList<String> DocID;
-    Task task;
-    Schedule schedule;
+    public ActivityMain3Binding binding;
 
 //    private DocumentReference newRef = db.collection("Patient").document("4VqwOvfFqCD0HiRZWknB")
 //            .collection("Schedule").document("lMuGUFBBPGE1BcyiWfRS");
@@ -52,11 +60,11 @@ public class patient_homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_homepage);
 
-//        //grab documentId
-//        Bundle extras = getIntent().getExtras();
-//        if(extras != null) {
-//            pDocId = pRef.document(extras.get("documentId").toString());
-//        }
+        //grabbing documentId passed from MainActivity7
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            pDocId = pRef.document(extras.get("documentId").toString());
+        }
 
 //        month = findViewById(R.id.month);
         day =findViewById(R.id.day);
@@ -78,120 +86,64 @@ public class patient_homepage extends AppCompatActivity {
 //        Log.d("my Log",splitDate[1].trim());
 //        Log.d("my Log",splitDate[2].trim());
 
-/**
- * Shows task list
- * */
-        //below are patient info List on caregiver's side.
-        binding = ActivityMain3Binding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            pDocId = pRef.document(extras.get("documentId").toString());//grabbing patient docId
-
-            //using dummy
-            pDocId.collection("Schedule")
-                    .addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                @Override
-                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                    if(error != null){//fails to get document?
-                        Toast.makeText(patient_homepage.this, error.toString(), Toast.LENGTH_SHORT).show();
-                    }else{
-                        schedule = value.toObject(Schedule.class);
-
-                        //iterating through sList
-                        for(int i = 0; i < schedule.getTaskArrayList().size(); i++){
-                            int index = i;
-                            pDocId.collection("Schedule").document(String.valueOf(schedule.getTaskArrayList().get(i))).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                                //adding each task to list for ListAdapter
-                                @Override
-                                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                                    Task task = value.toObject(Task.class);
-//                                    patient.setDocumentId(caregiver.getpList().get(index));
-                                    taskList.add(task);//manually adding task into another taskList
-                                    ListAdapter2 la2 = new ListAdapter2(patient_homepage.this, taskList);
-                                    binding.patientsListView.setAdapter(la2);
-                                }
-                            });
-                        }
-
-//                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                        FirebaseFirestore docRef = FirebaseFirestore.getInstance();
-//                        docRef.collection("Caregiver")
-//                                .document(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                                    @Override
-//                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                                        if (task.isSuccessful()) {
-//                                            DocumentSnapshot doc = task.getResult();
-//                                            DocID = (ArrayList<String>) doc.get("pList");
-//                                        }
-//                                        else{
-//                                            Toast.makeText(patient_homepage.this, "Sb", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    }
-//                                });
-                    }
-                }
-                    });
-
-        }
-//        showTask();
+        showTask(pDocId);//call this method to show the task list
     }
 
-    public void showTask(){
-        //grab patient docId
+/**
+ * Set the list of tasks and show
+ * */
+    public void showTask(DocumentReference pDocId) {
+        //access collection "Schedule"
+        /*
+        * Getting null pointer
+        * */
+        scheduleRef = pDocId.collection("Schedule");
 
-        //access
-
-
-
-
-
-        //below are patient's task List
-        binding = ActivityMain3Binding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        newRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-        {
+        //check if the schedule date matches with the current date
+        //get the present date documentId
+        scheduleRef
+                .whereEqualTo("year", 2022)//need generalization
+                .whereEqualTo("month", 6)
+                .whereEqualTo("day", 31)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(error != null){
-                            Toast.makeText(MainActivity3.this, error.toString(), Toast.LENGTH_SHORT).show();
-                        }else{
-                            caregiver = value.toObject(Caregiver.class);
-
-                            //iterating through caregiver's patients
-                            for(int i = 0; i < caregiver.getpList().size(); i++){
-                                int index = i;
-                                pRef.document(caregiver.getpList().get(i)).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                                    //adding each patient to list for ListAdapter
-                                    @Override
-                                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                                        Patient patient = value.toObject(Patient.class);
-                                        patient.setDocumentId(caregiver.getpList().get(index));
-                                        patients.add(patient);
-                                        ListAdapter listAdapter = new ListAdapter(MainActivity3.this,patients);
-                                        binding.patientsListView.setAdapter(listAdapter);
-                                    }
-                                });
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {//successfully got access to a specific date's schedule reference
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                todayId = document.getId();
                             }
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            FirebaseFirestore docRef = FirebaseFirestore.getInstance();
-                            docRef.collection("Caregiver")
-                                    .document(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                            if (task.isSuccessful()) {
-                                                DocumentSnapshot doc = task.getResult();
-                                                DocID = (ArrayList<String>) doc.get("pList");
-                                            }
-                                            else{
-                                                Toast.makeText(MainActivity3.this, "Sb", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
-            });
+                });
 
+        //access collection "Task"
+        taskRef = scheduleRef.document(todayId).collection("Task");
+
+        //iterate through Task collection and grab all the documents(tasks) inside
+        taskRef
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            //manually add each task into a task list
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+
+                                Task aTask = document.toObject(Task.class);//creates a Task object
+                                taskList.add(aTask);
+                                //use ListAdaptor2 to show it on the screen(patient_homepage.xml)
+                                ListAdapter2 listAdapter = new ListAdapter2(patient_homepage.this, taskList);
+                                binding.patientsListView.setAdapter(listAdapter);
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
 }

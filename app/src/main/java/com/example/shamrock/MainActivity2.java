@@ -132,7 +132,9 @@ public class MainActivity2 extends AppCompatActivity {
         });
     }
 
+    //Caregiver can login by entering their username, email, and password
     public void logIn(View v){
+        //getting user inputs and storing into variables
         String user = editTextUsername.getText().toString();
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
@@ -159,9 +161,9 @@ public class MainActivity2 extends AppCompatActivity {
                         Toast.makeText(MainActivity2.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(MainActivity2.this, MainActivity3.class);
                         i.putExtra("documentId",mAuth.getCurrentUser().getUid());
-                        startActivity(i);
+                        startActivity(i);//proceed to MainActivity3
                     }
-                    else{
+                    else{//when user input doesn't match with their loginId and password
                         Toast.makeText(MainActivity2.this, "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -170,6 +172,8 @@ public class MainActivity2 extends AppCompatActivity {
 
     }
 
+    //Caregiver can create an account by entering username, email, and password
+    //No duplicate account should be created
     public void createAccount(View v) {
         //gets user input
         String user = editTextUsername.getText().toString();
