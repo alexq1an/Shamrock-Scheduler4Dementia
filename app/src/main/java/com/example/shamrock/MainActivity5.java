@@ -271,7 +271,7 @@ public class MainActivity5 extends AppCompatActivity {
                         .document(scheduleID)
                         .collection("Task");
 
-                taskRef.whereEqualTo("Time", calendar.getTime())
+                taskRef.whereEqualTo("time", calendar.getTime())
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -280,9 +280,10 @@ public class MainActivity5 extends AppCompatActivity {
                                     int counter = 0;
                                     for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                         counter++;
+                                        Toast.makeText(MainActivity5.this, "counter: " + counter, Toast.LENGTH_SHORT).show();
                                         Task tempTask = documentSnapshot.toObject(Task.class);
                                         String id = documentSnapshot.getId();
-                                        currentID = id;
+                                        currentID = documentSnapshot.getId();
                                         tempTask.setTime(calendar.getTime());
                                         taskRef.document(id).set(tempTask);
                                     }
@@ -312,7 +313,7 @@ public class MainActivity5 extends AppCompatActivity {
         String finalDescription = description.getText().toString();
 
         if (TextUtils.isEmpty(finalTitle)) {
-            title.setError("Username cannot be empty");
+            title.setError("Title cannot be empty");
             title.requestFocus();
             return;
         } else if (count < 1) {
@@ -327,17 +328,23 @@ public class MainActivity5 extends AppCompatActivity {
                 .collection("Task");
 
         if(TextUtils.isEmpty(finalDescription)){
-            Toast.makeText(this, currentID + " " + finalTitle, Toast.LENGTH_SHORT).show();
             taskRef.document(currentID).update("title", finalTitle);
+            taskRef.document(currentID).update("description", null);
         }else{
             taskRef.document(currentID).update("title", finalTitle);
             taskRef.document(currentID).update("description", finalDescription);
         }
+        Toast.makeText(this, "Task added, return or add a new task", Toast.LENGTH_SHORT).show();
+        //resetting page
+        title.setText("");
+        description.setText("");
+        count = 0;
+
         //change pages
-        Intent i = new Intent(this,MainActivity4.class);
+//        Intent i = new Intent(this,MainActivity4.class);
 //        i.putExtra("patientDocId", patientID);
 //        i.putExtra("scheduleDocId", scheduleID);
-        startActivity(i);
+//        startActivity(i);
 
     }
 

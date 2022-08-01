@@ -56,8 +56,6 @@ public class MainActivity8 extends AppCompatActivity {
         textViewData = findViewById(R.id.text_view_data);
         update_button = findViewById(R.id.update_button);
 
-        ImageView add_picture_gallery=findViewById(R.id.add_picture_gallery);
-        Button imageButton =findViewById(R.id.imageButton);
 
         //grabbing the transferred patient information from MainActivity4
         Bundle extras = getIntent().getExtras();
