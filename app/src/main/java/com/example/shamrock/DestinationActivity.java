@@ -15,13 +15,10 @@ public class DestinationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destination);
 
-        // patientId passed from MA8
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String documentId = extras.getString("documentId");
         }
-
-
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.shamrock;
 
 //importing all the required libraries
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +9,7 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,22 +23,28 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain5Binding;
+
 //import com.google.android.gms.cast.framework.media.ImagePicker;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.UUID;
 
 //making a public class
 public class MainActivity5 extends AppCompatActivity {
     //initializing
-
     private ActivityMain5Binding binding;
     private MaterialTimePicker picker;
     private Calendar calendar;
@@ -47,23 +55,19 @@ public class MainActivity5 extends AppCompatActivity {
     private Task task;
     private Integer count = 0;
     //button for adding image from gallery
-    private Button AddImage;
+    //private Button AddImage;
     //button for youtube link
     private Button Url;
-    int SELECT_PHOTO = 1;
-    Uri uri;
-    //this will display the image
-    ImageView imageView;
+    //int SELECT_PHOTO = 1;
+    //public Uri imageUri;
+    ///private FirebaseStorage storage;
+    //private StorageReference storageReference;
+    private Button AddImage;
 
-    //passed from MA4
-    public String date;
+    //this will display the image
+    //private ImageView profilePic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // passed date from MA4
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            date = extras.getString("date");
-        }
         task = new Task();
         super.onCreate(savedInstanceState);
         binding = ActivityMain5Binding.inflate(getLayoutInflater());
@@ -86,16 +90,27 @@ public class MainActivity5 extends AppCompatActivity {
         });
         //finding the image and button using their id
         AddImage = findViewById(R.id.AddImage1);
-        imageView = findViewById(R.id.image);
         AddImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            //using intent
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent,SELECT_PHOTO);
+                Intent i = new Intent(MainActivity5.this , MainActivity9.class);
+                startActivity(i);
             }
         });
+        //profilePic = findViewById(R.id.profilePic);
+        //storage = FirebaseStorage.getInstance();
+        //storageReference = storage.getReference();
+        //profilePic.setOnClickListener(new View.OnClickListener() {
+        //@Override
+        //using intent
+        //public void onClick(View view) {
+        //  choosePicture();
+
+        //}
+
+
+
+        // });
         Url = findViewById(R.id.AddUrl);
         Url.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,24 +125,64 @@ public class MainActivity5 extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == SELECT_PHOTO && requestCode == RESULT_OK && data != null && data.getData()!=null){
-            uri = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-                imageView.setImageBitmap(bitmap);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String date = extras.getString("date");
         }
+
     }
+//    private void choosePicture() {
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);
+//        startActivityForResult(intent,1);
+//    }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode==1 && requestCode==RESULT_OK && data!=null && data.getData()!=null){
+//            imageUri = data.getData();
+//            profilePic.setImageURI(imageUri);
+//            uploadPicture();
+//        }
+//    }
+
+//    private void uploadPicture() {
+//        final ProgressDialog pd = new ProgressDialog(this);
+//        pd.setTitle("Uploading Image.....");
+//        pd.show();
+//
+//        final String randomKey = UUID.randomUUID().toString();
+//        StorageReference riverRef = storageReference.child("images/" + randomKey);
+//
+//        riverRef.putFile(imageUri)
+//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
+//                        pd.dismiss();
+//                        Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception exception) {
+//                        pd.dismiss();
+//                        Toast.makeText(getApplicationContext(), "Failed to Upload",Toast.LENGTH_LONG).show();
+//
+//                    }
+//                })
+//                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onProgress(@NonNull UploadTask.TaskSnapshot tasksnapshot) {
+//                        double progressPercent  = (100.00 * tasksnapshot.getBytesTransferred() / tasksnapshot.getTotalByteCount());
+//                        pd.setMessage("Progress: "+ (int) progressPercent + "%");
+//                    }
+//                });
+
+
+
+    //}
 
     //making a method which will be used to cancel the alarm
     private void cancelAlarm() {
@@ -202,9 +257,10 @@ public class MainActivity5 extends AppCompatActivity {
                 if(task.getDocumentId() != null ){
 //                    cancelAlarm();
                     taskRef.document(task.getDocumentId()).set(calendar);
+                  //  taskRef.document(task.getDocumentId()).set()
                 }else{
                     DocumentReference addedDocRef = taskRef.document();
-                    task.setCalendar(calendar);
+                    task.setCalendar(calendar); //change
                     task.setDocumentId(addedDocRef.getId());
                     addedDocRef.set(task);
                 }
