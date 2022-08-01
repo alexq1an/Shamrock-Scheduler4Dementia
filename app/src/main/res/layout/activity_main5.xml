@@ -13,37 +13,28 @@
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-    <!--    <Button-->
-    <!--        android:id="@+id/setAlarmBtn"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="70dp"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        android:layout_marginHorizontal="26dp"-->
-    <!--        android:text="Set Alarm"-->
-    <!--        android:textSize="26dp"-->
-    <!--        android:background="@drawable/button_colour_2"/>-->
-
-    <!--    <Button-->
-    <!--        android:id="@+id/setAlarmBtn"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="70dp"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        android:layout_marginHorizontal="26dp"-->
-    <!--        android:text="Set Alarm"-->
-    <!--        android:textSize="26dp"-->
-    <!--        />-->
-
             <EditText
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Describe your task"
                 android:layout_gravity="center"
-                android:textSize="20dp"/>
+                android:hint="Title"
+                android:textSize="40dp" />
+
+            <EditText
+                android:id="@+id/task_description"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:hint="enter a description of your task"
+                android:textSize="20dp" />
+
             <TextView
                 android:id="@+id/selectedTime"
                 android:layout_width="wrap_content"
@@ -53,64 +44,57 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="50dp"
-                app:layout_constraintBottom_toTopOf="@+id/selectTimeBtn"
-                />
+                app:layout_constraintBottom_toTopOf="@+id/selectTimeBtn" />
 
-    <Button
-        android:id="@+id/selectTimeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="Select Time"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/cancelAlarmBtn"
-/>
+            <Button
+                android:id="@+id/selectTimeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Select Time"
+                android:textSize="25dp"
+                app:layout_constraintBottom_toTopOf="@+id/cancelAlarmBtn" />
 
+            <Button
+                android:id="@+id/cancelAlarmBtn"
 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Cancel Alarm"
+                android:textSize="25dp" />
 
-    <Button
-        android:id="@+id/cancelAlarmBtn"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Cancel Alarm"
-        android:textSize="25dp"
-        android:layout_gravity="center"/>
-
-    <Button
-        android:id="@+id/AddImage1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Image"
-        android:textSize="25dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        />
-
-
-
+            <Button
+                android:id="@+id/AddImage1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Add Image"
+                android:textSize="25dp" />
 
             <Button
                 android:id="@+id/AddUrl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:text="URL"
                 android:textSize="25dp" />
 
+            <Button
+                android:id="@+id/confirm_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Confirm"
+                android:textSize="25dp" />
 
         </LinearLayout>
     </ScrollView>
-
-
-
-
-
-
-
 
 
 </LinearLayout>

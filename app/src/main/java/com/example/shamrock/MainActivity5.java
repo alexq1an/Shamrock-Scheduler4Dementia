@@ -2,36 +2,34 @@ package com.example.shamrock;
 
 //importing all the required libraries
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain5Binding;
 
 //import com.google.android.gms.cast.framework.media.ImagePicker;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -50,32 +48,43 @@ public class MainActivity5 extends AppCompatActivity {
     private Calendar calendar;
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
+    private String patientID;
+    private String scheduleID;
+    public String currentID = null;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference taskRef = db.collection("Patient").document("PatientID")
-                                        .collection("Schedule")
-                                        .document("Scheduled_Day")
-                                        .collection("Task");
-    private Task task;
+    private CollectionReference taskRef;
     private Integer count = 0;
-    //button for adding image from gallery
-    //private Button AddImage;
+
     //button for youtube link
     private Button Url;
+    private Button confirm;
+    private Button AddImage;
+    private EditText description;
+    private EditText title;
+
     //int SELECT_PHOTO = 1;
     //public Uri imageUri;
     ///private FirebaseStorage storage;
     //private StorageReference storageReference;
-    private Button AddImage;
-
     //this will display the image
     //private ImageView profilePic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        task = new Task();
         super.onCreate(savedInstanceState);
         binding = ActivityMain5Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         createNotificationChannel();
+
+        title = findViewById(R.id.title);
+        description = findViewById(R.id.task_description);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            patientID = extras.get("patientDocId").toString();
+            scheduleID = extras.get("scheduleDocId").toString();
+        }
+
         //using setOnClickerListener
         binding.selectTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +92,6 @@ public class MainActivity5 extends AppCompatActivity {
                 showTimePicker();
             }
         });
-
 
         binding.cancelAlarmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,12 +123,16 @@ public class MainActivity5 extends AppCompatActivity {
             }
         });
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String date = extras.getString("date");
-        }
+        confirm = findViewById(R.id.confirm_button);
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirm(v);
+            }
+        });
 
     }
+
 //    private void choosePicture() {
 //        Intent intent = new Intent();
 //        intent.setType("image/*");
@@ -191,6 +203,13 @@ public class MainActivity5 extends AppCompatActivity {
         }
         //giving the message that alarm has been cancelled
         alarmManager.cancel(pendingIntent);
+        db.collection("Patient").document(patientID)
+                .collection("Schedule")
+                .document(scheduleID)
+                .collection("Task")
+                .document(currentID)
+                .delete();
+        count = 0;
         Toast.makeText(this, "Alarm Cancelled", Toast.LENGTH_SHORT).show();
     }
 
@@ -237,29 +256,88 @@ public class MainActivity5 extends AppCompatActivity {
 
                 }
 
-                calendar = Calendar.getInstance();
+                Bundle extras = getIntent().getExtras();
+                if(extras != null) {
+                    calendar = (Calendar) extras.get("calendar");
+                }
                 calendar.set(Calendar.HOUR_OF_DAY,picker.getHour());
                 calendar.set(Calendar.MINUTE,picker.getMinute());
                 calendar.set(Calendar.SECOND,0);
                 calendar.set(Calendar.MILLISECOND,0);
 
                 //adding task to firebase
-                if(task.getDocumentId() != null ){
-//                    cancelAlarm();
-                    taskRef.document(task.getDocumentId()).set(calendar);
-                  //  taskRef.document(task.getDocumentId()).set()
-                }else{
-                    DocumentReference addedDocRef = taskRef.document();
-                    task.setCalendar(calendar); //change
-                    task.setDocumentId(addedDocRef.getId());
-                    addedDocRef.set(task);
-                }
+                taskRef = db.collection("Patient").document(patientID)
+                        .collection("Schedule")
+                        .document(scheduleID)
+                        .collection("Task");
+
+                taskRef.whereEqualTo("Time", calendar.getTime())
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull com.google.android.gms.tasks.Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()){
+                                    int counter = 0;
+                                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                        counter++;
+                                        Task tempTask = documentSnapshot.toObject(Task.class);
+                                        String id = documentSnapshot.getId();
+                                        currentID = id;
+                                        tempTask.setTime(calendar.getTime());
+                                        taskRef.document(id).set(tempTask);
+                                    }
+                                    if(counter == 0){
+                                        DocumentReference addedDocRef = taskRef.document();
+                                        Task task1 = new Task();
+                                        currentID = addedDocRef.getId();
+                                        task1.setTime(calendar.getTime());
+                                        addedDocRef.set(task1);
+                                    }
+                                }
+
+                            }
+                        });
 
                 //automatically setting alarm
                 setAlarm();
                 count++;
             }
         });
+
+    }
+
+    private void confirm(View v){
+        //check all inputs
+        String finalTitle = title.getText().toString();
+        String finalDescription = description.getText().toString();
+
+        if (TextUtils.isEmpty(finalTitle)) {
+            title.setError("Username cannot be empty");
+            title.requestFocus();
+            return;
+        } else if (count < 1) {
+            Toast.makeText(this, "Must Select A Time  ", Toast.LENGTH_SHORT).show();
+            return;
+
+        }
+
+        taskRef = db.collection("Patient").document(patientID)
+                .collection("Schedule")
+                .document(scheduleID)
+                .collection("Task");
+
+        if(TextUtils.isEmpty(finalDescription)){
+            Toast.makeText(this, currentID + " " + finalTitle, Toast.LENGTH_SHORT).show();
+            taskRef.document(currentID).update("title", finalTitle);
+        }else{
+            taskRef.document(currentID).update("title", finalTitle);
+            taskRef.document(currentID).update("description", finalDescription);
+        }
+        //change pages
+        Intent i = new Intent(this,MainActivity4.class);
+//        i.putExtra("patientDocId", patientID);
+//        i.putExtra("scheduleDocId", scheduleID);
+        startActivity(i);
 
     }
 

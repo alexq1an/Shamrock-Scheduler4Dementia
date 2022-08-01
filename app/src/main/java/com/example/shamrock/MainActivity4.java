@@ -47,8 +47,6 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference sRef = db.collection("Schedule");
     private CollectionReference pRef = db.collection("Patient");
-    private DocumentReference newRef = db.collection("Patient").document("4VqwOvfFqCD0HiRZWknB")
-                                    .collection("Schedule").document();
 
     //transferred patient information
 //    private DocumentReference pDocId;
@@ -57,6 +55,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
     public String patientDocId;
     public String date;
     public Calendar calendar;
+    public String scheduleID;
 
     public Patient temp_patient;
     @Override
@@ -106,15 +105,16 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
         }
         Intent intent = new Intent(this,MainActivity5.class);
         intent.putExtra("calendar", calendar);
+        intent.putExtra("scheduleDocId", scheduleID);
         intent.putExtra("patientDocId", patientDocId);
         startActivity(intent);
     }
 
     public void openActivity8(String patientDocId){
-            Intent intent = new Intent(this,MainActivity8.class);
-            //passing documentId to MainActivity8
-            intent.putExtra("patientDocId", patientDocId);
-            startActivity(intent);
+        Intent intent = new Intent(this,MainActivity8.class);
+        //passing documentId to MainActivity8
+        intent.putExtra("patientDocId", patientDocId);
+        startActivity(intent);
     }
 
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth){
@@ -139,17 +139,18 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
                         if (task.isSuccessful()){
                             int counter = 0;
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                                    counter++;
-                                    Schedule schedule = documentSnapshot.toObject(Schedule.class);
-                                    String id = documentSnapshot.getId();
-
-                                    schedule.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+                                counter++;
+                                Schedule schedule = documentSnapshot.toObject(Schedule.class);
+                                String id = documentSnapshot.getId();
+                                scheduleID = id;
+                                schedule.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 
                                 pRef.document(patientDocId).collection("Schedule").document(id).set(schedule);
                             }
                             if(counter == 0){
                                 DocumentReference addedDocRef = pRef.document(patientDocId).collection("Schedule").document();
                                 Schedule schedule = new Schedule(addedDocRef.getId());
+                                scheduleID = addedDocRef.getId();
                                 schedule.setDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
                                 addedDocRef.set(schedule);
                             }

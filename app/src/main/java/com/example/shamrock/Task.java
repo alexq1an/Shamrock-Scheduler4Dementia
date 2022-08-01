@@ -1,50 +1,55 @@
 package com.example.shamrock;
 //importing all the required libraries
 import com.google.firebase.firestore.Exclude;
+
+
 import java.util.Calendar;
+import java.util.Date;
 
 //this task class will help to store the set alarm in the database
 public class Task {
     //initializing
-    private Calendar calendar;
+    private Date time;
     private String Description;
+    private String Title;
     private String DocumentId;
 
     //Constructors
     //without document id
     public Task(){
         this.DocumentId = null;
-    }
-    public Task(Calendar calendar){
-        this.calendar = calendar;
-        this.DocumentId = null;
-
-    }
-    public Task(Calendar calendar, String Description, String DocumentId) {
-        this.calendar = calendar;
-        this.Description = Description;
-        this.DocumentId = DocumentId;
+        this.Title = null;
+        this.Description = null;
+        this.Title = null;
     }
 
     //getters and setters
     @Exclude
     public String getDocumentId() {return DocumentId;}
 
-    public void setDocumentId(String DocumentId) {
-        this.DocumentId = DocumentId;
-    }
-    public void setCalendar(Calendar calendar) {
-        this.calendar = calendar;
-    }
-
-    public Calendar getTime(){
-        return calendar;
-    }
-
     public String getDescription() {
         return Description;
     }
 
+    public Date getTime() {
+        return time;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public void setDocumentId(String DocumentId) {
+        this.DocumentId = DocumentId;
+    }
     public void setDescription(String Description){
         this.Description = Description;
     }
