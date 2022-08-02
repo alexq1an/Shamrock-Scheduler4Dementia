@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        ((global)this.getApplication()).refreshTaskForTargetPatientForAll("4703D46cOqSXomOf1SWi");
+        //((global)this.getApplication()).refreshTaskForTargetPatientForAll("4703D46cOqSXomOf1SWi");
 
 
 

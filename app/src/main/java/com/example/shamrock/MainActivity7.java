@@ -82,7 +82,7 @@ public class MainActivity7 extends AppCompatActivity {
                                     //login successful, lead to patient homepage
 
                                     //passing patient documentId
-                                    Intent i = new Intent(MainActivity7.this, patient_homepage.class);
+                                    Intent i = new Intent(MainActivity7.this, BufferPatientHome.class);
 //                                    Toast.makeText(MainActivity7.this,
 //                                            "docId: " + document.getId(), Toast.LENGTH_SHORT).show();
                                     i.putExtra("documentId", document.getId());

@@ -125,7 +125,7 @@ public class MainActivity3 extends AppCompatActivity {
 
                 //passing patient information
                 //update(DocID.get(position));
-                Intent i = new Intent(MainActivity3.this,MainActivity4.class);
+                Intent i = new Intent(MainActivity3.this,BufferCaregiver.class);
                 i.putExtra("username",patients.get(position).getUsername());
                 i.putExtra("loginId",patients.get(position).getList_patient_id());
                 //                i.putExtra("imageid",imageId[position]);
