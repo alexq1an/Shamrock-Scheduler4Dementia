@@ -254,14 +254,13 @@ public class MainActivity5 extends AppCompatActivity {
     private void setAlarm() {
         //using AlarmManager
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-
         Intent intent = new Intent(this,AlarmReceiver.class);
-
-        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
         intent.putExtra("patientDocID", patientID);
         intent.putExtra("taskDocID", currentID);
         intent.putExtra("scheduleDocID", scheduleID);
+
+        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,pendingIntent);

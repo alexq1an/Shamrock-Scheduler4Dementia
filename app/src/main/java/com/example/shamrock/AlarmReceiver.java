@@ -5,9 +5,13 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import java.util.Calendar;
+
 //making AlarmReceiver class
 public class AlarmReceiver extends BroadcastReceiver {
     String patientID;
@@ -19,7 +23,17 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         //Alarm receiver helps the user to take them to the notification activity
         //page after the alarm is stopped by the user
-        Intent i = new Intent(context,MainActivity9.class);
+        Bundle extras = intent.getExtras();
+        if(extras != null) {
+            patientID = extras.get("patientDocId").toString();
+            scheduleID = extras.get("scheduleDocId").toString();
+            taskID = extras.get("taskDocID").toString();
+        }
+
+        Intent i = new Intent(context,MainActivity10.class);
+        i.putExtra("patientDocId", patientID);
+        i.putExtra("scheduleDocId", scheduleID);
+        i.putExtra("taskDocId", taskID);
         //setting the required flags
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context,0,i,0);
@@ -39,6 +53,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(123,builder.build());
 
+    }
 
+    public void setStrings(String PatientID, String ScheduleID, String TaskID){
+        this.patientID = PatientID;
+        this.scheduleID = ScheduleID;
+        this.taskID = TaskID;
     }
 }

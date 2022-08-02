@@ -57,9 +57,9 @@ public class global extends Application {
                                                         com.example.shamrock.Task task1 = document.toObject(com.example.shamrock.Task.class);
                                                         Log.d(TAG, document.getId() + " => " + document.getData());
                                                         //Toast is only for testing
-                                                        Toast.makeText(getApplicationContext(),
-                                                                "Task title: " + task1.getTitle()+
-                                                                        "\nTime: " + task1.getTime(), Toast.LENGTH_SHORT).show();
+//                                                        Toast.makeText(getApplicationContext(),
+//                                                                "Task title: " + task1.getTitle()+
+//                                                                        "\nTime: " + task1.getTime(), Toast.LENGTH_SHORT).show();
                                                         pTask newTask = new pTask();
                                                         newTask.setDescription(task1.getDescription());
                                                         newTask.setTime(task1.getTime());
