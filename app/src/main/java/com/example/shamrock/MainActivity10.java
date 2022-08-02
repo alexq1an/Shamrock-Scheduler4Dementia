@@ -14,6 +14,7 @@ import com.example.shamrock.databinding.ActivityMain10Binding;
 import com.example.shamrock.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -25,9 +26,19 @@ public class MainActivity10 extends AppCompatActivity {
     ActivityMain10Binding binding;
     StorageReference storageReference;
     ProgressDialog progressDialog;
+    String patientID;
+    String scheduleID;
+    String taskID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            patientID = extras.get("patientDocId").toString();
+            scheduleID = extras.get("scheduleDocId").toString();
+            taskID = extras.get("taskDocID").toString();
+        }
+
         super.onCreate(savedInstanceState);
         binding = ActivityMain10Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -39,8 +50,13 @@ public class MainActivity10 extends AppCompatActivity {
                 progressDialog.setCancelable(false);
                 progressDialog.show();
 
-                String imageID = binding.etimageId.getText().toString();
-                storageReference = FirebaseStorage.getInstance().getReference(imageID+".jpg");
+                Task task = FirebaseFirestore.getInstance()
+                                .collection("Patient").document(patientID)
+                                .collection("Schedule").document(scheduleID)
+                                .collection("Task").document(taskID).get().getResult().toObject(Task.class);
+                String imageID = task.getImage();
+
+                storageReference = FirebaseStorage.getInstance().getReference(imageID);
                 try {
                     File localfile = File.createTempFile("tempfile",".jpg");
                     storageReference.getFile(localfile)
