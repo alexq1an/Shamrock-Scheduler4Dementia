@@ -40,9 +40,8 @@ public class MainActivity8 extends AppCompatActivity {
     private Button update_button;
 
     public String patientDocId;
+    public String caregiverID;
 
-    private final int GALLERY_REQ_CODE =1000;
-    ImageView imageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +55,12 @@ public class MainActivity8 extends AppCompatActivity {
         textViewData = findViewById(R.id.text_view_data);
         update_button = findViewById(R.id.update_button);
 
-        ImageView add_picture_gallery=findViewById(R.id.add_picture_gallery);
-        Button imageButton =findViewById(R.id.imageButton);
 
         //grabbing the transferred patient information from MainActivity4
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             patientDocId = extras.getString("patientDocId");
+            caregiverID = extras.getString("caregiverDocId");
             //Toast for testing
 //            Toast.makeText(MainActivity8.this, "DocumentId: " + patientDocId, Toast.LENGTH_SHORT).show();
 
@@ -78,24 +76,6 @@ public class MainActivity8 extends AppCompatActivity {
             }
         });
 
-        imageButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent igButton= new Intent(Intent.ACTION_PICK);
-                igButton.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(igButton, GALLERY_REQ_CODE);
-            }
-
-        });
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
-        if(resultCode==RESULT_OK){
-            if(requestCode==GALLERY_REQ_CODE){
-                imageButton.setImageURI(data.getData());
-            }
-        }
 
     }
 
@@ -170,6 +150,7 @@ public class MainActivity8 extends AppCompatActivity {
 
     public void gobacktoHome(){
         Intent intent = new Intent(this,MainActivity3.class);
+        intent.putExtra("documentId", caregiverID);
         startActivity(intent);
     }
 }

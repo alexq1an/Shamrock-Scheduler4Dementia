@@ -86,12 +86,12 @@ public class MainActivity7 extends AppCompatActivity {
 //                                    Toast.makeText(MainActivity7.this,
 //                                            "docId: " + document.getId(), Toast.LENGTH_SHORT).show();
                                     i.putExtra("documentId", document.getId());
+//
+//                                    Intent i2 = new Intent(MainActivity7.this, DestinationActivity.class);
+//                                    i.putExtra("documentId",document.getId());
 
-                                    Intent i2 = new Intent(MainActivity7.this, DestinationActivity.class);
-                                    i.putExtra("documentId",document.getId());
-
-                                    startActivity(i);//proceed to patient_homepage
-//                                    startActivity(i2);//proceed to DestinationActivity
+                                    startActivity(i);//passing patient documentId
+//                                    startActivity(i2);
                                 }
                             }
                             //Bug: Never gets into this else case

@@ -25,8 +25,6 @@ public class ListAdapter2 extends ArrayAdapter<pTask> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-
         pTask pTask = getItem(position);
 
         if (convertView == null){
@@ -40,6 +38,14 @@ public class ListAdapter2 extends ArrayAdapter<pTask> {
 //        TextView id = convertView.findViewById(R.id.list_patient_id);
 
 //        imageView.setImageResource(patient.getImageId());
+
+        description.setText(pTask.getDescription());
+//        id.setText(patient.getList_patient_id());
+        TextView title = convertView.findViewById(R.id.task_title);
+        title.setText(pTask.getTitle());
+        TextView time = convertView.findViewById(R.id.task_time);
+        time.setText(pTask.getTime().toString());
+
 
         description.setText(pTask.getDescription());
 //        id.setText(patient.getList_patient_id());

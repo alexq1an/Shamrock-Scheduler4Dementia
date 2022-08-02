@@ -3,11 +3,9 @@ package com.example.shamrock;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +37,6 @@ public class patient_homepage extends AppCompatActivity {
     // Create firebase references
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference pRef = db.collection("Patient");
-
     //define variables for showing the task list
     private static final String TAG = "LOG: patient_homepage";
     public String pDocId;
@@ -54,7 +51,6 @@ public class patient_homepage extends AppCompatActivity {
 
     public ArrayList<Task> taskList = new ArrayList<>();
     public ActivityMain3Binding binding;
-
 
     ListView pList;
 
@@ -199,10 +195,12 @@ public class patient_homepage extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 //manually add each task into a task list
                                                 for (QueryDocumentSnapshot document : task.getResult()) {
+                                                    pTask pTask = document.toObject(pTask.class);
+
                                                     Log.d(TAG, document.getId() + " => " + document.getData());
                                                     //Toast is only for testing
-                                                    Toast.makeText(patient_homepage.this, "Task title: " +document.get("title") +
-                                                            "\nTime: " + document.get("time"), Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(patient_homepage.this, "Task title: " + pTask.getTitle() +
+                                                            "\nTime: " + pTask.getTime().toString(), Toast.LENGTH_SHORT).show();
 
 
 //                                                        Task aTask = document.toObject(Task.class);//creates a Task object

@@ -160,8 +160,9 @@ public class MainActivity2 extends AppCompatActivity {
                     if (task.isSuccessful()){
                         Toast.makeText(MainActivity2.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(MainActivity2.this, MainActivity3.class);
-                        i.putExtra("documentId",mAuth.getCurrentUser().getUid());
-                        startActivity(i);//proceed to MainActivity3
+
+                        i.putExtra("documentId",mAuth.getCurrentUser().getUid().toString());
+                        startActivity(i);
                     }
                     else{//when user input doesn't match with their loginId and password
                         Toast.makeText(MainActivity2.this, "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

@@ -41,11 +41,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         ((global)this.getApplication()).refreshTaskForTargetPatientForAll("4703D46cOqSXomOf1SWi");
-
-
-
     }
     //lead to Caregiver page
     public void openActivity2(){
@@ -64,14 +60,9 @@ public class MainActivity extends AppCompatActivity {
     public void openPatientLogin(){
         auth = FirebaseAuth.getInstance();
         User = auth.getCurrentUser();
-        if (User == null) {
+//        if (User == null) {
             Intent intent = new Intent(this, MainActivity7.class);
             startActivity(intent);
-        }
-        else{
-            Intent intent = new Intent(this, MainActivity7.class);
-            startActivity(intent);
-        }
         //when patient has already logged in previously
 //        else{
 //            Intent intent = new Intent(this, patient_homepage.class);

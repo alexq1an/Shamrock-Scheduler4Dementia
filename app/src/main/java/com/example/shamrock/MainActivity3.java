@@ -41,9 +41,10 @@ public class MainActivity3 extends AppCompatActivity {
     public ActivityMain3Binding binding;
     public ArrayList<Patient> patients = new ArrayList<>();
     public String pDocId;
+    public String docId;
     ArrayList<String> DocID;
     Caregiver caregiver;
-    Button addpatient;
+//    Button addpatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
+            docId = extras.get("documentId").toString();
             cRef.document(extras.get("documentId").toString())
                     .addSnapshotListener(new EventListener<DocumentSnapshot>() {
 
@@ -81,15 +83,16 @@ public class MainActivity3 extends AppCompatActivity {
                                         }
                                     });
                                 }
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                 FirebaseFirestore docRef = FirebaseFirestore.getInstance();
                                 docRef.collection("Caregiver")
-                                        .document(user.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        .document(docId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                             @Override
                                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                                 if (task.isSuccessful()) {
-                                                    DocumentSnapshot doc = task.getResult();
-                                                    DocID = (ArrayList<String>) doc.get("pList");
+//                                                    DocumentSnapshot doc = task.getResult();
+                                                    Caregiver caregiver = task.getResult().toObject(Caregiver.class);
+                                                    DocID = caregiver.getpList();
                                                 }
                                                 else{
                                                     Toast.makeText(MainActivity3.this, "Sb", Toast.LENGTH_SHORT).show();
@@ -102,13 +105,13 @@ public class MainActivity3 extends AppCompatActivity {
 
         }
         //lead to addpatientpage(MA8)
-        addpatient = findViewById(R.id.add_patient);
-        addpatient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                gotoaddpatient();
-            }
-        });
+//        addpatient = findViewById(R.id.add_patient);
+//        addpatient.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                gotoaddpatient();
+//            }
+//        });
 
 
         //Adapter for our arraylist
@@ -132,6 +135,7 @@ public class MainActivity3 extends AppCompatActivity {
 
                 pDocId = patients.get(position).getDocumentId();
                 i.putExtra("patientDocId", DocID.get(position));
+                i.putExtra("caregiverDocId", docId);
                 startActivity(i);
 
 //                Intent i2 = new Intent(MainActivity3.this,MainActivity8.class);
@@ -147,12 +151,15 @@ public class MainActivity3 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void gotoaddpatient(){
-        Intent intent = new Intent(this,MainActivity8.class);
-        startActivity(intent);
-    }
-
     public void update(String id){
         ((global)this.getApplication()).refreshTaskForTargetPatientForAll(id);
     }
+
+
+//    public void gotoaddpatient(){
+//        Intent intent = new Intent(this,MainActivity6.class);
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        intent.putExtra("documentId", user.getUid().toString() );
+//        startActivity(intent);
+//    }
 }

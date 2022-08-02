@@ -58,7 +58,7 @@ public class MainActivity6 extends AppCompatActivity {
     private EditText editTextAge;
     private TextView editTextGender;
     private TextView textViewData;
-    private Button add_button;
+    private Button update;
 
     private final int GALLERY_REQ_CODE =1000;
     ImageView imgGallery;
@@ -73,34 +73,21 @@ public class MainActivity6 extends AppCompatActivity {
         editTextAge = findViewById(R.id.edit_text_userage);
         editTextGender = findViewById(R.id.edit_text_usergender);
         textViewData = findViewById(R.id.text_view_data);
-        add_button = findViewById(R.id.patientInfo_set_confirm_button);
+        update = findViewById(R.id.update_button);
 
         //displays the patient login id
         String id = shortId();
         String data = "";
         data += "Patient Login ID: \n" + id + "\n";
         textViewData.setText(data);
-        
-        imgGallery=findViewById(R.id.imgGallery);
-        Button imageButton =findViewById(R.id.btnCamera);
 
-        //when add button clicked, call this method
-        add_button.setOnClickListener(new View.OnClickListener() {
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                addPatient(view, id);
+            public void onClick(View v) {
+                addPatient(v, id);
             }
         });
 
-        imageButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent igButton= new Intent(Intent.ACTION_PICK);
-                igButton.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(igButton, GALLERY_REQ_CODE);
-            }
-
-        });
     }
 
     protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){
@@ -110,7 +97,6 @@ public class MainActivity6 extends AppCompatActivity {
                 imgGallery.setImageURI(data.getData());
             }
         }
-        
     }
 
     //adds a new patient with generated id
@@ -157,14 +143,14 @@ public class MainActivity6 extends AppCompatActivity {
                                         newList.add(patientDocId);//add patient to the arraylist
                                         caregiver.setpList(newList);
                                         cRef.document(docId).set(caregiver);
-//                                        View v;
-//                                        loadNote(v);
+
                                     }
                                 }
                             });
                     //lead to Home page
-                    Intent intent = new Intent(MainActivity6.this, MainActivity3.class);
-                    intent.putExtra("documentId", docId);
+                    Toast.makeText(this, "account created, please Login", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity6.this, MainActivity2.class);
+//                    intent.putExtra("documentId", docId);
                     startActivity(intent);
         }
         }
@@ -180,26 +166,4 @@ public class MainActivity6 extends AppCompatActivity {
         int digit6 = rand.nextInt(9999999);
         return Integer.toString(digit6);
     }
-//    public void loadNote(View v){
-//        pRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        String data = "";
-//
-//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                            Patient patient = documentSnapshot.toObject(Patient.class);
-//                            patient.setDocumentId(documentSnapshot.getId());
-//
-//                            String documentId = patient.getLoginId();
-////
-//                            //add name
-//                            data += "Patient Login ID: " + documentId + "\n\n";
-//
-////
-//                        }
-//                        textViewData.setText(data);
-//                    }
-//                });
-//    }
 }
