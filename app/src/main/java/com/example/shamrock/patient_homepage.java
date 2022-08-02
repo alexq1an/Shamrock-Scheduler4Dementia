@@ -39,38 +39,30 @@ public class patient_homepage extends AppCompatActivity {
     CollectionReference pRef = db.collection("Patient");
 
     //define variables for showing the task list
-    private static final String TAG = "patient_homepage";
-    public DocumentReference pDocId;
+    private static final String TAG = "LOG: patient_homepage";
+    public String pDocId;
     public CollectionReference scheduleRef;
     public String todayId;
     public CollectionReference taskRef;
 
+    public String docId;
+    public int year;
+    public int month;
+    public int date;
+
     public ArrayList<Task> taskList = new ArrayList<>();
     public ActivityMain3Binding binding;
 
-//    private DocumentReference newRef = db.collection("Patient").document("4VqwOvfFqCD0HiRZWknB")
-//            .collection("Schedule").document("lMuGUFBBPGE1BcyiWfRS");
-
-
 //    TextView month,day,year;
-    TextView day;
+    TextView tvDay;
+//    TextView tvYear, tvMonth;
     @Override
     // present date-year-month
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_homepage);
 
-        //grabbing documentId passed from MainActivity7
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            pDocId = pRef.document(extras.get("documentId").toString());
-        }
-
-//        month = findViewById(R.id.month);
-        day =findViewById(R.id.day);
-//        year=findViewById(R.id.year);
-
-
+        tvDay =findViewById(R.id.day);
 
         Date currentTime = Calendar.getInstance().getTime();
         String formattedDate = DateFormat.getInstance ().format(currentTime);
@@ -78,33 +70,41 @@ public class patient_homepage extends AppCompatActivity {
         String[] splitDate = formattedDate.split(",");
         Log.d("my Log",currentTime.toString());
         Log.d("my Log",formattedDate);
-//        month.setText(splitDate[1]);
-        day.setText(splitDate[0]);
-//        year.setText(splitDate[2]);
+//        tvMonth.setText(splitDate[1]);
+        tvDay.setText(splitDate[0]);
+//        tvYear.setText(splitDate[2]);
 
         Log.d("my Log",splitDate[0].trim());
 //        Log.d("my Log",splitDate[1].trim());
 //        Log.d("my Log",splitDate[2].trim());
 
-        showTask(pDocId);//call this method to show the task list
+        //get the current year, month, date to query a specific date's schedule
+        Calendar cal = Calendar.getInstance();
+        year = cal.get(Calendar.YEAR);
+        month = cal.get(Calendar.MONTH);
+        date = cal.get(Calendar.DATE);
+
+        //grabbing documentId passed from MainActivity7
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            pDocId = extras.get("documentId").toString();
+            showTask();//call this method to show the task list
+        }
     }
 
 /**
  * Set the list of tasks and show
  * */
-    public void showTask(DocumentReference pDocId) {
-        //access collection "Schedule"
-        /*
-        * Getting null pointer
-        * */
-        scheduleRef = pDocId.collection("Schedule");
+    public void showTask() {
+        //access collection "Schedule
+        scheduleRef = pRef.document(pDocId).collection("Schedule");
 
         //check if the schedule date matches with the current date
         //get the present date documentId
         scheduleRef
-                .whereEqualTo("year", 2022)//need generalization
-                .whereEqualTo("month", 6)
-                .whereEqualTo("day", 31)
+                .whereEqualTo("year", year)//need generalization
+                .whereEqualTo("month", month)
+                .whereEqualTo("day", date)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -113,34 +113,38 @@ public class patient_homepage extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 todayId = document.getId();
+                                //access collection "Task"
+                                taskRef = scheduleRef.document(todayId).collection("Task");
+//                                Toast.makeText(patient_homepage.this, "scheduleRef: " + scheduleRef.document(todayId), Toast.LENGTH_SHORT).show();
                             }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
+                                //iterate through Task collection and grab all the documents(tasks) inside
+                                taskRef.orderBy("time")
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    //manually add each task into a task list
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        Log.d(TAG, document.getId() + " => " + document.getData());
+                                                        //Toast is only for testing
+                                                        Toast.makeText(patient_homepage.this, "Task title: " +document.get("title") +
+                                                                "\nTime: " + document.get("time"), Toast.LENGTH_SHORT).show();
 
-        //access collection "Task"
-        taskRef = scheduleRef.document(todayId).collection("Task");
 
-        //iterate through Task collection and grab all the documents(tasks) inside
-        taskRef
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            //manually add each task into a task list
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+//                                                        Task aTask = document.toObject(Task.class);//creates a Task object
 
-                                Task aTask = document.toObject(Task.class);//creates a Task object
-                                taskList.add(aTask);
-                                //use ListAdaptor2 to show it on the screen(patient_homepage.xml)
-                                ListAdapter2 listAdapter = new ListAdapter2(patient_homepage.this, taskList);
-                                binding.patientsListView.setAdapter(listAdapter);
-                            }
-                        } else {
+//                                                        taskList.add(aTask);
+                                                        //use ListAdaptor2 to show it on the screen(patient_homepage.xml)
+//                                ListAdapter2 listAdapter = new ListAdapter2(patient_homepage.this, taskList);
+//                                binding.patientsListView.setAdapter(listAdapter);
+                                                    }
+                                                } else {
+                                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                                }
+                                            }
+                                        });}
+                         else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
