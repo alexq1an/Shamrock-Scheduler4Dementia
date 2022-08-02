@@ -25,7 +25,6 @@ public class global extends Application {
     ArrayList<pTask> allTasks;
 
 
-    //    (String patientID, int year, int month, int date)
     public void refreshTaskForTargetPatientForAll(String patientID){
         this.allTasks = new ArrayList<>();
         FirebaseFirestore db = FirebaseFirestore.getInstance();

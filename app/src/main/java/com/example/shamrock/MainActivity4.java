@@ -69,6 +69,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
         tvDate = findViewById(R.id.tv_date);
         etDate = findViewById(R.id.et_date);
         patientName = findViewById(R.id.patient_name);
+        allTaskList = (ListView) findViewById(R.id.hourListView);
 
         allTaskList = (ListView) findViewById(R.id.hourListView);
 
@@ -169,6 +170,8 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
 
                     }
                 });
+
+
         //add calendar to intent
 
     }

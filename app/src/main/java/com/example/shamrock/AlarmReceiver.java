@@ -10,13 +10,16 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 //making AlarmReceiver class
 public class AlarmReceiver extends BroadcastReceiver {
+    String patientID;
+    String scheduleID;
+    String taskID;
     @Override
     //this method will specifically be used to receive the notification
     //when the alarm rings
     public void onReceive(Context context, Intent intent) {
         //Alarm receiver helps the user to take them to the notification activity
         //page after the alarm is stopped by the user
-        Intent i = new Intent(context,DestinationActivity.class);
+        Intent i = new Intent(context,MainActivity9.class);
         //setting the required flags
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context,0,i,0);

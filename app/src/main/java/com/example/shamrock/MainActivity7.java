@@ -81,10 +81,7 @@ public class MainActivity7 extends AppCompatActivity {
                                     //if matches, link the patient with the caregiver
                                     //login successful, lead to patient homepage
 
-                                    //passing patient documentId
-                                    Intent i = new Intent(MainActivity7.this, patient_homepage.class);
-//                                    Toast.makeText(MainActivity7.this,
-//                                            "docId: " + document.getId(), Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(MainActivity7.this, BufferPatientHome.class);
                                     i.putExtra("documentId", document.getId());
 //
 //                                    Intent i2 = new Intent(MainActivity7.this, DestinationActivity.class);
