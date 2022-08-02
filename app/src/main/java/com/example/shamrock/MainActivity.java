@@ -39,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
                 openPatientLogin();
             }
         });
+
+
+
+        ((global)this.getApplication()).refreshTaskForTargetPatientForAll("4703D46cOqSXomOf1SWi");
+
+
+
     }
     //lead to Caregiver page
     public void openActivity2(){
@@ -62,8 +69,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else{
-            Intent intent = new Intent(this, patient_homepage.class);
+            Intent intent = new Intent(this, MainActivity7.class);
             startActivity(intent);
         }
+        //when patient has already logged in previously
+//        else{
+//            Intent intent = new Intent(this, patient_homepage.class);
+//            startActivity(intent);
+//        }
     }
 }

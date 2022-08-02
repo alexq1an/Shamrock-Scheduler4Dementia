@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -113,6 +114,7 @@ public class MainActivity3 extends AppCompatActivity {
         //Adapter for our arraylist
         ListAdapter listAdapter = new ListAdapter(this,patients);
 
+
         binding.patientsListView.setAdapter(listAdapter);
         binding.patientsListView.setClickable(true);
         binding.patientsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -122,7 +124,7 @@ public class MainActivity3 extends AppCompatActivity {
 
 
                 //passing patient information
-
+                //update(DocID.get(position));
                 Intent i = new Intent(MainActivity3.this,MainActivity4.class);
                 i.putExtra("username",patients.get(position).getUsername());
                 i.putExtra("loginId",patients.get(position).getList_patient_id());
@@ -148,6 +150,10 @@ public class MainActivity3 extends AppCompatActivity {
     public void gotoaddpatient(){
         Intent intent = new Intent(this,MainActivity8.class);
         startActivity(intent);
+    }
+
+    public void update(String id){
+        ((global)this.getApplication()).refreshTaskForTargetPatientForAll(id);
     }
 
 

@@ -1,46 +1,31 @@
 package com.example.shamrock;
 
 //importing all the required libraries
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain5Binding;
 
 //import com.google.android.gms.cast.framework.media.ImagePicker;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Calendar;
-import java.util.UUID;
 
 //making a public class
 public class MainActivity5 extends AppCompatActivity {
@@ -52,7 +37,7 @@ public class MainActivity5 extends AppCompatActivity {
     private PendingIntent pendingIntent;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference taskRef = db.collection("Task");
-    private Task task;
+    private pTask pTask;
     private Integer count = 0;
     //button for adding image from gallery
     //private Button AddImage;
@@ -68,7 +53,7 @@ public class MainActivity5 extends AppCompatActivity {
     //private ImageView profilePic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        task = new Task();
+        pTask = new pTask();
         super.onCreate(savedInstanceState);
         binding = ActivityMain5Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -254,15 +239,15 @@ public class MainActivity5 extends AppCompatActivity {
                 calendar.set(Calendar.MILLISECOND,0);
 
                 //adding task to firebase
-                if(task.getDocumentId() != null ){
+                if(pTask.getDocumentId() != null ){
 //                    cancelAlarm();
-                    taskRef.document(task.getDocumentId()).set(calendar);
+                    taskRef.document(pTask.getDocumentId()).set(calendar);
                   //  taskRef.document(task.getDocumentId()).set()
                 }else{
                     DocumentReference addedDocRef = taskRef.document();
-                    task.setCalendar(calendar); //change
-                    task.setDocumentId(addedDocRef.getId());
-                    addedDocRef.set(task);
+                    pTask.setCalendar(calendar); //change
+                    pTask.setDocumentId(addedDocRef.getId());
+                    addedDocRef.set(pTask);
                 }
 
                 //automatically setting alarm

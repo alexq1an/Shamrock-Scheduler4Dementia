@@ -47,11 +47,12 @@ public class MainActivity7 extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pLogin(v);
+                pLogin(v);//when login button is clicked, call this method
             }
         });
-
     }
+
+    //patient(ideally with help from caregiver) can login by entering their 7-digit unique loginId
     public void pLogin(View v){
         String loginId = editTextLoginId.getText().toString();
 
@@ -70,7 +71,7 @@ public class MainActivity7 extends AppCompatActivity {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {//if loginId matches
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    //get its(patient) documentId
+                                    //get its(patient's) documentId
 //                                    document.getId();
                                     Toast.makeText(MainActivity7.this,
                                             "Login successful\n ID: " + document.getId(), Toast.LENGTH_SHORT).show();
@@ -79,17 +80,21 @@ public class MainActivity7 extends AppCompatActivity {
                                     //compare with caregiver pList reference
                                     //if matches, link the patient with the caregiver
                                     //login successful, lead to patient homepage
+
+                                    //passing patient documentId
                                     Intent i = new Intent(MainActivity7.this, patient_homepage.class);
+//                                    Toast.makeText(MainActivity7.this,
+//                                            "docId: " + document.getId(), Toast.LENGTH_SHORT).show();
                                     i.putExtra("documentId", document.getId());
 
                                     Intent i2 = new Intent(MainActivity7.this, DestinationActivity.class);
                                     i.putExtra("documentId",document.getId());
 
-                                    startActivity(i);//passing patient documentId
-                                    startActivity(i2);
+                                    startActivity(i);//proceed to patient_homepage
+//                                    startActivity(i2);//proceed to DestinationActivity
                                 }
                             }
-                            //Never gets into this else case
+                            //Bug: Never gets into this else case
                             else {//login fails
                                 Toast.makeText(MainActivity7.this,
                                         "Login fail", Toast.LENGTH_SHORT).show();

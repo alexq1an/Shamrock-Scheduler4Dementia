@@ -1,29 +1,44 @@
 package com.example.shamrock;
 //importing all the required libraries
 import com.google.firebase.firestore.Exclude;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 //this task class will help to store the set alarm in the database
-public class Task {
+public class pTask {
     //initializing
     private Calendar calendar;
-    private String Description;
-    private String DocumentId;
+    String Description;
+    String DocumentId;
+    String Time;
+    String Title;
+
+    public pTask(String newDescription, String newTitle, String newTime){
+        this.Description = newDescription;
+        this.Time = newTime;
+        this.Title = newTitle;
+    }
+
+    //might need it to show task list on patient homepage
+    private ArrayList<pTask> pTaskList;
 
     //Constructors
     //without document id
-    public Task(){
+    public pTask(){
         this.DocumentId = null;
     }
-    public Task(Calendar calendar){
+    public pTask(Calendar calendar, ArrayList<pTask> list){
         this.calendar = calendar;
         this.DocumentId = null;
+        this.pTaskList = list;
 
     }
-    public Task(Calendar calendar, String Description, String DocumentId) {
+    public pTask(Calendar calendar, String Description, String DocumentId, ArrayList<pTask> list) {
         this.calendar = calendar;
         this.Description = Description;
         this.DocumentId = DocumentId;
+        this.pTaskList = list;
     }
 
     //getters and setters
@@ -47,5 +62,13 @@ public class Task {
 
     public void setDescription(String Description){
         this.Description = Description;
+    }
+
+//might need these to show task list on patient homepage
+    public ArrayList<pTask> getTaskList(){
+        return pTaskList;
+    }
+    public void setTaskList(ArrayList<pTask> pTaskList){
+        this.pTaskList = pTaskList;
     }
 }
