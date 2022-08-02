@@ -164,7 +164,7 @@ public class patient_homepage extends AppCompatActivity {
      * Set the list of tasks and show
      * */
     public void showTask() {
-        //access collection "Schedule
+        //access collection "Schedule"
         scheduleRef = pRef.document(pDocId).collection("Schedule");
 
         //check if the schedule date matches with the current date

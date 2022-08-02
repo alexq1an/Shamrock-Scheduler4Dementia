@@ -13,7 +13,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-//activity for notfication page
+//activity for notification page
 //currently displays just text, will change in the future
 
 public class DestinationActivity extends AppCompatActivity {
