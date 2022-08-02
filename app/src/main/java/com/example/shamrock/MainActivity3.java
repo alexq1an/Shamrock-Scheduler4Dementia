@@ -149,6 +149,10 @@ public class MainActivity3 extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void update(String id){
+        ((global)this.getApplication()).refreshTaskForTargetPatientForAll(id);
+    }
+
 //    public void gotoaddpatient(){
 //        Intent intent = new Intent(this,MainActivity6.class);
 //        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

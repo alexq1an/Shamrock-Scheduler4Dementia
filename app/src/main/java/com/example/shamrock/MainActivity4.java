@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.text.DateFormat;
@@ -57,6 +58,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
     public Calendar calendar;
     public String scheduleID;
     public String caregiverID;
+    ListView allTaskList;
 
     public Patient temp_patient;
     @Override
@@ -98,6 +100,9 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
                 openActivity8();
             }
         });
+
+        ListAdapter2 listAdapter2 = new ListAdapter2(MainActivity4.this, ((global)this.getApplication()).allTasks);
+        allTaskList.setAdapter(listAdapter2);
 
     }
     public void openActivity5(){

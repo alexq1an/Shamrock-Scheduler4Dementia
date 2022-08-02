@@ -322,6 +322,7 @@ public class MainActivity5 extends AppCompatActivity {
                                         currentID = documentSnapshot.getId();
                                         tempTask.setTime(calendar.getTime());
                                         taskRef.document(id).set(tempTask);
+                                        Toast.makeText(MainActivity5.this, tempTask.getTime().toString(), Toast.LENGTH_SHORT).show();
                                     }
                                     if(counter == 0){
                                         DocumentReference addedDocRef = taskRef.document();
