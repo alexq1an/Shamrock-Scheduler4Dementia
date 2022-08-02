@@ -1,6 +1,8 @@
 package com.example.shamrock;
 
 //importing all the required libraries
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
@@ -43,7 +45,6 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
-import java.util.UUID;
 
 //making a public class
 public class MainActivity5 extends AppCompatActivity {

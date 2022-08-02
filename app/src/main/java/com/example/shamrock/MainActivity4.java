@@ -9,10 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-<<<<<<< HEAD
-
-=======
->>>>>>> 1a355a56e6f953d390ca2b6e76b6177c85acf44c
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,8 +58,6 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
     public Calendar calendar;
     public String scheduleID;
     public String caregiverID;
-    ListView allTaskList;
-
     ListView allTaskList;
 
     public Patient temp_patient;

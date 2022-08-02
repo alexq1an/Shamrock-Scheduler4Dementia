@@ -47,12 +47,12 @@ public class ListAdapter2 extends ArrayAdapter<pTask> {
         time.setText(pTask.getTime().toString());
 
 
-        description.setText(pTask.getDescription());
-//        id.setText(patient.getList_patient_id());
-        TextView title = convertView.findViewById(R.id.task_title);
-        title.setText(pTask.Title);
-        TextView time = convertView.findViewById(R.id.task_time);
-        time.setText(pTask.Time);
+//        description.setText(pTask.getDescription());
+////        id.setText(patient.getList_patient_id());
+//        TextView title = convertView.findViewById(R.id.task_title);
+//        title.setText(pTask.Title);
+//        TextView time = convertView.findViewById(R.id.task_time);
+//        time.setText(pTask.Time);
 
         return convertView;
     }
