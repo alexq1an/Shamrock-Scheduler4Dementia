@@ -181,7 +181,7 @@ public class MainActivity5 extends AppCompatActivity {
 
     private void uploadToFirebase(Uri uri){
 
-        final StorageReference fileRef = reference.child("TASK"+ "" + "." + getFileExtension(uri));
+        final StorageReference fileRef = reference.child(System.currentTimeMillis() + "." + getFileExtension(uri));
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -210,6 +210,9 @@ public class MainActivity5 extends AppCompatActivity {
                 Toast.makeText(MainActivity5.this, "Uploading Failed !!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        db.collection("Patient").document(patientID).collection("Schedule")
+                .document(scheduleID).collection("Task").document(currentID).update("image", fileRef.getName());
     }
     private String getFileExtension(Uri mUri){
 
@@ -251,6 +254,7 @@ public class MainActivity5 extends AppCompatActivity {
     private void setAlarm() {
         //using AlarmManager
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
 
         Intent intent = new Intent(this,AlarmReceiver.class);
 

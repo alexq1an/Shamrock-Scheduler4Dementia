@@ -79,7 +79,7 @@ public class MainActivity7 extends AppCompatActivity {
                                     //compare with caregiver pList reference
                                     //if matches, link the patient with the caregiver
                                     //login successful, lead to patient homepage
-                                    Intent i = new Intent(MainActivity7.this, patient_homepage.class);
+                                    Intent i = new Intent(MainActivity7.this, BufferPatientHome.class);
                                     i.putExtra("documentId", document.getId());
 //
 //                                    Intent i2 = new Intent(MainActivity7.this, DestinationActivity.class);
