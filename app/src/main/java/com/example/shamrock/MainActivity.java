@@ -39,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
                 openPatientLogin();
             }
         });
+
+
+
+        ((global)this.getApplication()).refreshTaskForTargetPatientForAll("4703D46cOqSXomOf1SWi");
+
+
+
     }
     //lead to Caregiver page
     public void openActivity2(){

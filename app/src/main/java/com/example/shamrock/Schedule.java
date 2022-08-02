@@ -6,16 +6,16 @@ import java.util.Calendar;
 
 public class Schedule {
     private Calendar calendar;
-    private ArrayList<Task> taskArrayList;
+    private ArrayList<pTask> pTaskArrayList;
     private String documentID;
     private Integer Day;
     private Integer Month;
     private Integer Year;
 
     //constructors
-    public Schedule(Calendar calendar, ArrayList<Task> taskArrayList) {
+    public Schedule(Calendar calendar, ArrayList<pTask> pTaskArrayList) {
         this.calendar = calendar;
-        this.taskArrayList = taskArrayList;
+        this.pTaskArrayList = pTaskArrayList;
     }
     public Schedule(Calendar calendar, String documentID) {
         this.calendar = calendar;
@@ -48,12 +48,12 @@ public class Schedule {
     }
 
 
-    public void setTaskArrayList(ArrayList<Task> taskArrayList) {
-        this.taskArrayList = taskArrayList;
+    public void setTaskArrayList(ArrayList<pTask> pTaskArrayList) {
+        this.pTaskArrayList = pTaskArrayList;
     }
 
-    public ArrayList<Task> getTaskArrayList() {
-        return taskArrayList;
+    public ArrayList<pTask> getTaskArrayList() {
+        return pTaskArrayList;
     }
 
     public Integer getDay() {
