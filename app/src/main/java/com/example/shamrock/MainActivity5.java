@@ -57,12 +57,15 @@ public class MainActivity5 extends AppCompatActivity {
     private Calendar calendar;
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
-    private String patientID;
-    private String scheduleID;
-    public String currentID = null;
+    public String patientID;
+    public String scheduleID;
+    public String currentID;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference pRef = db.collection("Patient");
     private CollectionReference taskRef;
-    private Integer count = 0;
+    public Integer count = 0;
+    public Integer imageCount = 0;
+
 
     //button for youtube link
     private Button Url;
@@ -116,14 +119,6 @@ public class MainActivity5 extends AppCompatActivity {
             }
         });
 
-//        uploadBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-
-
         title = findViewById(R.id.title);
         description = findViewById(R.id.task_description);
 
@@ -147,15 +142,6 @@ public class MainActivity5 extends AppCompatActivity {
                 cancelAlarm();
             }
         });
-        //finding the image and button using their id
-//        AddImage = findViewById(R.id.AddImage1);
-//        AddImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(MainActivity5.this , MainActivity9.class);
-//                startActivity(i);
-//            }
-//        });
 
         Url = findViewById(R.id.AddUrl);
         Url.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +149,7 @@ public class MainActivity5 extends AppCompatActivity {
             //using method gotoUrl
             //add the link to youtube main page
             public void onClick(View view) {
-                gotoUrl("https://www.youtube.com");
+                gotoUrl("https://www.google.com/imghp?hl=EN");
             }
             private void gotoUrl(String s) {
                 Uri uri = Uri.parse(s);
@@ -195,7 +181,7 @@ public class MainActivity5 extends AppCompatActivity {
 
     private void uploadToFirebase(Uri uri){
 
-        final StorageReference fileRef = reference.child("TASK" + 1+ "." + getFileExtension(uri));
+        final StorageReference fileRef = reference.child("TASK"+ "" + "." + getFileExtension(uri));
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

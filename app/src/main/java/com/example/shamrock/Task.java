@@ -10,6 +10,7 @@ import java.util.Date;
 public class Task {
     //initializing
     private Date time;
+    private String image;
     private String Description;
     private String Title;
     private String DocumentId;
@@ -18,9 +19,9 @@ public class Task {
     //without document id
     public Task(){
         this.DocumentId = null;
-        this.Title = null;
         this.Description = null;
         this.Title = null;
+        this.image = null;
     }
 
     //getters and setters
@@ -37,6 +38,14 @@ public class Task {
 
     public String getTitle() {
         return Title;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void setTime(Date time) {
