@@ -19,37 +19,27 @@ public class AlarmReceiver extends BroadcastReceiver {
     String patientID;
     String scheduleID;
     String taskID;
-    protected void setValues(String patient, String schedule, String task){
-        this.patientID = patient;
-        this.scheduleID = schedule;
-        this.taskID = task;
-    }
-
-
 
     @Override
     //this method will specifically be used to receive the notification
     //when the alarm rings
     public void onReceive(Context context, Intent intent) {
-
-
         //Alarm receiver helps the user to take them to the notification activity
         //page after the alarm is stopped by the user
 //        Bundle extras = intent.getExtras();
-//        if (extras != null) {
-            this.patientID = intent.getStringExtra("patientDocId");
-            this.scheduleID = intent.getStringExtra("scheduleDocId");
-            this.taskID = intent.getStringExtra("taskDocId");
-//        }
-        //setting the requiredflags
+        this.patientID = intent.getStringExtra("patientDocId");
+        this.scheduleID = intent.getStringExtra("scheduleDocId");
+        this.taskID = intent.getStringExtra("taskDocId");
 
-        Intent i = new Intent(context,MainActivity10.class);
+        Intent i = new Intent(context,MainActivity7.class);
         i.putExtra("patientDocId", patientID);
         i.putExtra("scheduleDocId", scheduleID);
         i.putExtra("taskDocId", taskID);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
+
+
         //building the notification
         //which will be sent to the patient when the alarm rings
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "Shamrock")
@@ -57,15 +47,16 @@ public class AlarmReceiver extends BroadcastReceiver {
                 //name of the notification
                 .setContentTitle("Shamrock Alarm Manager")
                 //giving instruction to stop the alarm
-                .setContentText("Click on this to stop the alarm")
+                .setContentText("click on this to turn the notification off")
                 .setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent);
 
+        //builds the alarm and makes it ring
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(123, builder.build());
 
-        }
+    }
 
 }

@@ -73,11 +73,12 @@ public class MainActivity2 extends AppCompatActivity {
 
         setContentView(R.layout.activity_main2);
 
+        //storing strings and information from activity_main2.xml
         editTextUsername = findViewById(R.id.edit_text_username);
         editTextEmail = findViewById(R.id.edit_text_email);
         editTextPassword = findViewById(R.id.edit_text_password);
         textViewData = findViewById(R.id.text_view_data);
-
+        //buttons from activity_main2.xml
         register_button = findViewById(R.id.register_button);
         login_button = findViewById(R.id.login_button);
 
