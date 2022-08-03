@@ -4,18 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain10Binding;
-import com.example.shamrock.databinding.ActivityMainBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
@@ -31,8 +34,14 @@ public class MainActivity10 extends AppCompatActivity {
     String patientID;
     String scheduleID;
     String taskID;
+    String texttitle;
+    String description;
+    String imageName = null;
     TextView title;
+    TextView des;
+    Task currentTask;
     private DocumentReference docTask;
+    private Button confirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,29 +49,54 @@ public class MainActivity10 extends AppCompatActivity {
         binding = ActivityMain10Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         title = findViewById(R.id.patient_output_title);
+        confirm = findViewById(R.id.confirm_button);
+        des = findViewById(R.id.task_description);
 
-//        Bundle extras = getIntent().getExtras();
-//        if(extras != null) {
-            patientID = getIntent().getStringExtra("patientDocId");
-            scheduleID = getIntent().getStringExtra("scheduleDocId");
-            taskID = getIntent().getStringExtra("taskDocId");
-            docTask = FirebaseFirestore.getInstance()
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            patientID = extras.get("patientDocId").toString();
+            scheduleID = extras.get("scheduleDocId").toString();
+            taskID = extras.get("taskDocId").toString();
+//            docTask = FirebaseFirestore.getInstance()
+//                    .collection("Patient").document(patientID)
+//                    .collection("Schedule").document(scheduleID)
+//                    .collection("Task").document(taskID);
+//            texttitle = FirebaseFirestore.getInstance()
+//                    .collection("Patient").document(patientID)
+//                    .collection("Schedule").document(scheduleID)
+//                    .collection("Task").document(taskID).get().getResult().toObject(Task.class).getTitle();
+//            description = task.getDescription();
+
+        }
+
+        FirebaseFirestore.getInstance()
                 .collection("Patient").document(patientID)
                 .collection("Schedule").document(scheduleID)
-                .collection("Task").document(taskID);
-            Task task = docTask.get().getResult().toObject(Task.class);
-            title.setText(taskID); //task.getTitle()
-            Toast.makeText(this, "Patient: " + patientID, Toast.LENGTH_SHORT).show();
+                .collection("Task").document(taskID)
+                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            currentTask = task.getResult().toObject(Task.class);
+                            texttitle = currentTask.getTitle();
+                            description = currentTask.getDescription();
+                            imageName = currentTask.getImage();
+                        }
+                    }
+                });
+//            Task task = docTask.get().getResult().toObject(Task.class);
+            title.setText(description); //task.getTitle()
+//            des.setText();
 //        }
 
 
         binding.getImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                progressDialog = new ProgressDialog(MainActivity10.this);
-                progressDialog.setMessage("Fetching the desired image.....");
-                progressDialog.setCancelable(false);
-                progressDialog.show();
+//                progressDialog = new ProgressDialog(MainActivity10.this);
+//                progressDialog.setMessage("Fetching the desired image.....");
+//                progressDialog.setCancelable(false);
+//                progressDialog.show();
 
                 Task task = FirebaseFirestore.getInstance()
                                 .collection("Patient").document(patientID)
@@ -71,7 +105,7 @@ public class MainActivity10 extends AppCompatActivity {
                 String imageID = task.getImage();
                 Toast.makeText(MainActivity10.this, "image: " + imageID, Toast.LENGTH_SHORT).show();
 
-                storageReference = FirebaseStorage.getInstance().getReference(imageID);
+                storageReference = FirebaseStorage.getInstance().getReference(imageName);
                 try {
                     File localfile = File.createTempFile("tempfile",".jpg");
                     storageReference.getFile(localfile)
@@ -95,9 +129,15 @@ public class MainActivity10 extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
+        });
 
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity10.this, MainActivity7.class);
+                startActivity(i);
+            }
         });
     }
 }

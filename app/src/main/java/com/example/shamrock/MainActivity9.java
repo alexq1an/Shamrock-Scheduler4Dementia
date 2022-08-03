@@ -59,7 +59,7 @@ public class MainActivity9 extends AppCompatActivity {
         showAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent(MainActivity9.this , ShowActivity .class));
+//                startActivity( new Intent(MainActivity9.this , ShowActivity .class));
             }
         });
 
@@ -137,7 +137,6 @@ public class MainActivity9 extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cr.getType(mUri));
 
     }
-
 
 }
 

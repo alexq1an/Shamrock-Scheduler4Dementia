@@ -9,19 +9,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain3Binding;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -106,7 +99,6 @@ public class MainActivity3 extends AppCompatActivity {
         }
 
 
-
         //Adapter for our arraylist
         ListAdapter listAdapter = new ListAdapter(this,patients);
 
@@ -122,16 +114,10 @@ public class MainActivity3 extends AppCompatActivity {
                 Intent i = new Intent(MainActivity3.this,BufferCaregiver.class);
                 i.putExtra("username",patients.get(position).getUsername());
                 i.putExtra("loginId",patients.get(position).getList_patient_id());
-                //                i.putExtra("imageid",imageId[position]);
-
                 pDocId = patients.get(position).getDocumentId();
                 i.putExtra("patientDocId", DocID.get(position));
                 i.putExtra("caregiverDocId", docId);
                 startActivity(i);
-
-//                Intent i2 = new Intent(MainActivity3.this,MainActivity8.class);
-//                i2.putExtra("patientDocId", patients.get(position).getDocumentId());//passing patient's documentId
-//                startActivity(i2);
 
             }
         });
@@ -146,7 +132,8 @@ public class MainActivity3 extends AppCompatActivity {
         ((global)this.getApplication()).refreshTaskForTargetPatientForAll(id);
     }
 
-
+    //our list is equipped to take multiple patients, but for our purposes
+    //we have limited patients to one patient per caregiver
 //    public void gotoaddpatient(){
 //        Intent intent = new Intent(this,MainActivity6.class);
 //        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

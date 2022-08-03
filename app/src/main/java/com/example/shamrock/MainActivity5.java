@@ -97,6 +97,10 @@ public class MainActivity5 extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(count < 1){
+                    Toast.makeText(MainActivity5.this, "Select Time First", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent galleryIntent = new Intent();
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
@@ -226,6 +230,7 @@ public class MainActivity5 extends AppCompatActivity {
         Intent intent = new Intent(this,AlarmReceiver.class);
 
         pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+
         //cancelling the alarm
         if (alarmManager == null){
             alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);

@@ -30,6 +30,7 @@ public class pTask {
     private String Description;
     private String Title;
     private String DocumentId;
+    private String BindScheduleId;
 
     //Constructors
     //without document id
@@ -93,11 +94,6 @@ public class pTask {
         this.Description = Description;
     }
 
-//might need these to show task list on patient homepage
-    public ArrayList<pTask> getTaskList(){
-        return pTaskList;
-    }
-    public void setTaskList(ArrayList<pTask> pTaskList){
-        this.pTaskList = pTaskList;
-    }
+    public String getBS(){return BindScheduleId;}
+    public void setBindScheduleId(String BS){this.BindScheduleId = BS;}
 }
