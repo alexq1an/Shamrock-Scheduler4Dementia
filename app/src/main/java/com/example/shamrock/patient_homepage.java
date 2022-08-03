@@ -161,9 +161,9 @@ public class patient_homepage extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), MainActivity10.class);
-                i.putExtra("taskDocId",((global)patient_homepage.this.getApplication()).allTasks.get(position).getDocumentId());
-                i.putExtra("scheduleDocId",((global)patient_homepage.this.getApplication()).allTasks.get(position).getBS());
-                i.putExtra("patientDocId",pDocId);
+                i.putExtra("title",((global)patient_homepage.this.getApplication()).allTasks.get(position).getTitle());
+                i.putExtra("description",((global)patient_homepage.this.getApplication()).allTasks.get(position).getDescription());
+                i.putExtra("image",((global)patient_homepage.this.getApplication()).allTasks.get(position).getImage());
                 startActivity(i);
             }
         });

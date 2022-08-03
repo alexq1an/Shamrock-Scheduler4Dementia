@@ -15,13 +15,9 @@ import android.widget.Toast;
 import java.text.DateFormat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -36,50 +32,53 @@ import java.util.Calendar;
  * */
 
 public class MainActivity4 extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-
+    //user interface ids
     private Button newevent;
     private Button changePatientInfo_button;
-    private Button newDate;
-    DatePickerDialog.OnDateSetListener setListener;
     TextView tvDate;
     TextView etDate;
     TextView patientName;
+
+    //counter for error checking
     private Integer count = 0;
+
+    //database references
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference sRef = db.collection("Schedule");
     private CollectionReference pRef = db.collection("Patient");
 
     //transferred patient information
-//    private DocumentReference pDocId;
     public String username;
-    public String loginId;
     public String patientDocId;
-    public String date;
     public Calendar calendar;
     public String scheduleID;
     public String caregiverID;
+
+    //listAdapter task list
     ListView allTaskList;
 
-    public Patient temp_patient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 
+        //transferring information from user interface
         tvDate = findViewById(R.id.tv_date);
         etDate = findViewById(R.id.et_date);
         patientName = findViewById(R.id.patient_name);
         allTaskList = (ListView) findViewById(R.id.hourListView);
 
-        allTaskList = (ListView) findViewById(R.id.hourListView);
-
+        //grabbing information from previous page
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
+            //setting Patient Name to the title
             patientName.setText(extras.get("username").toString());
+            //grabbing Ids to access database
             patientDocId = extras.get("patientDocId").toString();
             caregiverID = extras.get("caregiverDocId").toString();
         }
 
+        //for selecting a date
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +87,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
             }
         });
 
+        //for adding a new task
         newevent = (Button) findViewById(R.id.newevent);
         newevent.setOnClickListener(new View.OnClickListener() {
             @Override

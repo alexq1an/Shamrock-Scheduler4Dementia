@@ -22,7 +22,6 @@ public class BufferPatientHome extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             pDocId = extras.get("documentId").toString();
-            //showTask();//call this method to show the task list
         }
 
 

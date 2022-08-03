@@ -65,6 +65,7 @@ public class global extends Application {
                                                         newTask.setDescription(task1.getDescription());
                                                         newTask.setTime(task1.getTime());
                                                         newTask.setTitle(task1.getTitle());
+                                                        newTask.setImage(task1.getImage());
                                                         newTask.setBindScheduleId(todayId);
                                                         newTask.setDocumentId(document.getId());
                                                         allTasks.add(newTask);
