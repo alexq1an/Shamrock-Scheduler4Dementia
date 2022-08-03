@@ -66,20 +66,12 @@ public class MainActivity5 extends AppCompatActivity {
     public Integer count = 0;
     public Integer imageCount = 0;
 
-
     //button for youtube link
     private Button Url;
     private Button confirm;
     private Button AddImage;
     private EditText description;
     private EditText title;
-
-    //int SELECT_PHOTO = 1;
-    //public Uri imageUri;
-    ///private FirebaseStorage storage;
-    //private StorageReference storageReference;
-    //this will display the image
-    //private ImageView profilePic;
 
     private Button uploadBtn;
     private ImageView imageView;
@@ -100,17 +92,21 @@ public class MainActivity5 extends AppCompatActivity {
 
         //image stuff
         uploadBtn = findViewById(R.id.upload_btn);
-        progressBar = findViewById(R.id.progressBar);
+//        progressBar = findViewById(R.id.progressBar);
         imageView = findViewById(R.id.imageView);
 
-        uploadBtn.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent galleryIntent = new Intent();
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
                 startActivityForResult(galleryIntent , 2);
-
+            }
+        });
+        uploadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 if (imageUri != null){
                     uploadToFirebase(imageUri);
                 }else{
@@ -118,6 +114,7 @@ public class MainActivity5 extends AppCompatActivity {
                 }
             }
         });
+
 
         title = findViewById(R.id.title);
         description = findViewById(R.id.task_description);
@@ -172,10 +169,8 @@ public class MainActivity5 extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode ==2 && resultCode == RESULT_OK && data != null){
-
             imageUri = data.getData();
-            //imageView.setImageURI(imageUri);
-
+            imageView.setImageURI(imageUri);
         }
     }
 
@@ -192,7 +187,7 @@ public class MainActivity5 extends AppCompatActivity {
                         Model model = new Model(uri.toString());
                         String modelId = root.push().getKey();
                         root.child(modelId).setValue(model);
-                        progressBar.setVisibility(View.INVISIBLE);
+//                        progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(MainActivity5.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
                         imageView.setImageResource(R.drawable.ic_baseline_add_a_photo_24);
                     }
@@ -201,12 +196,12 @@ public class MainActivity5 extends AppCompatActivity {
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                progressBar.setVisibility(View.VISIBLE);
+//                progressBar.setVisibility(View.VISIBLE);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                progressBar.setVisibility(View.INVISIBLE);
+//                progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(MainActivity5.this, "Uploading Failed !!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -219,9 +214,7 @@ public class MainActivity5 extends AppCompatActivity {
         ContentResolver cr = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cr.getType(mUri));
-
     }
-
 
     //making a method which will be used to cancel the alarm
     private void cancelAlarm() {
@@ -254,13 +247,13 @@ public class MainActivity5 extends AppCompatActivity {
     private void setAlarm() {
         //using AlarmManager
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this,AlarmReceiver.class);
+        Intent intent = new Intent(getApplicationContext(),AlarmReceiver.class);
         intent.putExtra("patientDocID", patientID);
-        intent.putExtra("taskDocID", currentID);
+        intent.putExtra("taskDocId", currentID);
         intent.putExtra("scheduleDocID", scheduleID);
 
-        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
-
+        pendingIntent = PendingIntent.getBroadcast(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        sendBroadcast(intent);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,pendingIntent);
@@ -325,7 +318,6 @@ public class MainActivity5 extends AppCompatActivity {
                                         currentID = documentSnapshot.getId();
                                         tempTask.setTime(calendar.getTime());
                                         taskRef.document(id).set(tempTask);
-                                        Toast.makeText(MainActivity5.this, tempTask.getTime().toString(), Toast.LENGTH_SHORT).show();
                                     }
                                     if(counter == 0){
                                         DocumentReference addedDocRef = taskRef.document();

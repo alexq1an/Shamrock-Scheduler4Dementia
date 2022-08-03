@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain10Binding;
@@ -29,19 +30,26 @@ public class MainActivity10 extends AppCompatActivity {
     String patientID;
     String scheduleID;
     String taskID;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            patientID = extras.get("patientDocId").toString();
-            scheduleID = extras.get("scheduleDocId").toString();
-            taskID = extras.get("taskDocID").toString();
-        }
-
         super.onCreate(savedInstanceState);
         binding = ActivityMain10Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        title = findViewById(R.id.patient_output_title);
+
+//        Bundle extras = getIntent().getExtras();
+//        if(extras != null) {
+            patientID = getIntent().getStringExtra("patientDocId");
+            scheduleID = getIntent().getStringExtra("scheduleDocId");
+//            taskID = extras.get("taskDocId").toString();
+            taskID = getIntent().getStringExtra("taskDocId");
+            title.setText(taskID);
+            Toast.makeText(this, "Patient: " + patientID, Toast.LENGTH_SHORT).show();
+//        }
+
+
         binding.getImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
