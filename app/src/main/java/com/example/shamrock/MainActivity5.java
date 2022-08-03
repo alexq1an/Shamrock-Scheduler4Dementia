@@ -258,7 +258,7 @@ public class MainActivity5 extends AppCompatActivity {
         intent.putExtra("scheduleDocID", scheduleID);
 
         pendingIntent = PendingIntent.getBroadcast(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        sendBroadcast(intent);
+//        sendBroadcast(intent);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,pendingIntent);

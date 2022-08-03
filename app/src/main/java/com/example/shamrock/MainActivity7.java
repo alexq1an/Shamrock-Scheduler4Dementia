@@ -72,8 +72,8 @@ public class MainActivity7 extends AppCompatActivity {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     //get its(patient) documentId
 //                                    document.getId();
-                                    Toast.makeText(MainActivity7.this,
-                                            "Login successful\n ID: " + document.getId(), Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(MainActivity7.this,
+//                                            "Login successful\n ID: " + document.getId(), Toast.LENGTH_SHORT).show();
 //                                    Log.d("Patient login", document.getId() + " => " + document.getData());
 
                                     //compare with caregiver pList reference

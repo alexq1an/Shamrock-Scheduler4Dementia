@@ -8,69 +8,73 @@
 
 
     <TextView
-        android:id="@+id/patient_output_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/task_description"
+        android:layout_width="339dp"
+        android:layout_height="60dp"
         android:layout_gravity="center"
-        android:text="Title"
+        android:layout_marginTop="32dp"
+        android:text="Task Descritption"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30dp"
-        tools:layout_editor_absoluteX="159dp"
-        tools:layout_editor_absoluteY="290dp"
-        android:layout_marginTop="70dp"/>
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/patient_output_title"
+        tools:layout_editor_absoluteX="56dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/task_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/patient_output_title"
+        android:layout_width="249dp"
+        android:layout_height="33dp"
         android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:textAlignment="center"
         android:text="Title"
         android:textColor="@color/black"
         android:textSize="30dp"
-        tools:layout_editor_absoluteX="159dp"
-        tools:layout_editor_absoluteY="290dp"
-        android:layout_marginTop="80dp"/>
+        app:layout_constraintBottom_toTopOf="@+id/task_description"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="77dp"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="293dp"
-        android:layout_height="226dp"
+        android:layout_width="280dp"
+        android:layout_height="180dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="30dp"
-        android:layout_marginTop="32dp"
 
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/getImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_description"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/getImage"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="168dp"
         android:layout_marginHorizontal="16dp"
         android:text="Get Image"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_marginBaseline="168dp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="159dp"
-        tools:layout_editor_absoluteY="420dp" />
+        app:layout_marginBaseline="168dp" />
+
     <Button
         android:id="@+id/confirm_button"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="75dp"
         android:layout_marginHorizontal="16dp"
-        android:text="Confirm"
+        android:layout_marginBottom="75dp"
+        android:text="Complete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_marginBaseline="168dp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_marginBaseline="168dp"
         tools:layout_editor_absoluteX="159dp"
         tools:layout_editor_absoluteY="420dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

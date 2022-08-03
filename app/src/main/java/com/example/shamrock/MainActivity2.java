@@ -22,12 +22,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import android.widget.Button;
 import android.content.Intent;
 
+/**
+ * This is the caregiver login page
+ */
 public class MainActivity2 extends AppCompatActivity {
     //Declarations
     public Button button;
     private static final String TAG = "MainActivity";
-
-    FirebaseAuth mAuth;
 
     //fields
     private static final String KEY_NAME = "Name";
@@ -44,7 +45,7 @@ public class MainActivity2 extends AppCompatActivity {
     private Button register_button;
     private Button login_button;
 
-
+    FirebaseAuth mAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference dRef = db.collection("Caregiver").document("My First Note");
     private CollectionReference cRef = db.collection("Caregiver");
@@ -94,12 +95,14 @@ public class MainActivity2 extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
+                                //showing the user a message that they logged in successfully
                                 Toast.makeText(MainActivity2.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
+                                //adding userid to the next page so that it is accessible by database
                                 Intent i = new Intent(MainActivity2.this, MainActivity3.class);
                                 i.putExtra("documentId",mAuth.getCurrentUser().getUid());
                                 startActivity(i);
                             }
-                            else{
+                            else{//if they don't login properly
                                 Toast.makeText(MainActivity2.this, "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -112,7 +115,8 @@ public class MainActivity2 extends AppCompatActivity {
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createAccount(view);            }
+                createAccount(view);
+            }
         });
     }
 
@@ -188,7 +192,7 @@ public class MainActivity2 extends AppCompatActivity {
                         Intent i = new Intent(MainActivity2.this, MainActivity6.class);
                         i.putExtra("documentId",mAuth.getCurrentUser().getUid());
                         startActivity(i);
-                    } else {
+                    } else {//showing message in case of error
                         Toast.makeText(MainActivity2.this, "Registration Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }

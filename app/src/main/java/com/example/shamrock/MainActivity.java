@@ -1,5 +1,6 @@
 package com.example.shamrock;
 //importing all the required libraries
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //linking the buttons with the id set in xml file
         setContentView(R.layout.activity_main);
         button = (Button) findViewById(R.id.caregiver);
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 openActivity2();
             }
         });
+
         //leads to patient login when the button is pressed
         pButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -42,9 +45,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //((global)this.getApplication()).refreshTaskForTargetPatientForAll("4703D46cOqSXomOf1SWi");
-
     }
+
     //lead to Caregiver page
     public void openActivity2(){
         //grabbing information about user
@@ -55,23 +57,21 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity2.class);
         startActivity(intent);
     }
+
     //lead to Patient page
     public void openPatientLogin(){
         //grabbing information about user
         auth = FirebaseAuth.getInstance();
         User = auth.getCurrentUser();
-        if (User == null) {
+
+        //checking if the user already exists
+        if(User == null) {
             Intent intent = new Intent(this, MainActivity7.class);
             startActivity(intent);
         }
-        else{
-            Intent intent = new Intent(this, MainActivity7.class);
+        else{//when patient has already logged in previously
+            Intent intent = new Intent(this, patient_homepage.class);
             startActivity(intent);
         }
-        //when patient has already logged in previously
-//        else{
-//            Intent intent = new Intent(this, patient_homepage.class);
-//            startActivity(intent);
-//        }
     }
 }
