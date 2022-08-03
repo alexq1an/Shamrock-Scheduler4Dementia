@@ -34,18 +34,13 @@ public class ListAdapter2 extends ArrayAdapter<pTask> {
 
         }
         // all attributes for our item and subitem design, and set the source
-//        ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView description = convertView.findViewById(R.id.task_description);
-//        TextView id = convertView.findViewById(R.id.list_patient_id);
 
-//        imageView.setImageResource(patient.getImageId());
         description.setText(pTask.getDescription());
-//        id.setText(patient.getList_patient_id());
         TextView title = convertView.findViewById(R.id.task_title);
         title.setText(pTask.getTitle());
         TextView time = convertView.findViewById(R.id.task_time);
         time.setText(pTask.getTime().toString());
-
 
         return convertView;
     }

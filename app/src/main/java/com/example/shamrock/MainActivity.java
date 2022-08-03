@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button pButton;
     FirebaseAuth auth;
     FirebaseUser User;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,13 +27,14 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.caregiver);
         pButton = (Button) findViewById(R.id.patient);
 
-        //using on click feature
+        //leads to caregiver login when the button is pressed
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openActivity2();
             }
         });
+        //leads to patient login when the button is pressed
         pButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -45,19 +47,17 @@ public class MainActivity extends AppCompatActivity {
     }
     //lead to Caregiver page
     public void openActivity2(){
+        //grabbing information about user
         auth = FirebaseAuth.getInstance();
         User = auth.getCurrentUser();
-//        if (User == null) {
+
+        //changes page to Caregiver homepage
         Intent intent = new Intent(this, MainActivity2.class);
         startActivity(intent);
-//        }
-//        else{
-//            Intent intent = new Intent(this, MainActivity3.class);
-//            startActivity(intent);
-//        }
     }
     //lead to Patient page
     public void openPatientLogin(){
+        //grabbing information about user
         auth = FirebaseAuth.getInstance();
         User = auth.getCurrentUser();
         if (User == null) {

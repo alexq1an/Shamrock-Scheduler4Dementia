@@ -15,6 +15,7 @@ import com.example.shamrock.databinding.ActivityMain10Binding;
 import com.example.shamrock.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
@@ -31,6 +32,7 @@ public class MainActivity10 extends AppCompatActivity {
     String scheduleID;
     String taskID;
     TextView title;
+    private DocumentReference docTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +45,13 @@ public class MainActivity10 extends AppCompatActivity {
 //        if(extras != null) {
             patientID = getIntent().getStringExtra("patientDocId");
             scheduleID = getIntent().getStringExtra("scheduleDocId");
-//            taskID = extras.get("taskDocId").toString();
             taskID = getIntent().getStringExtra("taskDocId");
-            title.setText(taskID);
+            docTask = FirebaseFirestore.getInstance()
+                .collection("Patient").document(patientID)
+                .collection("Schedule").document(scheduleID)
+                .collection("Task").document(taskID);
+            Task task = docTask.get().getResult().toObject(Task.class);
+            title.setText(taskID); //task.getTitle()
             Toast.makeText(this, "Patient: " + patientID, Toast.LENGTH_SHORT).show();
 //        }
 
@@ -63,6 +69,7 @@ public class MainActivity10 extends AppCompatActivity {
                                 .collection("Schedule").document(scheduleID)
                                 .collection("Task").document(taskID).get().getResult().toObject(Task.class);
                 String imageID = task.getImage();
+                Toast.makeText(MainActivity10.this, "image: " + imageID, Toast.LENGTH_SHORT).show();
 
                 storageReference = FirebaseStorage.getInstance().getReference(imageID);
                 try {

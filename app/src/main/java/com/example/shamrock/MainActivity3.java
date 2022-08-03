@@ -118,7 +118,6 @@ public class MainActivity3 extends AppCompatActivity {
 
 
                 //passing patient information
-
                 Intent i = new Intent(MainActivity3.this,BufferCaregiver.class);
                 i.putExtra("username",patients.get(position).getUsername());
                 i.putExtra("loginId",patients.get(position).getList_patient_id());

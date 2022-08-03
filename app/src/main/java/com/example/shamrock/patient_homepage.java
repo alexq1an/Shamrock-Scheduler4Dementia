@@ -1,7 +1,10 @@
 package com.example.shamrock;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -95,7 +98,6 @@ public class patient_homepage extends AppCompatActivity {
             //showTask();//call this method to show the task list
         }
 
-
 //        ArrayList<pTask> allTasks = new ArrayList<>();
 //        //access collection "Schedule
 //        scheduleRef = pRef.document(pDocId).collection("Schedule");
@@ -158,6 +160,28 @@ public class patient_homepage extends AppCompatActivity {
         ListAdapter2 listAdapter2 = new ListAdapter2(patient_homepage.this, ((global)this.getApplication()).allTasks);
         pList.setAdapter(listAdapter2);
 
+        binding.patientsListView.setAdapter(listAdapter2);
+        binding.patientsListView.setClickable(true);
+        binding.patientsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // insert the data using the position
+
+
+            //passing patient information
+
+            Intent i = new Intent(patient_homepage.this, BufferCaregiver.class);
+//                i.putExtra("username", .get(position).getUsername());
+//                i.putExtra("loginId", patients.get(position).getList_patient_id());
+//                //                i.putExtra("imageid",imageId[position]);
+//
+//                pDocId = patients.get(position).getDocumentId();
+//                i.putExtra("patientDocId", DocID.get(position));
+//                i.putExtra("caregiverDocId", docId);
+            startActivity(i);
+
+            }
+        });
     }
 
     /**
