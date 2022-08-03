@@ -26,9 +26,6 @@
             android:name=".MainActivity10"
             android:exported="false" />
         <activity
-            android:name=".ShowActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity9"
             android:exported="false" />
         <activity

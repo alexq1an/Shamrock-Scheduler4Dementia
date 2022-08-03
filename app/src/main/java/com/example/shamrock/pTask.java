@@ -14,6 +14,7 @@ public class pTask {
     private String Description;
     private String Title;
     private String DocumentId;
+    private String BindScheduleId;
 
     //Constructors
     //without document id
@@ -62,4 +63,6 @@ public class pTask {
     public void setDescription(String Description){
         this.Description = Description;
     }
+    public String getBS(){return BindScheduleId;}
+    public void setBindScheduleId(String BS){this.BindScheduleId = BS;}
 }

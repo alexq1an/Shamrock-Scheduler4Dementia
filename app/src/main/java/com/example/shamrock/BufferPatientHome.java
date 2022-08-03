@@ -34,7 +34,6 @@ public class BufferPatientHome extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
                 Intent i = new Intent(BufferPatientHome.this, patient_homepage.class);
                 i.putExtra("documentId", pDocId);
                 startActivity(i);

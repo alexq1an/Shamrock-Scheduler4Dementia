@@ -1,44 +1,26 @@
 package com.example.shamrock;
 
-//import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
-import com.google.firestore.v1.WriteResult;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import android.widget.Button;
 import android.content.Intent;
-import android.view.View;
 
 public class MainActivity2 extends AppCompatActivity {
     //Declarations
@@ -78,6 +60,7 @@ public class MainActivity2 extends AppCompatActivity {
         editTextEmail = findViewById(R.id.edit_text_email);
         editTextPassword = findViewById(R.id.edit_text_password);
         textViewData = findViewById(R.id.text_view_data);
+
         //buttons from activity_main2.xml
         register_button = findViewById(R.id.register_button);
         login_button = findViewById(R.id.login_button);
@@ -134,6 +117,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     public void logIn(View v){
+        //Storing Strings from user interface
         String user = editTextUsername.getText().toString();
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
@@ -157,12 +141,15 @@ public class MainActivity2 extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
+                        //show reminder to user that task is successful
                         Toast.makeText(MainActivity2.this, "User logged in successfully", Toast.LENGTH_SHORT).show();
+                        //change page and add caregiver user document id so that we can grab it on the next page
                         Intent i = new Intent(MainActivity2.this, MainActivity3.class);
                         i.putExtra("documentId",mAuth.getCurrentUser().getUid().toString());
                         startActivity(i);
                     }
                     else{
+                        //show user log in error
                         Toast.makeText(MainActivity2.this, "Login Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
