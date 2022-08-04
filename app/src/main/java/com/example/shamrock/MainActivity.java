@@ -65,13 +65,13 @@ public class MainActivity extends AppCompatActivity {
         User = auth.getCurrentUser();
 
         //checking if the user already exists
-        if(User == null) {
+//        if(User == null) {
             Intent intent = new Intent(this, MainActivity7.class);
             startActivity(intent);
-        }
-        else{//when patient has already logged in previously
-            Intent intent = new Intent(this, patient_homepage.class);
-            startActivity(intent);
-        }
+//        }
+//        else{//when patient has already logged in previously
+//            Intent intent = new Intent(this, patient_homepage.class);
+//            startActivity(intent);
+//        }
     }
 }

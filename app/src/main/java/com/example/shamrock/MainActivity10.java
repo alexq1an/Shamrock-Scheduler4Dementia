@@ -46,8 +46,13 @@ public class MainActivity10 extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             texttitle = extras.get("title").toString();
-            description = extras.get("description").toString();
-            imageName = extras.get("image").toString();
+            if(extras.get("description") != null){
+                description = extras.get("description").toString();
+
+            }
+            if(extras.get("image") != null){
+                imageName = extras.get("image").toString();
+            }
         }
         title.setText(texttitle);
         des.setText(description);
