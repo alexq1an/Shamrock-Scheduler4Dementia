@@ -28,7 +28,7 @@ Shamrock reminds patients of tasks, which help them keep up with their daily sch
 | BufferCaregiver| This page is a buffer page while the app reads the data from the database |
 | BufferPatientHome | This page is a buffer page while the app reads the data from the database  |
 
-<br>**Rest of the java files which are not mentioned in the above table are for future use.<br>
+
  
  
  
@@ -47,8 +47,7 @@ Personally, our emulator is
    <li>API Level 22 Lollipop</li>
    <li>Android 5.1</li>
 </ul>
-However, the default emulator works fine as well
- 
+
 <h1>Application Features </h1>
 <ul>
    <li>Can read and write to Firestore Cloud</li>
