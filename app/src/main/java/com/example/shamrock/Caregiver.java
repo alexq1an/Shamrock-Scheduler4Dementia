@@ -1,6 +1,5 @@
 package com.example.shamrock;
 //importing all the required libraries
-import android.widget.Toast;
 
 import com.google.firebase.firestore.Exclude;
 
@@ -51,14 +50,6 @@ public class Caregiver {
     //making getter and setter for returning different values according to the need
     public String getUsername() {
         return username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public ArrayList<String> getpList() {

@@ -2,25 +2,37 @@
  
 ## Description
 This application will have two target users, mainly the patients suffering from dementia and their caregivers.
-Shamrock enables the caregivers to set specific schedules and tasks for their patients. It will allow caregivers to set schedules for more than one patient. Shamrock allows caregivers to manage more than one dementia patient in an effective and efficient manner. Another unique feature of this application is it gives caregivers the ability to verify if a certain pTask has been done by the patient or not.
-Shamrock reminds patients of tasks, which help them keep up with their daily schedule. This application is easy to use and interactive which grabs the interest of the user and helps them perform their day-to-day pTask with ease. As Shamrock keeps the dementia patients busy and involved in different interactive tasks it may help them prevent hallucinations by keeping them occupied. This application is very beneficial for dementia patients as it encourages them to partake in various mental exercises by making them perform tasks in a timely manner. Keeping a regular routine can alleviate the stress of dementia as the disease progresses. Shamrock instills independence which encourages the PWD to feel good and productive about themselves.
+
+Shamrock enables the caregivers to set specific schedules and tasks for their patients. Shamrock allows caregivers to manage their dementia patients in an effective and efficient manner. Another unique feature of this application is it gives caregivers the ability to verify if a certain task has been done by the patient or not.
+Shamrock reminds patients of tasks, which help them keep up with their daily schedule. This application is easy to use and interactive which grabs the interest of the user and helps them perform their day-to-day task with ease. As Shamrock keeps the dementia patients busy and involved in different interactive tasks it may help them prevent hallucinations by keeping them occupied. This application is very beneficial for dementia patients as it encourages them to partake in various mental exercises by making them perform tasks in a timely manner. Keeping a regular routine can alleviate the stress of dementia as the disease progresses. Shamrock instills independence which encourages the PWD to feel good and productive about themselves.
  
 # Different files in our code and what is their significance…
  
  | File Name | Description |
 | ------ | ------ |
 | MainActivity | Let the user choose Patient or Caregiver |
-| MainActivity2 | The caregiver can create an account or login with their existing account |
+| MainActivity2 | The caregiver can create an account or log in with their existing account |
 | MainActivity3 | The homepage for the caregiver |
 | MainActivity4 | The page for editing patient tasks |
 | MainActivity5 | This file has all the features for a working alarm for the application |
-| MainActivity6 | Let the caregiver to add their patient |
+| MainActivity6 | Let the caregiver add their patient |
+| MainActivity7 | Login page for patient |
+| MainActivity8 | Let caregiver update patient information |
+| MainActivity9 | Caregiver can upload the image |
+| MainActivity10 | The page to notify the task information |
+| patient_homepage | The homepage for the patient |
+
 | Patient | This class provides methods for storing information regarding the patient in the database |
-| Caregiver | This class provide methods for storing information regarding the caregiver |
-| Task | This is a class which helps to store alarm in database |
-| Schedule | This is class for storing the date of the schedule |
+| Caregiver | This class provides methods for storing information regarding the caregiver |
+| Task | This is a class that helps to store alarms in the database |
+| pTask | |
+| Schedule | This is the class for storing the date of the schedule |
 | AlarmReceiver| This file is used to show the pop-up notification to the user |
-| DestinationActivity | This basically an separate page which open after the alarm is stopped |
+| DestinationActivity | This basically a separate page that opens after the alarm is stopped |
+
+| BufferCaregiver| This page is a buffer page while the app reads the data from the database |
+| BufferPatientHome | This page is a buffer page while the app reads the data from the database  |
+
 <br>**Rest of the java files which are not mentioned in the above table are for future use.<br>
  
  
@@ -34,32 +46,42 @@ Shamrock reminds patients of tasks, which help them keep up with their daily sch
    <li>Uses Android 4.0 or higher</li>
 </ul>
  
-Personally our emulator is
+Personally, our emulator is
 <ul>
    <li>Pixel 5</li>
    <li>API Level 22 Lollipop</li>
    <li>Android 5.1</li>
 </ul>
-However, default emulator works fine as well
+However, the default emulator works fine as well
  
 <h1>Application Features </h1>
 <ul>
-   <li>Can read and write to firestore Cloud</li>
+   <li>Can read and write to Firestore Cloud</li>
    <li>Can Switch pages</li>
-   <li>Basic methods of Caregiver, Patient, Task, and Schedule class needed for database have been implemented </li>
+   <li>Basic methods of Caregiver, Patient, Task, and Schedule class needed for the database have been implemented </li>
    <li>Allows the user to choose their role either caregiver and patient </li>
    <li>Allows the caregiver to create an account and login </li>
-   <li>Checks if the user enters a well formatted email address </li>
-   <li>Checks that the user enters a 6 digit/symbol/alphabet/character password </li>
+   <li>Checks if the caregiver enters a well-formatted email address </li>
+   <li>Checks that the caregiver enters a 6 digit/symbol/alphabet/character password </li>
    <li>Checks if that particular account already exist or not </li>
    <li>Allows the caregiver to login in an already created account </li>
    <li>If the caregiver account is new then the app allows to add new patient information </li>
-   <li>For patient information it takes in Name, Age, Unique Id, Sex, Description </li>
+   <li>For patient information it takes in Name, Age, Sex, Description </li>
    <li>Allows the caregiver to scroll through the patient list </li>
    <li>Allows the caregiver to edit patient information </li>
    <li>Allows to select the date for the schedule </li>
+<li>Let the caregiver to add new task</li>
+<li>Allows caregiver to upload the images</li>
+<li>Task can take in its title, description, time, and images</li>
    <li>Notifies the user when the alarm rings </li>
-   <li>Allows the user to set and cancel the alarm </li>
+   <li>Allows the caregiver to set and cancel the alarm </li>
+ <li>Lists the tasks that caregivers have scheduled for their patients</li>
+<li>Caregiver can scroll through the list to see all the tasks</li>
+
+<li>Patient can login by entering their 7-digit ID</li>
+<li>Checks if the patient login ID match with the ID on the databse</li>
+<li> Patients can scroll through to see their tasks in patient homepage</li>
+
 </ul>
 <br>
 
@@ -75,9 +97,9 @@ However, default emulator works fine as well
 <br>
 <br>
 <ul>
-<li>     The [Patient] button will take the user to patient interface of the application</li>
+<li>     The [Patient] button will take the user to the patient interface of the application</li>
 <li></li>
-<li>	The [Caregiver] button will take the user to caregiver interface of the application </li>
+<li>	The [Caregiver] button will take the user to the caregiver interface of the application </li>
 </ul>
 <br>
 <br>
@@ -105,8 +127,8 @@ However, default emulator works fine as well
 <br>
 
 <ul>
-<li>	To create an account email must be unique, username does not have to match</li>
-<li>	When logging in the Caregiver email and password must be correct</li>
+<li>	To create an account email must be unique, the username does not have to match</li>
+<li>	When logging in the Caregiver's email and password must be correct</li>
 <li></li>
 <li>The account displayed is fake, you must create your own account to test the application</li>
 <li></li>
@@ -137,8 +159,9 @@ However, default emulator works fine as well
 Add information about the patient<br>
 Adding User Description is optional<br>
 <br>
-The [CONFIRM] button add the patient information in the database and lead caregiver to the Caregiver Homepage<br>
+The [CONFIRM] button adds the patient information to the database and leads the caregiver to the Caregiver Homepage<br>
 <br>
+The caregiver has to manually press the back button on the device to go back to the home page
 <br>
 <br>
 <br>
@@ -162,9 +185,9 @@ The [CONFIRM] button add the patient information in the database and lead caregi
 <br>
 <br>
 <br>
-Click and Drag to scroll list of patients<br>
+Click and Drag to scroll the list of patients<br>
 <br>
-Click on any patient to be lead to edit the Schedule of that particular patient<br>
+Click on any patient to be led to editing the Schedule of that particular patient<br>
 <br>
 <br>
 <br>
@@ -189,12 +212,13 @@ Click on any patient to be lead to edit the Schedule of that particular patient<
 <br>
 <br>
 <br>
-Must select Date before entering a New Task, otherwise system will prompt you to select a date<br>
-The [Select Date] field allows to select date<br>
+Must select Date before entering a New Task, otherwise, the system will prompt you to select a date<br>
+The [Select Date] field allows selecting date<br>
 <br>
 The [Edit Patient] button allows to edit patient information, it will lead to the same page as ‘Creating Patient’<br>
 <br>
-The [New Task] button allows to create new pTask for patient like alarm<br>
+
+The [New Task] button allows for creating a new task for a patient like an alarm<br>
 <br>
 <br>
 <br>
@@ -230,6 +254,68 @@ Should be able to choose any date and exit without setting a date as well<br>
 <br>
 <br>
 <br>
+<br>
+<h4>Set task</h4>
+<img src="notification.jpg" width="275" height="500" align = "left">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+The [Select Time] will prompt you to enter a time and will automatically add it to the database and set it to ring at the selected time<br>
+<br>
+The [Cancel Alarm] allows you to cancel the already set alarm, must select a time to cancel otherwise it will prompt you to select a time<br>
+<br>
+<br>
+The [Camera icon]  will lead to the gallery and let users select the image from their phone.
+<br>
+The [Upload] will upload the selected image
+<br>
+The [URL] will open up the google browser where the user can search for the picture and download it to their gallery
+<br>
+The downloaded image can be used later to upload as well
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h4>Selecting Time</h4>
+<img src="alarm.png" width="275" height="500" align = "left">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br> The user can set the time using the dial<br>
+<br>
+<br>
+<br>
+<h4>Cofrim task</h4>
+<img src="notification.jpg" width="275" height="500" align = "left">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+The [Confrim] will confirm the task the user has set in the previous set task step
+<br>
+<br>
+
+
+
  
 <h4>Notification</h4>
 <img src="notification.jpg" width="275" height="500" align = "left">
@@ -244,7 +330,7 @@ Should be able to choose any date and exit without setting a date as well<br>
 <br>
 The [Select Time] will prompt you to enter a time and will automatically add it to the database and set it to ring at the selected time<br>
 <br>
-The [Cancel Alarm] allows to cancel the already set alarm, must select a time to cancel otherwise it will prompt you to select a time<br>
+The [Cancel Alarm] allows you to cancel the already set alarm, must select a time to cancel otherwise it will prompt you to select a time<br>
 <br>
 The alarm has a delay which we plan to fix, it may not ring exactly on the minute, sometimes it is even one minute behind, but when the notification pops up it will appear as it does in the photo<br>
 <br>
@@ -256,19 +342,6 @@ You can click on the notification and it will automatically open another page, w
 <br>
 <br>
 <br>
- 
-<h4>Selecting Time</h4>
-<img src="alarm.png" width="275" height="500" align = "left">
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br> The user can set time using the dial<br>
-<br>
 <br>
 <br>
 <br>
@@ -287,5 +360,7 @@ You can click on the notification and it will automatically open another page, w
  
  
  
+
+
 
 

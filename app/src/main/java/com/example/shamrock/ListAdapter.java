@@ -5,22 +5,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-//Adapter for our list
+
+/**
+ * This class is the adapter for our patient list
+ */
 public class ListAdapter extends ArrayAdapter<Patient> {
 
-
+    //initialize our listAdapter
     public ListAdapter(Context context, ArrayList<Patient> patientArrayList){
 
         super(context, R.layout.patients_list_item,patientArrayList);
 
     }
+
     //get the current item id
     @Override
     public long getItemId(int position) {
@@ -30,7 +33,7 @@ public class ListAdapter extends ArrayAdapter<Patient> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
+        //getting the position of the patient in the list and storing it
         Patient patient = getItem(position);
 
         if (convertView == null){
@@ -39,14 +42,11 @@ public class ListAdapter extends ArrayAdapter<Patient> {
 
         }
         // all attributes for our item and subitem design, and set the source
-//        ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView userName = convertView.findViewById(R.id.personName);
         TextView id = convertView.findViewById(R.id.list_patient_id);
 
-//        imageView.setImageResource(patient.getImageId());
         userName.setText(patient.getUsername());
         id.setText(patient.getList_patient_id());
-
 
         return convertView;
     }
