@@ -425,13 +425,7 @@ The [GET IMAGE] button allows the patient to see the image that was uploaded to 
 <br>
 <br>
 A notification pops up on the screen when the alarm rings, once the user clicks on the notification it stops the alarm and takes the user to the patient login where they log in with a unique id and see the list of tasks.<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 <br>
 <br>
 <br>
