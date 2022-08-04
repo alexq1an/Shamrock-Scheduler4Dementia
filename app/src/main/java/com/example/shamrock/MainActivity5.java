@@ -26,7 +26,6 @@ import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain5Binding;
 
-//import com.google.android.gms.cast.framework.media.ImagePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -44,10 +43,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Calendar;
-import java.util.UUID;
 
 //making a public class
 public class MainActivity5 extends AppCompatActivity {
@@ -252,13 +248,12 @@ public class MainActivity5 extends AppCompatActivity {
     private void setAlarm() {
         //using AlarmManager
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(getApplicationContext(),AlarmReceiver.class);
+        Intent intent = new Intent(this,AlarmReceiver.class);
         intent.putExtra("patientDocID", patientID);
         intent.putExtra("taskDocId", currentID);
         intent.putExtra("scheduleDocID", scheduleID);
 
-        pendingIntent = PendingIntent.getBroadcast(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        sendBroadcast(intent);
+        pendingIntent = PendingIntent.getBroadcast(this,0,intent, 0);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,pendingIntent);
@@ -376,13 +371,6 @@ public class MainActivity5 extends AppCompatActivity {
         title.setText("");
         description.setText("");
         count = 0;
-
-        //change pages
-//        Intent i = new Intent(this,MainActivity4.class);
-//        i.putExtra("patientDocId", patientID);
-//        i.putExtra("scheduleDocId", scheduleID);
-//        startActivity(i);
-
     }
 
     //this method is created for notification
