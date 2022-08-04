@@ -104,18 +104,14 @@ However, the default emulator works fine as well
 <br>
 <br>
 <br>
-<h4>Buffer page
-</h4>
-<img src="bufferPage.png" width="275" height="500" align = "left">
-<br>
-<br>
-<br>
-Press Confrim to proceed to the next page
 <br>
 <br>
 <br>
 <br>
 <br>
+<br>
+<br>
+
 <h4>Caregiver Login Page</h4>
 <img src="login.jpg" width="275" height="500" align = "left">
 <br>
@@ -442,7 +438,64 @@ A notification pops up on the screen when the alarm rings, once the user clicks 
 <br>
 <br>
 <br>
-
+<h4>Buffer Page</h4>
+<img src="bufferPage.png" width="275" height="500" align = "left">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+Buffer page is a page that interlinks two pages. It basically acts a stalling period when the data is being retrieved from the data base for the user.It also has a continue button which take the user to the next desired page in the application.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h4>Edit Patient and New Task</h4>
+<img src="EditPSchedule.png" width="275" height="500" align = "left">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+This page has two button
+[Edit Patient] button allows the user to edit the patient information and the edited information gets stored in the database.
+[New Task] button takes the caregiver to the task editing page where new task can be set up for the patient.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
  
  
  
