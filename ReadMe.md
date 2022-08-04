@@ -20,15 +20,13 @@ Shamrock reminds patients of tasks, which help them keep up with their daily sch
 | MainActivity9 | Caregiver can upload the image |
 | MainActivity10 | The page to notify the task information |
 | patient_homepage | The homepage for the patient |
-
 | Patient | This class provides methods for storing information regarding the patient in the database |
 | Caregiver | This class provides methods for storing information regarding the caregiver |
 | Task | This is a class that helps to store alarms in the database |
-| pTask | |
+| pTask | This is a class that helps to store alarms in the database |
 | Schedule | This is the class for storing the date of the schedule |
 | AlarmReceiver| This file is used to show the pop-up notification to the user |
 | DestinationActivity | This basically a separate page that opens after the alarm is stopped |
-
 | BufferCaregiver| This page is a buffer page while the app reads the data from the database |
 | BufferPatientHome | This page is a buffer page while the app reads the data from the database  |
 
@@ -69,17 +67,16 @@ However, the default emulator works fine as well
    <li>Allows the caregiver to scroll through the patient list </li>
    <li>Allows the caregiver to edit patient information </li>
    <li>Allows to select the date for the schedule </li>
-<li>Let the caregiver to add new task</li>
-<li>Allows caregiver to upload the images</li>
-<li>Task can take in its title, description, time, and images</li>
+   <li>Let the caregiver to add new task</li>
+   <li>Allows caregiver to upload the images</li>
+   <li>Task can take in its title, description, time, and images</li>
    <li>Notifies the user when the alarm rings </li>
    <li>Allows the caregiver to set and cancel the alarm </li>
- <li>Lists the tasks that caregivers have scheduled for their patients</li>
-<li>Caregiver can scroll through the list to see all the tasks</li>
-
-<li>Patient can login by entering their 7-digit ID</li>
-<li>Checks if the patient login ID match with the ID on the databse</li>
-<li> Patients can scroll through to see their tasks in patient homepage</li>
+   <li>Lists the tasks that caregivers have scheduled for their patients</li>
+   <li>Caregiver can scroll through the list to see all the tasks</li>
+   <li>Patient can login by entering their 7-digit ID</li>
+   <li>Checks if the patient login ID match with the ID on the databse</li>
+   <li> Patients can scroll through to see their tasks in patient homepage</li>
 
 </ul>
 <br>
@@ -229,7 +226,7 @@ The [New Task] button allows for creating a new task for a patient like an alarm
 <br>
 <br>
 <h4>Calendar</h4>
-<img src="calendar.png" width="275" height="500" align = "left">
+<img src="SelectDate.png" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -255,38 +252,13 @@ Should be able to choose any date and exit without setting a date as well<br>
 <br>
 <br>
 <br>
-<h4>Set task</h4>
-<img src="notification.jpg" width="275" height="500" align = "left">
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-The [Select Time] will prompt you to enter a time and will automatically add it to the database and set it to ring at the selected time<br>
-<br>
-The [Cancel Alarm] allows you to cancel the already set alarm, must select a time to cancel otherwise it will prompt you to select a time<br>
-<br>
-<br>
-The [Camera icon]  will lead to the gallery and let users select the image from their phone.
-<br>
-The [Upload] will upload the selected image
-<br>
-The [URL] will open up the google browser where the user can search for the picture and download it to their gallery
-<br>
-The downloaded image can be used later to upload as well
-<br>
-<br>
 <br>
 <br>
 <br>
 <br>
 <br>
 <h4>Selecting Time</h4>
-<img src="alarm.png" width="275" height="500" align = "left">
+<img src="SelectTime.png" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -313,7 +285,7 @@ The downloaded image can be used later to upload as well
 <br>
 <br>
 <h4>Add Title and Description</h4>
-<img src="notification.jpg" width="275" height="500" align = "left">
+<img src="taskPage.jpg" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -341,7 +313,7 @@ The [Description] allows the caregiver to put in the description for the particu
 <br>
 <br>
 <h4>Download Image</h4>
-<img src="notification.jpg" width="275" height="500" align = "left">
+<img src="taskPage.jpg" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -368,7 +340,7 @@ The [DOWNLOAD IMAGE] button allows the caregiver to download the image from the 
 <br>
 <br>
 <h4>UPLOAD Image</h4>
-<img src="notification.jpg" width="275" height="500" align = "left">
+<img src="taskPage.jpg" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -396,7 +368,7 @@ The [UPLOAD IMAGE] button allows the caregiver to upload the image from the gall
 <br>
 <br>
 <h4>Confirm</h4>
-<img src="notification.jpg" width="275" height="500" align = "left">
+<img src="taskPage.jpg" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -423,7 +395,7 @@ The [CONFIRM] button allows the caregiver to make sure that he or she has added 
 <br>
 <br>
 <h4>Show Image</h4>
-<img src="notification.jpg" width="275" height="500" align = "left">
+<img src="TaskInfo_Patient_.png" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -451,15 +423,7 @@ The [GET IMAGE] button allows the patient to see the image that was uploaded to 
 <br>
 <br>
 <h4>Notification</h4>
-<img src="notification.jpg" width="275" height="500" align = "left">
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<img src="notification.jpg" width="300" height="100" align = "left">
 <br>
 <br>
 A notification pops up on the screen when the alarm rings, once the user clicks on the notification it stops the alarm and takes the user to the patient login where they log in with a unique id and see the list of tasks.<br>
