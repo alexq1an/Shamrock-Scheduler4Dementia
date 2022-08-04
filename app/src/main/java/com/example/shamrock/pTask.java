@@ -6,6 +6,9 @@ import com.google.firebase.firestore.Exclude;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Duplicate task for easy conversion
+ */
 //this task class will help to store the set alarm in the database
 public class pTask {
     //initializing

@@ -1,16 +1,13 @@
 package com.example.shamrock;
 
-import static com.example.shamrock.databinding.PatientHomepageBinding.inflate;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -60,25 +57,23 @@ public class patient_homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.patient_homepage);
 
+        //for displaying and getting information from the UI
         binding = PatientHomepageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         tvDay =findViewById(R.id.day);
         pList = (ListView) findViewById(R.id.patientTaskListView);
 
+        //displays the current date to the patient
         Date currentTime = Calendar.getInstance().getTime();
         String formattedDate = DateFormat.getInstance ().format(currentTime);
 
+        //formatting the date to display
         String[] splitDate = formattedDate.split(",");
         Log.d("my Log",currentTime.toString());
         Log.d("my Log",formattedDate);
-//        tvMonth.setText(splitDate[1]);
         tvDay.setText(splitDate[0]);
-//        tvYear.setText(splitDate[2]);
-
         Log.d("my Log",splitDate[0].trim());
-//        Log.d("my Log",splitDate[1].trim());
-//        Log.d("my Log",splitDate[2].trim());
 
         //get the current year, month, date to query a specific date's schedule
         Calendar cal = Calendar.getInstance();
@@ -90,76 +85,19 @@ public class patient_homepage extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             pDocId = extras.get("documentId").toString();
-            //showTask();//call this method to show the task list
         }
 
-//        ArrayList<pTask> allTasks = new ArrayList<>();
-//        //access collection "Schedule
-//        scheduleRef = pRef.document(pDocId).collection("Schedule");
-//
-//        //check if the schedule date matches with the current date
-//        //get the present date documentId
-//        scheduleRef
-//                .whereEqualTo("year", year)//need generalization
-//                .whereEqualTo("month", month)
-//                .whereEqualTo("day", date)
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {//successfully got access to a specific date's schedule reference
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                Log.d(TAG, document.getId() + " => " + document.getData());
-//                                todayId = document.getId();
-//                                //access collection "Task"
-//                                taskRef = scheduleRef.document(todayId).collection("Task");
-////                                Toast.makeText(patient_homepage.this, "scheduleRef: " + scheduleRef.document(todayId), Toast.LENGTH_SHORT).show();
-//                            }
-//                            //iterate through Task collection and grab all the documents(tasks) inside
-//                            taskRef.orderBy("time")
-//                                    .get()
-//                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                                            if (task.isSuccessful()) {
-//                                                //manually add each task into a task list
-//                                                for (QueryDocumentSnapshot document : task.getResult()) {
-//                                                    Log.d(TAG, document.getId() + " => " + document.getData());
-//                                                    //Toast is only for testing
-//                                                    //Toast.makeText(patient_homepage.this, "Task title: " +document.get("title") + "\nTime: " + document.get("time"), Toast.LENGTH_SHORT).show();
-//                                                    String title = document.get("title").toString();
-//                                                    String time = document.get("time").toString();
-//                                                    String description = document.get("description").toString();
-//                                                    pTask newTask = new pTask(description, title, time);
-//                                                    allTasks.add(newTask);
-//                                                    ListAdapter2 listAdapter2 = new ListAdapter2(patient_homepage.this, allTasks);
-//                                                    pList.setAdapter(listAdapter2);
-//
-////                                                        Task aTask = document.toObject(Task.class);//creates a Task object
-//
-////                                                        taskList.add(aTask);
-//                                                    //use ListAdaptor2 to show it on the screen(patient_homepage.xml)
-////                                ListAdapter2 listAdapter = new ListAdapter2(patient_homepage.this, taskList);
-////                                binding.patientsListView.setAdapter(listAdapter);
-//                                                }
-//                                            } else {
-//                                                Log.d(TAG, "Error getting documents: ", task.getException());
-//                                            }
-//                                        }
-//                                    });}
-//                        else {
-//                            Log.d(TAG, "Error getting documents: ", task.getException());
-//                        }
-//                    }
-//                });
+        //the task list being assigned
         ListAdapter2 listAdapter2 = new ListAdapter2(patient_homepage.this, ((global)this.getApplication()).allTasks);
         pList.setAdapter(listAdapter2);
 
+        //allows patient to choose a particular task
         binding.patientTaskListView.setAdapter(listAdapter2);
         binding.patientTaskListView.setClickable(true);
         binding.patientTaskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //passes information for the task
                 Intent i = new Intent(getApplicationContext(), MainActivity10.class);
                 i.putExtra("title",((global)patient_homepage.this.getApplication()).allTasks.get(position).getTitle());
                 i.putExtra("description",((global)patient_homepage.this.getApplication()).allTasks.get(position).getDescription());
@@ -169,64 +107,5 @@ public class patient_homepage extends AppCompatActivity {
         });
     }
 
-    /**
-     * Set the list of tasks and show
-     * */
-//    public void showTask() {
-//        //access collection "Schedule
-//        scheduleRef = pRef.document(pDocId).collection("Schedule");
-//
-//        //check if the schedule date matches with the current date
-//        //get the present date documentId
-//        scheduleRef
-//                .whereEqualTo("year", year)//need generalization
-//                .whereEqualTo("month", month)
-//                .whereEqualTo("day", date)
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {//successfully got access to a specific date's schedule reference
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                Log.d(TAG, document.getId() + " => " + document.getData());
-//                                todayId = document.getId();
-//                                //access collection "Task"
-//                                taskRef = scheduleRef.document(todayId).collection("Task");
-////                                Toast.makeText(patient_homepage.this, "scheduleRef: " + scheduleRef.document(todayId), Toast.LENGTH_SHORT).show();
-//                            }
-//                            //iterate through Task collection and grab all the documents(tasks) inside
-//                            taskRef.orderBy("time")
-//                                    .get()
-//                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                                            if (task.isSuccessful()) {
-//                                                //manually add each task into a task list
-//                                                for (QueryDocumentSnapshot document : task.getResult()) {
-//                                                    pTask pTask = document.toObject(pTask.class);
-//
-//                                                    Log.d(TAG, document.getId() + " => " + document.getData());
-//                                                    //Toast is only for testing
-//                                                    Toast.makeText(patient_homepage.this, "Task title: " + pTask.getTitle() +
-//                                                            "\nTime: " + pTask.getTime().toString(), Toast.LENGTH_SHORT).show();
-//
-//
-////                                                        Task aTask = document.toObject(Task.class);//creates a Task object
-//
-////                                                        taskList.add(aTask);
-//                                                    //use ListAdaptor2 to show it on the screen(patient_homepage.xml)
-////                                ListAdapter2 listAdapter = new ListAdapter2(patient_homepage.this, taskList);
-////                                binding.patientsListView.setAdapter(listAdapter);
-//                                                }
-//                                            } else {
-//                                                Log.d(TAG, "Error getting documents: ", task.getException());
-//                                            }
-//                                        }
-//                                    });}
-//                        else {
-//                            Log.d(TAG, "Error getting documents: ", task.getException());
-//                        }
-//                    }
-//                });
-//    }
+
 }

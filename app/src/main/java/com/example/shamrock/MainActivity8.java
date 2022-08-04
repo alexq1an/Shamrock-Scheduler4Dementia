@@ -2,19 +2,16 @@ package com.example.shamrock;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,15 +27,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MainActivity8 extends AppCompatActivity {
     private static final String TAG = "MainActivity8";
 
+    //firebase instantiations
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference pRef = db.collection("Patient");
 
+    //instatiating variables for UI
     private EditText editTextUsername;
     private EditText editTextAge;
     private TextView editTextGender;
     private TextView textViewData;
     private Button update_button;
 
+    //for storing the firebase document IDs
     public String patientDocId;
     public String caregiverID;
 
@@ -46,9 +46,9 @@ public class MainActivity8 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main8);
 
+        //grabbing information from UI
         editTextUsername = findViewById(R.id.edit_text_username);
         editTextAge = findViewById(R.id.edit_text_userage);
         editTextGender = findViewById(R.id.edit_text_usergender);
@@ -61,13 +61,9 @@ public class MainActivity8 extends AppCompatActivity {
         if(extras != null) {
             patientDocId = extras.getString("patientDocId");
             caregiverID = extras.getString("caregiverDocId");
-            //Toast for testing
-//            Toast.makeText(MainActivity8.this, "DocumentId: " + patientDocId, Toast.LENGTH_SHORT).show();
-
         }
 
-        //when update button clicked, call this method
-
+        //for updating patient information and switching pages
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,26 +150,3 @@ public class MainActivity8 extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
-//    public void loadNote(View v){
-//        pRef.get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                        String data = "";
-//
-//                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-//                            Patient patient = documentSnapshot.toObject(Patient.class);
-//                            patient.setDocumentId(documentSnapshot.getId());
-//
-//                            String documentId = patient.getLoginId();
-////
-//                            //add name
-//                            data += "Patient Login ID: " + documentId + "\n\n";
-//
-////
-//                        }
-//                        textViewData.setText(data);
-//                    }
-//                });
-//    }

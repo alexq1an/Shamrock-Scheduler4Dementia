@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,10 +13,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -26,7 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
  * This page allows a patient to login with their unique id
  * */
 public class MainActivity7 extends AppCompatActivity {
-
+    //instatiate variables for UI
     private Button loginButton;
 
     private EditText editTextLoginId;
@@ -41,8 +38,10 @@ public class MainActivity7 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main7);
 
+        //for entering the patient login number
         editTextLoginId = findViewById(R.id.edit_text_patient);
 
+        //for logging in and going to the next page
         loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,23 +69,12 @@ public class MainActivity7 extends AppCompatActivity {
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {//if loginId matches
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    //get its(patient) documentId
-//                                    document.getId();
-//                                    Toast.makeText(MainActivity7.this,
-//                                            "Login successful\n ID: " + document.getId(), Toast.LENGTH_SHORT).show();
-//                                    Log.d("Patient login", document.getId() + " => " + document.getData());
 
-                                    //compare with caregiver pList reference
                                     //if matches, link the patient with the caregiver
                                     //login successful, lead to patient homepage
                                     Intent i = new Intent(MainActivity7.this, BufferPatientHome.class);
                                     i.putExtra("documentId", document.getId());
-//
-//                                    Intent i2 = new Intent(MainActivity7.this, DestinationActivity.class);
-//                                    i.putExtra("documentId",document.getId());
-
                                     startActivity(i);//passing patient documentId
-//                                    startActivity(i2);
                                 }
                             }
                             //Never gets into this else case
@@ -94,7 +82,6 @@ public class MainActivity7 extends AppCompatActivity {
                                 Toast.makeText(MainActivity7.this,
                                         "Login fail", Toast.LENGTH_SHORT).show();
 
-//                                Log.d("Patient login", "Error getting documents: ", task.getException());
                             }
                         }
                     });

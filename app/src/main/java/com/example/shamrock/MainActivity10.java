@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.example.shamrock.databinding.ActivityMain10Binding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -23,15 +22,23 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Page that displays a sepecific task to a patient
+ */
 public class MainActivity10 extends AppCompatActivity {
+    //to control the UI
     ActivityMain10Binding binding;
+    //reference to where the images are stored
     StorageReference storageReference;
+
+    //for displaying information
     String texttitle;
     String description;
     String imageName = null;
     TextView title;
     TextView des;
-    private DocumentReference docTask;
+
+    //for exiting page
     private Button confirm;
 
     @Override
@@ -39,13 +46,17 @@ public class MainActivity10 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMain10Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //for displaying information to the UI
         title = findViewById(R.id.patient_output_title);
         confirm = findViewById(R.id.confirm_button);
         des = findViewById(R.id.task_description);
 
+        //grabbing information to display
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             texttitle = extras.get("title").toString();
+            //check if the there is something to display
             if(extras.get("description") != null){
                 description = extras.get("description").toString();
 
@@ -54,18 +65,22 @@ public class MainActivity10 extends AppCompatActivity {
                 imageName = extras.get("image").toString();
             }
         }
+
+        //displaying information
         title.setText(texttitle);
         des.setText(description);
 
+        //for displaying image
         binding.getImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                //check if image exists
                 if (imageName == null){
                     Toast.makeText(MainActivity10.this, "No images to show", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                //grabbing from Firebase storage
                 storageReference = FirebaseStorage.getInstance().getReference(imageName);
                 try {
                     File localfile = File.createTempFile("tempfile",".jpg");
@@ -73,6 +88,7 @@ public class MainActivity10 extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                    //displays the image
                                     Bitmap bitmap = BitmapFactory.decodeFile(localfile.getAbsolutePath());
                                     binding.imageView.setImageBitmap(bitmap);
                                 }
@@ -88,6 +104,7 @@ public class MainActivity10 extends AppCompatActivity {
             }
         });
 
+        //changes pages and jumps back to the patient homepage
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

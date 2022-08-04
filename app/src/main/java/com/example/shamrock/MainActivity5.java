@@ -21,7 +21,6 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.shamrock.databinding.ActivityMain5Binding;
@@ -45,6 +44,9 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
 
+/**
+ * This page is for creating/editing tasks
+ */
 //making a public class
 public class MainActivity5 extends AppCompatActivity {
     //initializing
@@ -60,7 +62,6 @@ public class MainActivity5 extends AppCompatActivity {
     private CollectionReference pRef = db.collection("Patient");
     private CollectionReference taskRef;
     public Integer count = 0;
-    public Integer imageCount = 0;
 
     //button for youtube link
     private Button Url;
@@ -71,7 +72,6 @@ public class MainActivity5 extends AppCompatActivity {
 
     private Button uploadBtn;
     private ImageView imageView;
-    private ProgressBar progressBar;
 
     //vars
     private DatabaseReference root = FirebaseDatabase.getInstance().getReference("Image");
@@ -86,24 +86,28 @@ public class MainActivity5 extends AppCompatActivity {
         setContentView(binding.getRoot());
         createNotificationChannel();
 
-        //image stuff
+        //image related UI buttons and view
         uploadBtn = findViewById(R.id.upload_btn);
-//        progressBar = findViewById(R.id.progressBar);
         imageView = findViewById(R.id.imageView);
 
+        //for uploading an image
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //check if the database for the task has been initialized first
                 if(count < 1){
                     Toast.makeText(MainActivity5.this, "Select Time First", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                //prompts user to add an image from their device
                 Intent galleryIntent = new Intent();
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
                 startActivityForResult(galleryIntent , 2);
             }
         });
+
+        //for adding image to the database
         uploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,17 +119,18 @@ public class MainActivity5 extends AppCompatActivity {
             }
         });
 
-
+        //Text related input for task
         title = findViewById(R.id.title);
         description = findViewById(R.id.task_description);
 
+        //grabbing passed document IDs
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             patientID = extras.get("patientDocId").toString();
             scheduleID = extras.get("scheduleDocId").toString();
         }
 
-        //using setOnClickerListener
+        //For seleciting time and setting alarm
         binding.selectTimeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +138,7 @@ public class MainActivity5 extends AppCompatActivity {
             }
         });
 
+        //for cancelling the alarm
         binding.cancelAlarmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,6 +146,7 @@ public class MainActivity5 extends AppCompatActivity {
             }
         });
 
+        //for downloading an image from the internet
         Url = findViewById(R.id.AddUrl);
         Url.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +161,7 @@ public class MainActivity5 extends AppCompatActivity {
             }
         });
 
+        //for adding all extra information to the database
         confirm = findViewById(R.id.confirm_button);
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,18 +172,21 @@ public class MainActivity5 extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //checks if image is valid and stores the data
         if (requestCode ==2 && resultCode == RESULT_OK && data != null){
             imageUri = data.getData();
+            //shows the uploaded image to the user
             imageView.setImageURI(imageUri);
         }
     }
 
     private void uploadToFirebase(Uri uri){
-
+        //creates a file reference firestore Storage a unique auto-generated name (System.currentTimeMillis()...)
         final StorageReference fileRef = reference.child(System.currentTimeMillis() + "." + getFileExtension(uri));
         fileRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -183,11 +194,10 @@ public class MainActivity5 extends AppCompatActivity {
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-
+                        //image stored to firestore Storage
                         Model model = new Model(uri.toString());
                         String modelId = root.push().getKey();
                         root.child(modelId).setValue(model);
-//                        progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(MainActivity5.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
                         imageView.setImageResource(R.drawable.ic_baseline_add_a_photo_24);
                     }
@@ -196,21 +206,21 @@ public class MainActivity5 extends AppCompatActivity {
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-//                progressBar.setVisibility(View.VISIBLE);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-//                progressBar.setVisibility(View.INVISIBLE);
                 Toast.makeText(MainActivity5.this, "Uploading Failed !!", Toast.LENGTH_SHORT).show();
             }
         });
 
+        //adding image to the firestore database under the specific task
         db.collection("Patient").document(patientID).collection("Schedule")
                 .document(scheduleID).collection("Task").document(currentID).update("image", fileRef.getName());
     }
-    private String getFileExtension(Uri mUri){
 
+    //gets the fileExtension
+    private String getFileExtension(Uri mUri){
         ContentResolver cr = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cr.getType(mUri));
@@ -253,8 +263,10 @@ public class MainActivity5 extends AppCompatActivity {
         intent.putExtra("taskDocId", currentID);
         intent.putExtra("scheduleDocID", scheduleID);
 
+        //intent for the alarm
         pendingIntent = PendingIntent.getBroadcast(this,0,intent, 0);
 
+        //alarm manager sets alarm
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,pendingIntent);
         //giving the message that alarm is set
@@ -304,6 +316,7 @@ public class MainActivity5 extends AppCompatActivity {
                         .document(scheduleID)
                         .collection("Task");
 
+                //checking in the database if there is already an existing task at selected time
                 taskRef.whereEqualTo("time", calendar.getTime())
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -311,6 +324,7 @@ public class MainActivity5 extends AppCompatActivity {
                             public void onComplete(@NonNull com.google.android.gms.tasks.Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()){
                                     int counter = 0;
+                                    //if tasks exists, grab that task and update
                                     for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                         counter++;
                                         Task tempTask = documentSnapshot.toObject(Task.class);
@@ -319,7 +333,7 @@ public class MainActivity5 extends AppCompatActivity {
                                         tempTask.setTime(calendar.getTime());
                                         taskRef.document(id).set(tempTask);
                                     }
-                                    if(counter == 0){
+                                    if(counter == 0){ //if task does not exist, create a new task and add to database
                                         DocumentReference addedDocRef = taskRef.document();
                                         Task task1 = new Task();
                                         currentID = addedDocRef.getId();
@@ -340,25 +354,29 @@ public class MainActivity5 extends AppCompatActivity {
     }
 
     private void confirm(View v){
-        //check all inputs
+        //strings from user interface
         String finalTitle = title.getText().toString();
         String finalDescription = description.getText().toString();
 
+        //check all inputs
         if (TextUtils.isEmpty(finalTitle)) {
             title.setError("Title cannot be empty");
             title.requestFocus();
             return;
-        } else if (count < 1) {
+        } else if (count < 1) { //error checking if database has been manipulated yet
             Toast.makeText(this, "Must Select A Time  ", Toast.LENGTH_SHORT).show();
             return;
 
         }
 
+
+        //collection reference
         taskRef = db.collection("Patient").document(patientID)
                 .collection("Schedule")
                 .document(scheduleID)
                 .collection("Task");
 
+        //error checking to not add null values to database
         if(TextUtils.isEmpty(finalDescription)){
             taskRef.document(currentID).update("title", finalTitle);
             taskRef.document(currentID).update("description", null);
@@ -366,8 +384,11 @@ public class MainActivity5 extends AppCompatActivity {
             taskRef.document(currentID).update("title", finalTitle);
             taskRef.document(currentID).update("description", finalDescription);
         }
+
+        //completion message
         Toast.makeText(this, "Task added, return or add a new task", Toast.LENGTH_SHORT).show();
-        //resetting page
+
+        //resetting page for additional tasks
         title.setText("");
         description.setText("");
         count = 0;
@@ -383,6 +404,7 @@ public class MainActivity5 extends AppCompatActivity {
             NotificationChannel channel = new NotificationChannel("Shamrock",name,importance);
             channel.setDescription(description);
 
+            //creates notification channel
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }

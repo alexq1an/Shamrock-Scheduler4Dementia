@@ -47,53 +47,55 @@ public class MainActivity3 extends AppCompatActivity {
         binding = ActivityMain3Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //getting passed information
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             docId = extras.get("documentId").toString();
             cRef.document(extras.get("documentId").toString())
-                    .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                .addSnapshotListener(new EventListener<DocumentSnapshot>() {
 
-                        @Override
-                        public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                            if(error != null){
-                                Toast.makeText(MainActivity3.this, error.toString(), Toast.LENGTH_SHORT).show();
-                            }else{
-                                caregiver = value.toObject(Caregiver.class);
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error != null){
+                            Toast.makeText(MainActivity3.this, error.toString(), Toast.LENGTH_SHORT).show();
+                        }else{
+                            //taking document and coverting to object caregiver for our uses
+                            caregiver = value.toObject(Caregiver.class);
 
-                                //iterating through caregiver's patients
-                                for(int i = 0; i < caregiver.getpList().size(); i++){
-                                    int index = i;
-                                    pRef.document(caregiver.getpList().get(i)).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                                        //adding each patient to list for ListAdapter
+                            //iterating through caregiver's patients
+                            for(int i = 0; i < caregiver.getpList().size(); i++){
+                                int index = i;
+                                pRef.document(caregiver.getpList().get(i)).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                                    //adding each patient to list for ListAdapter
+                                    @Override
+                                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                                        Patient patient = value.toObject(Patient.class);
+                                        patient.setDocumentId(caregiver.getpList().get(index));
+                                        patients.add(patient);
+                                        //setting the list of patients on mainActivity4
+                                        ListAdapter listAdapter = new ListAdapter(MainActivity3.this,patients);
+                                        binding.patientsListView.setAdapter(listAdapter);
+                                    }
+                                });
+                            }
+                            //gettting the caregiver's patients
+                            FirebaseFirestore docRef = FirebaseFirestore.getInstance();
+                            docRef.collection("Caregiver")
+                                    .document(docId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                         @Override
-                                        public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                                            Patient patient = value.toObject(Patient.class);
-                                            patient.setDocumentId(caregiver.getpList().get(index));
-                                            patients.add(patient);
-                                            ListAdapter listAdapter = new ListAdapter(MainActivity3.this,patients);
-                                            binding.patientsListView.setAdapter(listAdapter);
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                Caregiver caregiver = task.getResult().toObject(Caregiver.class);
+                                                DocID = caregiver.getpList();
+                                            }
+                                            else{
+                                                Toast.makeText(MainActivity3.this, "Sb", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
                                     });
-                                }
-//                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                FirebaseFirestore docRef = FirebaseFirestore.getInstance();
-                                docRef.collection("Caregiver")
-                                        .document(docId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                if (task.isSuccessful()) {
-//                                                    DocumentSnapshot doc = task.getResult();
-                                                    Caregiver caregiver = task.getResult().toObject(Caregiver.class);
-                                                    DocID = caregiver.getpList();
-                                                }
-                                                else{
-                                                    Toast.makeText(MainActivity3.this, "Sb", Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-                                        });
-                            }
                         }
-                    });
+                    }
+                });
 
         }
 
@@ -106,9 +108,6 @@ public class MainActivity3 extends AppCompatActivity {
         binding.patientsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // insert the data using the position
-
-
                 //passing patient information
                 Intent i = new Intent(MainActivity3.this,BufferCaregiver.class);
                 i.putExtra("username",patients.get(position).getUsername());
@@ -120,15 +119,6 @@ public class MainActivity3 extends AppCompatActivity {
 
             }
         });
-    }
-
-    public void openActivity5(){
-        Intent intent = new Intent(this,MainActivity5.class);
-        startActivity(intent);
-    }
-
-    public void update(String id){
-        ((global)this.getApplication()).refreshTaskForTargetPatientForAll(id);
     }
 
     //our list is equipped to take multiple patients, but for our purposes

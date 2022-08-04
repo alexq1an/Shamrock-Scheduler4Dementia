@@ -96,6 +96,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
             }
         });
 
+        //for editing patient information
         changePatientInfo_button = (Button) findViewById(R.id.changePatientInfo_button);
         changePatientInfo_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,15 +105,21 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
             }
         });
 
+        //sets the list of tasks displayed at the bottom half of mainActivity4
         ListAdapter2 listAdapter2 = new ListAdapter2(MainActivity4.this, ((global)this.getApplication()).allTasks);
         allTaskList.setAdapter(listAdapter2);
 
     }
+
+
     public void openActivity5(){
+        //checking if the information provided below can be passed
         if (count < 1){
             Toast.makeText(this, "Must Select Date first", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        //passing information
         Intent intent = new Intent(this,MainActivity5.class);
         intent.putExtra("calendar", calendar);
         intent.putExtra("scheduleDocId", scheduleID);
@@ -130,12 +137,15 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
     }
 
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth){
+        //sets the calendar to select the current date
         Calendar c = Calendar.getInstance();
         c.set(Calendar.YEAR,year);
         c.set(Calendar.MONTH,month);
         c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
         etDate.setText(currentDateString);
+        //set the counter to imply that a date has been chosen
         count++;
         calendar = c;
 
@@ -151,6 +161,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
                         if (task.isSuccessful()){
                             int counter = 0;
                             for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                //if a document for the date already exists then grab and upate
                                 counter++;
                                 Schedule schedule = documentSnapshot.toObject(Schedule.class);
                                 String id = documentSnapshot.getId();
@@ -159,6 +170,7 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
 
                                 pRef.document(patientDocId).collection("Schedule").document(id).set(schedule);
                             }
+                            //if a document doesn't exist, create a new one and add it to datebase
                             if(counter == 0){
                                 DocumentReference addedDocRef = pRef.document(patientDocId).collection("Schedule").document();
                                 Schedule schedule = new Schedule(addedDocRef.getId());
@@ -170,9 +182,6 @@ public class MainActivity4 extends AppCompatActivity implements DatePickerDialog
 
                     }
                 });
-
-
-        //add calendar to intent
 
     }
 }
