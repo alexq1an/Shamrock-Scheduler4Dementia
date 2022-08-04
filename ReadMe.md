@@ -104,9 +104,13 @@ However, the default emulator works fine as well
 <br>
 <br>
 <br>
+<h4>Buffer page
+</h4>
+<img src="bufferPage.png" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
+Press Confrim to proceed to the next page
 <br>
 <br>
 <br>
