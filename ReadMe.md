@@ -17,7 +17,6 @@ Shamrock reminds patients of tasks, which help them keep up with their daily sch
 | MainActivity6 | Let the caregiver add their patient |
 | MainActivity7 | Login page for patient |
 | MainActivity8 | Let caregiver update patient information |
-| MainActivity9 | Caregiver can upload the image |
 | MainActivity10 | The page to notify the task information |
 | patient_homepage | The homepage for the patient |
 | Patient | This class provides methods for storing information regarding the patient in the database |
@@ -26,7 +25,6 @@ Shamrock reminds patients of tasks, which help them keep up with their daily sch
 | pTask | This is a class that helps to store alarms in the database |
 | Schedule | This is the class for storing the date of the schedule |
 | AlarmReceiver| This file is used to show the pop-up notification to the user |
-| DestinationActivity | This basically a separate page that opens after the alarm is stopped |
 | BufferCaregiver| This page is a buffer page while the app reads the data from the database |
 | BufferPatientHome | This page is a buffer page while the app reads the data from the database  |
 
@@ -85,7 +83,7 @@ However, the default emulator works fine as well
 <br>Below are screenshots of each page and what their features are
 <br>Some of the Pages may be slow when loading
 <h4> Choosing User Type Page</h4> 
-<img src="chooseUserType.jpg" width="275" height="500" align = "left">
+<img src="select_.png" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -113,7 +111,7 @@ However, the default emulator works fine as well
 <br>
 
 <h4>Caregiver Login Page</h4>
-<img src="login.jpg" width="275" height="500" align = "left">
+<img src="CaregiverLogin.png" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -143,7 +141,7 @@ However, the default emulator works fine as well
 <br>
  
 <h4>Creating Patient</h4>
-<img src="createPatient.jpg" width="275" height="500" align = "left">
+<img src="CreatePatient.png" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -171,7 +169,7 @@ The caregiver has to manually press the back button on the device to go back to 
 <br>
 <br>
 <h4>Caregiver Homepage</h4>
-<img src="caregiverHome.jpg" width="275" height="500" align = "left">
+<img src="CaregiverHome.png" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -198,7 +196,7 @@ Click on any patient to be led to editing the Schedule of that particular patien
 <br>
 <br>
 <h4>Edit Patient’s Schedule Page</h4>
-<img src="patientEditing.jpg" width="275" height="500" align = "left">
+<img src="EditPSchedule.png" width="275" height="500" align = "left">
 <br>
 <br>
 <br>
@@ -427,7 +425,12 @@ The [GET IMAGE] button allows the patient to see the image that was uploaded to 
 <br>
 <br>
 A notification pops up on the screen when the alarm rings, once the user clicks on the notification it stops the alarm and takes the user to the patient login where they log in with a unique id and see the list of tasks.<br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -494,6 +497,7 @@ This page has two button
  
  
  
+
 
 
 
