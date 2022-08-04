@@ -488,6 +488,37 @@ This page has two button
 <br>
 <br>
 <br>
+<h4>Patient Information</h4>
+<img src="CreatePatient.png" width="275" height="500" align = "left">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+This page takes in the patient information for the first time the caregiver cfreates a new account.
+This page also contains a unique patient login id (7 digits) which should be preserved
+and used everytime by the patient to login from there side
+[CONFIRM] button allows the user to add the patient information and the information gets stored in the database.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
  
  
  
